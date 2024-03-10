@@ -22,6 +22,7 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}">
 
     <!--Favicon-->
     <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -29,12 +30,23 @@
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
 
+    <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }} " rel="stylesheet">
+
+    <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }} " rel="stylesheet">
+    <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
 </head>
 
-<body>
+{{-- <body> --}}
 
-    {{-- <div class="preloader">
+{{-- <div class="preloader">
         <div class="dots dot1">
             <div class="dot"></div>
             <div class="dot"></div>

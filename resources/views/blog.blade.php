@@ -11,11 +11,15 @@
                             <div class="card-body ms-lg-3">
                                 <div class="mt-2">
                                     <a class="card-link text-primary" href="#">CSS</a>
-                                    <h2 class="card-title mt-2 h5"> <a href="blog-single.html" class="text-dark">CSS
-                                            Float: A Tutorial</a></h2>
-                                    <p class="fs-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
-                                        error, aliquid
-                                        adipisci nisi expedita perspiciatis, cum autem..</p>
+                                    <h2 class="card-title mt-2 h5">
+                                        <a href="blog-single.html" class="text-dark">
+                                            CSS Float: A Tutorial
+                                        </a>
+                                    </h2>
+                                    <p class="fs-6">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
+                                        error, aliquid adipisci nisi expedita perspiciatis, cum autem..
+                                    </p>
                                 </div>
                                 <div class="card-footer bg-transparent border-0 mt-5 mt-lg-0 p-0">
                                     <a href="blog-single.html"

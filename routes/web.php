@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landing');
 });
+
+// add route with controller []
+Route::get('/admin', [AdminController::class, 'index'])->name('main');
