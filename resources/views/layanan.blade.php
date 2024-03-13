@@ -20,7 +20,7 @@
         <div class="row g-4 justify-content-center">
             <div class="col-lg-4 col-md-6 card-item">
                 <div class="card text-center  border-0 bg-white radius shadow px-3 py-5" data-aos="fade-right"
-                    data-aos-duration="1500">
+                    data-aos-duration="1000">
                     <div class="card-icon mb-3">
                         <i class="fas fa-cloud "></i>
                     </div>

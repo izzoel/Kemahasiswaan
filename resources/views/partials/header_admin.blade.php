@@ -2,54 +2,32 @@
 <html lang="en">
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <title>Kemahasiswaan</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- mobile responsive meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <title>Gentelella Alela! | </title>
 
-    <!-- ** Plugins Needed for the Project ** -->
-    <!-- Slick -->
-    {{-- <link rel="stylesheet" href="{{ asset('plugins/slick/slick.css') }}">
-
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/font-awesome/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/font-awesome/brands.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/font-awesome/solid.css') }}">
-
-    <!-- aos -->
-    <link rel="stylesheet" href="{{ asset('plugins/aos/aos.css') }}">
-
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}"> --}}
-
-    <!--Favicon-->
-    <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
-    <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}">
-    {{-- <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon"> --}}
-
-    <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }} " rel="stylesheet">
-
-    <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }} " rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- NProgress -->
     <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
+    <!-- bootstrap-wysiwyg -->
+    <link href="{{ asset('vendors/google-code-prettify/bin/prettify.min.css') }}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ asset('vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{{ asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
+    <!-- starrr -->
+    <link href="{{ asset('vendors/starrr/dist/starrr.css') }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
+    <!-- Custom styling plus plugins -->
+    <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
+
 </head>
-
-
-
-{{-- <div class="preloader">
-        <div class="dots dot1">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div> --}}

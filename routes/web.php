@@ -19,5 +19,7 @@ Route::get('/', function () {
     return view('landing');
 });
 
-// add route with controller []
+
 Route::get('/admin', [AdminController::class, 'index'])->name('main');
+
+Route::post('/login', [AdminController::class, 'login'])->name('login');

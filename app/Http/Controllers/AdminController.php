@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -62,5 +63,18 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function login(Request $request, Admin $admin)
+    {
+        $credentials = $request->only('username', 'password');
+
+        if (auth()->attempt($credentials)) {
+            // Jika otentikasi berhasil
+            return redirect()->intended('/admin.main');
+        }
+
+        // Jika otentikasi gagal
+        return redirect()->route('login')->with('error', 'Email atau password salah.');
     }
 }

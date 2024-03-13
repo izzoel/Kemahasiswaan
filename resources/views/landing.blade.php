@@ -158,6 +158,7 @@
         </div>
     </section>
     <!--================== Project Section End ==================-->
+    @include('modals/login')
 </body>
 
 @include('partials/blocks/foot')
