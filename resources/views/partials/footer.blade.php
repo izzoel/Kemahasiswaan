@@ -1,5 +1,5 @@
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
 <!-- Bootstrap JS -->
 <script src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}"></script>
 <!-- slick-slider-->
@@ -58,5 +58,8 @@
 <!-- bootstrap-daterangepicker -->
 <script src="{{ asset('vendors/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+
+
 
 </html>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +36,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show()
     {
         //
     }
@@ -44,7 +44,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit()
     {
         //
     }
@@ -52,7 +52,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request,)
     {
         //
     }
@@ -60,21 +60,29 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy()
     {
         //
     }
 
-    public function login(Request $request, Admin $admin)
+    public function login(Request $request,)
     {
         $credentials = $request->only('username', 'password');
 
         if (auth()->attempt($credentials)) {
             // Jika otentikasi berhasil
-            return redirect()->intended('/admin.main');
+            return redirect()->intended('admin');
         }
 
         // Jika otentikasi gagal
-        return redirect()->route('login')->with('error', 'Email atau password salah.');
+        return redirect()->route('landing')->with('error', 'Email atau password salah.');
+    }
+
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect()->route('landing');
     }
 }

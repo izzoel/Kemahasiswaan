@@ -41,7 +41,7 @@
     <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 </head>
 
 {{-- <body> --}}

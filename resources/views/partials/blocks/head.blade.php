@@ -1,8 +1,8 @@
 <!--================== Header Section Start ==================-->
 <header class="navigation border-bottom">
-    <nav class="navbar navbar-expand-lg mx-0">
-        <div class="container" style="margin-right: 0; margin-left: 0;">
-            <a class="navbar-brand" href="index.html" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <nav class="navbar  navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" data-bs-toggle="modal" data-bs-target="#loginModal">
                 <i class="fas fa-users"></i>
             </a>
             <a class="navbar-brand" href="index.html">

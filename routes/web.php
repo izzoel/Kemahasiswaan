@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing');
-});
+})->name('landing');
 
 
 Route::get('/admin', [AdminController::class, 'index'])->name('main');
 
 Route::post('/login', [AdminController::class, 'login'])->name('login');
+Route::get('/login', [AdminController::class, 'login'])->name('login');
+
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
