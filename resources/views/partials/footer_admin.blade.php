@@ -30,7 +30,8 @@
 <script src="{{ asset('vendors/jszip/dist/jszip.min.js') }}"></script>
 <script src="{{ asset('vendors/pdfmake/build/pdfmake.min.js') }}"></script>
 <script src="{{ asset('vendors/pdfmake/build/vfs_fonts.js') }}"></script>
-
+{{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -45,7 +46,7 @@
                     className: 'btn btn-sm btn-primary',
                     action: function(e, dt, node, config) {
                         // Your custom button action here
-                        $('#postinganModal').modal('toggle');
+                        $('#tambahPost').modal('toggle');
                     }
                 }
             ]
@@ -54,11 +55,30 @@
 </script>
 
 <script>
-    const quill = new Quill('#editor', {
-        modules: {
-            toolbar: '#toolbar-container',
-        },
-        placeholder: 'Compose an epic...',
-        theme: 'snow', // or 'bubble'
+    $('#summernote').summernote({
+        placeholder: 'Tulis sesuatu yang menginspirasimu!',
+        tabsize: 2,
+        height: 400,
+        callbacks: {
+            onKeyup: function(e) {
+                var $noteEditable = $('#summernote').next('.note-editor').find('.note-editable');
+                var plainContent = $noteEditable.text();
+                var excerpt = plainContent.substring(0, 300);
+                $('#excerpt').val(excerpt);
+            }
+        }
+    });
+    $('#summernoteEdit').summernote({
+        placeholder: 'Tulis sesuatu yang menginspirasimu!',
+        tabsize: 2,
+        height: 400,
+        callbacks: {
+            onKeyup: function(e) {
+                var $noteEditable = $('#summernote').next('.note-editor').find('.note-editable');
+                var plainContent = $noteEditable.text();
+                var excerpt = plainContent.substring(0, 300);
+                $('#excerpt').val(excerpt);
+            }
+        }
     });
 </script>
