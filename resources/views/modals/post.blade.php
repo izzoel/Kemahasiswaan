@@ -1,6 +1,5 @@
 <!-- Modal Tambah-->
-<div class="modal fade" id="tambahPost" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="tambahPost" data-backdrop="static" data-keyboard="false" tabindex="-1">
     <div class="modal-dialog" style="min-width: 95%">
         <div class="modal-content">
             <div class="modal-header pb-1">
@@ -70,8 +69,8 @@
 
 
 @foreach ($posts as $post)
-    <div class="modal fade" id="editPost{{ $post->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editPost{{ $post->id }}" data-backdrop="static" data-keyboard="false"
+        tabindex="-1">
         <div class="modal-dialog" style="min-width: 95%">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -118,8 +117,7 @@
                                                 name="thumbnail"
                                                 onchange="document.getElementById('thumbnail-label').textContent = this.files[0].name">
                                             <label class="custom-file-label" id="thumbnail-label"
-                                                for="thumbnail">Choose
-                                                file</label>
+                                                for="thumbnail">{{ $post->thumbnail }}</label>
                                         </div>
 
                                     </div>
@@ -127,7 +125,7 @@
                             </div>
                         </div>
 
-                        <textarea name="konten" id="summernoteEdit"></textarea>
+                        <textarea name="konten" id="summernoteEdit{{ $post->id }}">{{ $post->konten }}</textarea>
                         <input type="hidden" name="excerpt" id="excerpt">
 
                     </div>

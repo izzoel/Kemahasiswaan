@@ -48,6 +48,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        $posts = Post::all();
+        return response($posts);
     }
 
     /**

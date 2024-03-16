@@ -54,4 +54,3 @@
 </div>
 
 @include('modals.post')
-<!-- Modal -->

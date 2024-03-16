@@ -68,17 +68,27 @@
             }
         }
     });
-    $('#summernoteEdit').summernote({
-        placeholder: 'Tulis sesuatu yang menginspirasimu!',
-        tabsize: 2,
-        height: 400,
-        callbacks: {
-            onKeyup: function(e) {
-                var $noteEditable = $('#summernote').next('.note-editor').find('.note-editable');
-                var plainContent = $noteEditable.text();
-                var excerpt = plainContent.substring(0, 300);
-                $('#excerpt').val(excerpt);
-            }
+
+    $.ajax({
+        url: "{{ route('show-post') }}",
+        method: 'GET',
+        success: function(data) {
+            data.forEach(function(post) {
+                $('#summernoteEdit' + post.id).summernote({
+                    placeholder: 'Tulis sesuatu yang menginspirasimu!',
+                    tabsize: 2,
+                    height: 400,
+                    callbacks: {
+                        onKeyup: function(e) {
+                            var $noteEditable = $('#summernote').next('.note-editor')
+                                .find('.note-editable');
+                            var plainContent = $noteEditable.text();
+                            var excerpt = plainContent.substring(0, 300);
+                            $('#excerpt' + post.id).val(excerpt);
+                        }
+                    }
+                });
+            });
         }
     });
 </script>
