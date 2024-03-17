@@ -79,12 +79,20 @@
                     tabsize: 2,
                     height: 400,
                     callbacks: {
+                        onInit: function() {
+                            var $noteEditable = $('#summernoteEdit' + post.id).next(
+                                '.note-editor').find('.note-editable');
+                            var plainContent = $noteEditable.text();
+                            var excerpt = plainContent.substring(0, 300);
+                            $('#excerptEdit' + post.id).val(excerpt);
+                        },
                         onKeyup: function(e) {
-                            var $noteEditable = $('#summernote').next('.note-editor')
+                            var $noteEditable = $('#summernoteEdit' + post.id).next(
+                                    '.note-editor')
                                 .find('.note-editable');
                             var plainContent = $noteEditable.text();
                             var excerpt = plainContent.substring(0, 300);
-                            $('#excerpt' + post.id).val(excerpt);
+                            $('#excerptEdit' + post.id).val(excerpt);
                         }
                     }
                 });

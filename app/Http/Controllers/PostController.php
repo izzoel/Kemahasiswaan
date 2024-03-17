@@ -63,9 +63,29 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post, $id)
     {
-        //
+        if ($request->hasFile('thumbnailEdit')) {
+            $thumbnail = $request->file('thumbnailEdit')->storeAs('thumbnail', $request->file('thumbnailEdit')->getClientOriginalName());
+        } else {
+
+            $thumbnail = $request->input('thumbnailEditx');
+        }
+
+        $data = [
+            'judul' => $request->input('judulEdit'),
+            'konten' => $request->input('kontenEdit'),
+            'excerpt' => $request->input('excerptEdit'),
+            'kategori' => $request->input('kategoriEdit'),
+        ];
+
+
+        // Post::find($id)->update($data);
+        // $post->update($request->all());
+        // dd($request->all());
+
+        dd($request->file('thumbnailEdit'));
+        return redirect(route('main'));
     }
 
     /**
