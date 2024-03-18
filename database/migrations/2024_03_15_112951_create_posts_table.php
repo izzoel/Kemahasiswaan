@@ -16,11 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('konten');
             $table->text('excerpt');
-<<<<<<< HEAD
-            $table->text('kategori');
-=======
             $table->integer('id_kategori');
->>>>>>> 740fe1f (add fitur tambah kategori)
             $table->string('thumbnail');
             $table->timestamps();
         });

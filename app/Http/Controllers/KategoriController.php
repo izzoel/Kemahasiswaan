@@ -28,11 +28,13 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        Kategori::create([
-            'nama' => $request->input('kategori'),
-        ]);
-        // return redirect(route('main'))->with('kategoriCreated', $kategori->id);
-        // return redirect(route('main'));
+        $kategori = Kategori::where('nama', $request->input('kategori'))->first();
+
+        if (!$kategori) {
+            $kategori = Kategori::create([
+                'nama' => $request->input('kategori'),
+            ]);
+        }
     }
 
     /**

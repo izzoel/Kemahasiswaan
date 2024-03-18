@@ -122,6 +122,14 @@
     });
 
     $('#submitKategori').click(function() {
+
+        var selectedValue = $('#kategori').val();
+        if ($('#kategori option[value="' + selectedValue + '"]').length > 0) {
+            // If the value already exists, show an alert and return
+            alert('Kategori sudah ada');
+            return;
+        }
+
         $.ajax({
             type: 'POST',
             url: "{{ route('store-kategori') }}",
@@ -132,16 +140,19 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        // Clear existing options except the one with value "0"
-                        $('#kategori option').not('[value="0"]').remove();
-                        // Append options from the database to the select element
+
+                        $('#kategori').empty();
+                        $('#kategori').append(
+                            '<option value="0" disabled selected> -- Pilih -- </option>'
+                            );
                         $.each(response, function(index, data) {
-                            $('#kategori').append('<option value="' + data.id +
-                                '">' + data.nama + '</option>');
+                            $('#kategori').append('<option value="' + data
+                                .id + '">' + data.nama + '</option>');
                         });
+
                     },
                     error: function(xhr, status, error) {
-                        // alert('kategori sudah ada');
+                        alert('kategori sudah ada');
                         // console.log('kategori sudah ada');
                         console.error(error);
                     }

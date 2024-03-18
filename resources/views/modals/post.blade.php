@@ -29,7 +29,7 @@
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-1 col-sm-1 ">Kategori
-                                    <a class="" data-toggle="modal" data-target="#tambahKategori">
+                                    <a type="button" data-toggle="modal" data-target="#tambahKategori">
                                         <span class="badge badge-sm small bg-primary text-white">+</span>
                                     </a>
                                 </label>
