@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+<<<<<<< HEAD
+=======
+use App\Models\Kategori;
+>>>>>>> 740fe1f (add fitur tambah kategori)
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,15 +32,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         // $post = $request->all();
         // dd($post);
         // dd($request->file('thumnail')->storeAs('thumnail', $request->file('thumnail')->getClientOriginalName()));
         // Post::create($post);
+=======
+>>>>>>> 740fe1f (add fitur tambah kategori)
         Post::create([
             'judul' => $request->input('judul'),
             'konten' => $request->input('konten'),
             'excerpt' => $request->input('excerpt'),
+<<<<<<< HEAD
             'kategori' => $request->input('kategori'),
+=======
+            'id_kategori' => $request->input('kategori'),
+>>>>>>> 740fe1f (add fitur tambah kategori)
             'thumbnail' => $request->file('thumbnail')->storeAs('thumbnail', $request->file('thumbnail')->getClientOriginalName())
         ]);
         return redirect(route('main'));
@@ -68,8 +79,12 @@ class PostController extends Controller
         if ($request->hasFile('thumbnailEdit')) {
             $thumbnail = $request->file('thumbnailEdit')->storeAs('thumbnail', $request->file('thumbnailEdit')->getClientOriginalName());
         } else {
+<<<<<<< HEAD
 
             $thumbnail = $request->input('thumbnailEditx');
+=======
+            $thumbnail = $request->input('thumbnail');
+>>>>>>> 740fe1f (add fitur tambah kategori)
         }
 
         $data = [
@@ -77,6 +92,7 @@ class PostController extends Controller
             'konten' => $request->input('kontenEdit'),
             'excerpt' => $request->input('excerptEdit'),
             'kategori' => $request->input('kategoriEdit'),
+<<<<<<< HEAD
         ];
 
 
@@ -85,6 +101,13 @@ class PostController extends Controller
         // dd($request->all());
 
         dd($request->file('thumbnailEdit'));
+=======
+            'thumbnail' => $thumbnail
+        ];
+
+        Post::find($id)->update($data);
+
+>>>>>>> 740fe1f (add fitur tambah kategori)
         return redirect(route('main'));
     }
 

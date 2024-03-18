@@ -24,7 +24,11 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             {{ $post->judul }}</td>
+<<<<<<< HEAD
                         <td>{{ $post->kategori }}</td>
+=======
+                        <td>{{ $post->kategori->nama }}</td>
+>>>>>>> 740fe1f (add fitur tambah kategori)
                         <td>
                             <img src="{{ asset('storage/' . $post->thumbnail) }}"
                                 class="img-responsive center-block d-block mx-auto"

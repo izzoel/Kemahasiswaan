@@ -32,6 +32,10 @@
 <script src="{{ asset('vendors/pdfmake/build/vfs_fonts.js') }}"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
+<<<<<<< HEAD
+=======
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+>>>>>>> 740fe1f (add fitur tambah kategori)
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -100,3 +104,71 @@
         }
     });
 </script>
+<<<<<<< HEAD
+=======
+
+<script>
+    // $('#kategori').select2({
+    //     placeholder: 'Pilih',
+    //     allowClear: true
+    // });
+
+    $.ajax({
+        url: "{{ route('show-kategori') }}",
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // Clear existing options except the one with value "0"
+            $('#kategori option').not('[value="0"]').remove();
+            // Append options from the database to the select element
+            $.each(response, function(index, data) {
+                $('#kategori').append('<option value="' + data.id +
+                    '">' + data.nama + '</option>');
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+
+    $('#submitKategori').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('store-kategori') }}",
+            data: $('#kategoriForm').serialize(), // Serialize form data
+            success: function(data) {
+                $.ajax({
+                    url: "{{ route('show-kategori') }}",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // Clear existing options except the one with value "0"
+                        $('#kategori option').not('[value="0"]').remove();
+                        // Append options from the database to the select element
+                        $.each(response, function(index, data) {
+                            $('#kategori').append('<option value="' + data.id +
+                                '">' + data.nama + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // alert('kategori sudah ada');
+                        // console.log('kategori sudah ada');
+                        console.error(error);
+                    }
+                });
+                // Handle success response
+                // $('#kategori').append('<option value="' + data.id +
+                //     '">' + data.kategori + '</option>');
+                // Close the modal after successful submission
+                $('#tambahKategori').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                // Handle error response, if needed
+                // console.error(xhr.responseText);
+                alert('kategori sudah ada');
+                // console.log('kategori sudah ada');
+            }
+        });
+    });
+</script>
+>>>>>>> 740fe1f (add fitur tambah kategori)
