@@ -15,11 +15,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="card-body mt-0 pt-0">
-<<<<<<< HEAD
-                                    <a class="card-link text-primary" href="#">{{ $post->kategori }}</a>
-=======
                                     <a class="card-link text-primary" href="#">{{ $post->kategori->nama }}</a>
->>>>>>> 740fe1f (add fitur tambah kategori)
                                     <h5 class="card-title mt-2 h5">{{ $post->judul }}</h5>
                                     <p class="fs-6">{{ $post->excerpt }}..</p>
                                     <a href="#"
@@ -59,20 +55,12 @@
                         <ul class="list-group mb-4">
                             @foreach ($kategori as $i_kategori)
                                 @php
-<<<<<<< HEAD
-                                    $categoryCount = Post::where('kategori', $i_kategori->kategori)->count();
-=======
                                     $categoryCount = Post::where('id_kategori', $i_kategori->kategori->nama)->count();
->>>>>>> 740fe1f (add fitur tambah kategori)
                                 @endphp
                                 <li class="border-bottom py-2">
                                     <a href="#!"
                                         class="d-flex justify-content-between align-items-center text-dark">
-<<<<<<< HEAD
-                                        {{ $i_kategori->kategori }}
-=======
                                         {{ $i_kategori->kategori->nama }}
->>>>>>> 740fe1f (add fitur tambah kategori)
                                         <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">
                                             {{ $categoryCount }}
                                         </span>
@@ -83,12 +71,8 @@
 
                         <ul class="list-inline tag-list">
                             @foreach ($kategori as $i_kategori)
-<<<<<<< HEAD
-                                <li class="list-inline-item m-1"><a href="#">{{ $i_kategori->kategori }}</a></li>
-=======
                                 <li class="list-inline-item m-1"><a href="#">{{ $i_kategori->kategori->nama }}</a>
                                 </li>
->>>>>>> 740fe1f (add fitur tambah kategori)
                             @endforeach
                         </ul>
                 </div>

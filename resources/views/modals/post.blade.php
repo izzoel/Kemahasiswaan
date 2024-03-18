@@ -28,12 +28,6 @@
                     <div class="row mb-4">
                         <div class="col p-0">
                             <div class="form-group">
-<<<<<<< HEAD
-                                <label class="control-label col-md-1 col-sm-1 ">Kategori</label>
-                                <div class="col-md-11 col-sm-11 ">
-                                    <input type="text" class="form-control rounded" id="kategori" name="kategori"
-                                        placeholder="...">
-=======
                                 <label class="control-label col-md-1 col-sm-1 ">Kategori
                                     <a class="" data-toggle="modal" data-target="#tambahKategori">
                                         <span class="badge badge-sm small bg-primary text-white">+</span>
@@ -43,7 +37,6 @@
                                     <select id="kategori" name="kategori" class="form-control p-2">
                                         <option value="0" disabled selected> -- Pilih -- </option>
                                     </select>
->>>>>>> 740fe1f (add fitur tambah kategori)
                                 </div>
                             </div>
                         </div>
@@ -115,7 +108,8 @@
                                     <label class="control-label col-md-1 col-sm-1 ">Kategori</label>
                                     <div class="col-md-11 col-sm-11 ">
                                         <input type="text" class="form-control rounded" id="kategori"
-                                            name="kategoriEdit" placeholder="..." value="{{ $post->kategori }}">
+                                            name="kategoriEdit" placeholder="..."
+                                            value="{{ $post->kategori->nama }}">
                                     </div>
                                 </div>
                             </div>
@@ -129,45 +123,18 @@
                                             <img src="{{ asset('storage/' . $post->thumbnail) }}" width="400"
                                                 alt="{{ $post->thumbnail }}" class="img-fluid mr-3">
                                             <div class="custom-file">
-<<<<<<< HEAD
-                                                {{-- <input type="file" class="custom-file-input" id="thumbnail"
-                                                    name="thumbnailEditx"
-                                                    onchange="document.getElementById('thumbnail-label').textContent = this.files[0].name"
-                                                    value="{{ $post->thumbnail }}">
-                                                <label class="custom-file-label" id="thumbnail-label"
-                                                    for="thumbnail">{{ $post->thumbnail }}</label> --}}
-
-                                                <input type="file" class="form-control-file" id="thumbnail"
-                                                    name="thumbnailEdit" value="{{ $post->thumbnail }}">
-                                            </div>
-                                        </div>
-                                        {{-- <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumbnail"
-                                                name="thumbnailEdit"
-                                                onchange="document.getElementById('thumbnail-label').textContent = this.files[0].name">
-                                            <label class="custom-file-label" id="thumbnail-label"
-                                                for="thumbnail">Choose
-                                                file</label>
-                                        </div> --}}
-
-=======
                                                 <input type="file" class="form-control-file" id="thumbnail"
                                                     name="thumbnailEdit">
                                             </div>
                                         </div>
->>>>>>> 740fe1f (add fitur tambah kategori)
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <textarea name="kontenEdit" id="summernoteEdit{{ $post->id }}">{{ $post->konten }}</textarea>
-<<<<<<< HEAD
-                        <input type="text" name="excerptEdit" id="excerptEdit{{ $post->id }}">
-=======
                         <input type="hidden" name="excerptEdit" id="excerptEdit{{ $post->id }}">
                         <input type="hidden" name="thumbnail" value="{{ $post->thumbnail }}">
->>>>>>> 740fe1f (add fitur tambah kategori)
 
                     </div>
 
@@ -180,8 +147,6 @@
         </div>
     </div>
 @endforeach
-<<<<<<< HEAD
-=======
 
 
 {{-- make modal kategori baru --}}
@@ -213,4 +178,3 @@
         </div>
     </div>
 </div>
->>>>>>> 740fe1f (add fitur tambah kategori)

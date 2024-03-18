@@ -42,10 +42,6 @@
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<<<<<<< HEAD
-=======
-
->>>>>>> 740fe1f (add fitur tambah kategori)
 </head>
 
 {{-- <body> --}}

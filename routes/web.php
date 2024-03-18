@@ -2,11 +2,7 @@
 
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ContentController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\KategoriController;
->>>>>>> 740fe1f (add fitur tambah kategori)
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
@@ -40,11 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/post/store', [PostController::class, 'store'])->name('store-post');
     Route::put('/admin/post/update/{id}', [PostController::class, 'update'])->name('update-post');
     Route::get('/admin/post/destroy/{id}', [PostController::class, 'destroy'])->name('delete-post');
-<<<<<<< HEAD
-=======
 
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');
-    Route::get('/admin/z', [PostController::class, 'kategori']);
->>>>>>> 740fe1f (add fitur tambah kategori)
 });

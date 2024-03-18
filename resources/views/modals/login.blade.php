@@ -9,13 +9,8 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-<<<<<<< HEAD
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username">
-=======
                         <label for="name" class="form-label">Username</label>
                         <input type="text" class="form-control" id="name" name="name">
->>>>>>> 740fe1f (add fitur tambah kategori)
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>

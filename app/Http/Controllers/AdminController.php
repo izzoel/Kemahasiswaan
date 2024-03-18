@@ -69,11 +69,7 @@ class AdminController extends Controller
 
     public function login(Request $request,)
     {
-<<<<<<< HEAD
-        $credentials = $request->only('username', 'password');
-=======
         $credentials = $request->only('name', 'password');
->>>>>>> 740fe1f (add fitur tambah kategori)
 
         if (auth()->attempt($credentials)) {
             // Jika otentikasi berhasil

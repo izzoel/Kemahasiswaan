@@ -12,11 +12,6 @@ class Post extends Model
         'judul',
         'konten',
         'excerpt',
-<<<<<<< HEAD
-        'kategori',
-        'thumbnail'
-    ];
-=======
         'id_kategori',
         'thumbnail'
     ];
@@ -25,5 +20,4 @@ class Post extends Model
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
->>>>>>> 740fe1f (add fitur tambah kategori)
 }

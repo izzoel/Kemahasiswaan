@@ -32,10 +32,7 @@
 <script src="{{ asset('vendors/pdfmake/build/vfs_fonts.js') }}"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
-<<<<<<< HEAD
-=======
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
->>>>>>> 740fe1f (add fitur tambah kategori)
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -104,15 +101,8 @@
         }
     });
 </script>
-<<<<<<< HEAD
-=======
 
 <script>
-    // $('#kategori').select2({
-    //     placeholder: 'Pilih',
-    //     allowClear: true
-    // });
-
     $.ajax({
         url: "{{ route('show-kategori') }}",
         type: 'GET',
@@ -171,4 +161,3 @@
         });
     });
 </script>
->>>>>>> 740fe1f (add fitur tambah kategori)
