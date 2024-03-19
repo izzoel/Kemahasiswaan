@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class LandingController extends Controller
 {
@@ -12,11 +14,6 @@ class LandingController extends Controller
                 $posts = Post::all();
                 $informasi_terbaru = Post::orderBy('updated_at', 'desc')->get();
 
-                $kategori = Post::distinct()->get(['id_kategori']);
-
-                $count_kategori = Post::distinct()->get(['id_kategori'])->count('kategori');
-
-
-                return view('landing', compact('posts', 'informasi_terbaru', 'kategori', 'count_kategori'));
+                return view('landing', compact('posts', 'informasi_terbaru'));
         }
 }

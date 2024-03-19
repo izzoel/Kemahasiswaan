@@ -53,16 +53,15 @@
                 <div class="widget category-widget">
                     <h3 class="h4 mb-3">Kategori</h4>
                         <ul class="list-group mb-4">
-                            @foreach ($kategori as $i_kategori)
-                                @php
-                                    $categoryCount = Post::where('id_kategori', $i_kategori->kategori->nama)->count();
-                                @endphp
+                            @foreach ($posts->unique('id_kategori') as $post)
                                 <li class="border-bottom py-2">
                                     <a href="#!"
                                         class="d-flex justify-content-between align-items-center text-dark">
-                                        {{ $i_kategori->kategori->nama }}
+                                        {{ $post->kategori->nama }}
                                         <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">
-                                            {{ $categoryCount }}
+
+                                            {{ $post->where('id_kategori', $post->kategori->id)->get('id_kategori')->count() }}
+
                                         </span>
                                     </a>
                                 </li>
@@ -70,8 +69,8 @@
                         </ul>
 
                         <ul class="list-inline tag-list">
-                            @foreach ($kategori as $i_kategori)
-                                <li class="list-inline-item m-1"><a href="#">{{ $i_kategori->kategori->nama }}</a>
+                            @foreach ($posts->unique('id_kategori') as $post)
+                                <li class="list-inline-item m-1"><a href="#">{{ $post->kategori->nama }}</a>
                                 </li>
                             @endforeach
                         </ul>
