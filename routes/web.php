@@ -4,6 +4,7 @@ use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/artikel/update/{id}', [ArtikelController::class, 'update'])->name('update-artikel');
     Route::get('/admin/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->name('delete-artikel');
 
-    Route::get('/admin/prestasi/show', [ArtikelController::class, 'show'])->name('show-prestasi');
+    Route::get('/admin/galeri/show', [GaleriController::class, 'show'])->name('show-galeri');
 
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');

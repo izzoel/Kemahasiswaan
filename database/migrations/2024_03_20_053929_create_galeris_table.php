@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('galeris', function (Blueprint $table) {
             $table->id();
+            $table->string('deskripsi');
+            $table->text('gambar');
+            $table->integer('id_kategori');
             $table->timestamps();
         });
     }

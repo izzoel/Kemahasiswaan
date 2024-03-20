@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,9 +11,9 @@ class LandingController extends Controller
 {
         public function index()
         {
-                $posts = Post::paginate(2);
-                $informasi_terbaru = Post::orderBy('updated_at', 'desc')->get();
+                $artikels = Artikel::paginate(2);
+                $informasi_terbaru = Artikel::orderBy('updated_at', 'desc')->get();
 
-                return view('landing', compact('posts', 'informasi_terbaru'));
+                return view('landing', compact('artikels', 'informasi_terbaru'));
         }
 }

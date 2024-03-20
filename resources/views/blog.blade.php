@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <h3 class="h4 mb-3">Postingan Kemahsiswaan</h4>
-                    @foreach ($posts as $post)
+                    @foreach ($artikels as $artikel)
                         <div class="card mb-5 border-0 font-primary">
                             <div class="row g-0">
                                 <div class="col-md-5">
@@ -28,10 +28,8 @@
                         </div>
                     @endforeach
 
-                    <div>{{ $posts->links('pagination::bootstrap-4') }}</div>
+                    <div>{{ $artikels->links('pagination::bootstrap-4') }}</div>
             </div>
-
-
 
             <div class="col-lg-4 col-xl-3 offset-xl-1">
                 <div class="widget mb-5">
@@ -56,15 +54,13 @@
                 <div class="widget category-widget">
                     <h3 class="h4 mb-3">Kategori</h4>
                         <ul class="list-group mb-4">
-                            @foreach ($posts->unique('id_kategori') as $post)
+                            @foreach ($artikels->unique('id_kategori') as $artikel)
                                 <li class="border-bottom py-2">
                                     <a href="#!"
                                         class="d-flex justify-content-between align-items-center text-dark">
-                                        {{ $post->kategori->nama }}
+                                        {{ $artikel->kategori->nama }}
                                         <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">
-
-                                            {{ $post->where('id_kategori', $post->kategori->id)->get('id_kategori')->count() }}
-
+                                            {{ $artikel->where('id_kategori', $artikel->kategori->id)->get('id_kategori')->count() }}
                                         </span>
                                     </a>
                                 </li>
@@ -72,8 +68,8 @@
                         </ul>
 
                         <ul class="list-inline tag-list">
-                            @foreach ($posts->unique('id_kategori') as $post)
-                                <li class="list-inline-item m-1"><a href="#">{{ $post->kategori->nama }}</a>
+                            @foreach ($artikels->unique('id_kategori') as $artikel)
+                                <li class="list-inline-item m-1"><a href="#">{{ $artikel->kategori->nama }}</a>
                                 </li>
                             @endforeach
                         </ul>

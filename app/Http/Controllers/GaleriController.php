@@ -37,6 +37,8 @@ class GaleriController extends Controller
     public function show(Galeri $galeri)
     {
         //
+        $galeris = Galeri::all();
+        return view('admin.galeri', compact('galeris'));
     }
 
     /**
