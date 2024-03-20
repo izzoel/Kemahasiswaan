@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Kategori;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +31,7 @@ class PostController extends Controller
         $excerpt = $request->input('excerpt');
         $excerpt = !empty($excerpt) ? $excerpt : ' ';
 
-        Post::create([
+        Artikel::create([
             'judul' => $request->input('judul'),
             'konten' => $request->input('konten'),
             'excerpt' => $excerpt,
@@ -46,17 +45,17 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Artikel $artikel)
     {
         //
-        $posts = Post::all();
-        return response($posts);
+        $artikels = Artikel::all();
+        return response($artikels);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Artikel $artikel)
     {
         //
     }
@@ -64,7 +63,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post, $id)
+    public function update(Request $request, Artikel $artikel, $id)
     {
         if ($request->hasFile('thumbnailEdit')) {
             $thumbnail = $request->file('thumbnailEdit')->storeAs('thumbnail', $request->file('thumbnailEdit')->getClientOriginalName());
@@ -80,7 +79,7 @@ class PostController extends Controller
             'thumbnail' => $thumbnail
         ];
 
-        Post::find($id)->update($data);
+        Artikel::find($id)->update($data);
 
         return redirect(route('main'));
     }
@@ -90,7 +89,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::destroy($id);
+        Artikel::destroy($id);
         return back();
     }
 }

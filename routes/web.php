@@ -3,7 +3,7 @@
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +32,14 @@ Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('main');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
-    Route::get('/admin/post/show', [PostController::class, 'show'])->name('show-post');
-    Route::post('/admin/post/store', [PostController::class, 'store'])->name('store-post');
-    Route::put('/admin/post/update/{id}', [PostController::class, 'update'])->name('update-post');
-    Route::get('/admin/post/destroy/{id}', [PostController::class, 'destroy'])->name('delete-post');
+
+
+    Route::get('/admin/artikel/show', [ArtikelController::class, 'show'])->name('show-artikel');
+    Route::post('/admin/artikel/store', [ArtikelController::class, 'store'])->name('store-artikel');
+    Route::put('/admin/artikel/update/{id}', [ArtikelController::class, 'update'])->name('update-artikel');
+    Route::get('/admin/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->name('delete-artikel');
+
+    Route::get('/admin/prestasi/show', [ArtikelController::class, 'show'])->name('show-prestasi');
 
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');

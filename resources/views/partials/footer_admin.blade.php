@@ -37,7 +37,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         // Initialize the DataTable
-        $('#postingan').DataTable({
+        $('#artikel').DataTable({
             // // Customize DataTables layout
             dom: '<"row"<"col-md-6"B><"col-md-6"f>>rt<"row"<"col-md-6"l><"col-md-6"p>>',
             buttons: [
@@ -47,7 +47,7 @@
                     className: 'btn btn-sm btn-primary',
                     action: function(e, dt, node, config) {
                         // Your custom button action here
-                        $('#tambahPost').modal('toggle');
+                        $('#tambahArtikel').modal('toggle');
                     }
                 }
             ]
@@ -71,29 +71,29 @@
     });
 
     $.ajax({
-        url: "{{ route('show-post') }}",
+        url: "{{ route('show-artikel') }}",
         method: 'GET',
         success: function(data) {
-            data.forEach(function(post) {
-                $('#summernoteEdit' + post.id).summernote({
+            data.forEach(function(artikel) {
+                $('#summernoteEdit' + artikel.id).summernote({
                     placeholder: 'Tulis sesuatu yang menginspirasimu!',
                     tabsize: 2,
                     height: 400,
                     callbacks: {
                         onInit: function() {
-                            var $noteEditable = $('#summernoteEdit' + post.id).next(
+                            var $noteEditable = $('#summernoteEdit' + artikel.id).next(
                                 '.note-editor').find('.note-editable');
                             var plainContent = $noteEditable.text();
                             var excerpt = plainContent.substring(0, 300);
-                            $('#excerptEdit' + post.id).val(excerpt);
+                            $('#excerptEdit' + artikel.id).val(excerpt);
                         },
                         onKeyup: function(e) {
-                            var $noteEditable = $('#summernoteEdit' + post.id).next(
+                            var $noteEditable = $('#summernoteEdit' + artikel.id).next(
                                     '.note-editor')
                                 .find('.note-editable');
                             var plainContent = $noteEditable.text();
                             var excerpt = plainContent.substring(0, 300);
-                            $('#excerptEdit' + post.id).val(excerpt);
+                            $('#excerptEdit' + artikel.id).val(excerpt);
                         }
                     }
                 });
