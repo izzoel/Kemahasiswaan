@@ -153,7 +153,7 @@
                     error: function(xhr, status, error) {
                         alert('kategori sudah ada show');
                         // console.log('kategori sudah ada');
-                        console.error(error);
+                        // console.error(error);
                     }
                 });
                 // Handle success response
