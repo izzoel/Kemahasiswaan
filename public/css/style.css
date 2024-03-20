@@ -9936,7 +9936,7 @@ p a:hover {
 }
 @media (max-width: 991px) {
   footer .footer-hadding {
-    margin-bottom: 30px;
+    margin-bottom: 0;
   }
   .footer-links {
     margin-bottom: 50px;

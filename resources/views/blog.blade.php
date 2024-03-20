@@ -2,32 +2,33 @@
     use App\Models\Post;
 @endphp
 
-<section class="blog section mt-2">
+<section class="blog section mt-2" id="post">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8" id="post">
-                @foreach ($posts as $post)
-                    <div class="card mb-5 border-0 font-primary">
-                        <div class="row g-0">
-                            <div class="col-md-5">
-                                <img src=" {{ asset('storage/' . $post->thumbnail) }}" class="img-fluid blog-card-img"
-                                    alt="blog-img">
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-body mt-0 pt-0">
-                                    <a class="card-link text-primary" href="#">{{ $post->kategori->nama }}</a>
-                                    <h5 class="card-title mt-2 h5">{{ $post->judul }}</h5>
-                                    <p class="fs-6">{{ $post->excerpt }}..</p>
-                                    <a href="#"
-                                        class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-0">Selengkapnya..</a>
+            <div class="col-lg-8">
+                <h3 class="h4 mb-3">Postingan Kemahsiswaan</h4>
+                    @foreach ($posts as $post)
+                        <div class="card mb-5 border-0 font-primary">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <img src=" {{ asset('storage/' . $post->thumbnail) }}"
+                                        class="img-fluid blog-card-img" alt="blog-img">
                                 </div>
+                                <div class="col-md-7">
+                                    <div class="card-body mt-0 pt-0">
+                                        <a class="card-link text-primary" href="#">{{ $post->kategori->nama }}</a>
+                                        <h5 class="card-title mt-2 h5">{{ $post->judul }}</h5>
+                                        <p class="fs-6">{{ $post->excerpt }}..</p>
+                                        <a href="#"
+                                            class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-0">Selengkapnya..</a>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-                <div>{{ $posts->links('pagination::bootstrap-4') }}</div>
+                    <div>{{ $posts->links('pagination::bootstrap-4') }}</div>
             </div>
 
 
