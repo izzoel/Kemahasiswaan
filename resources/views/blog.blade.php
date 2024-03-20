@@ -5,7 +5,7 @@
 <section class="blog section mt-2">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8" id="post">
                 @foreach ($posts as $post)
                     <div class="card mb-5 border-0 font-primary">
                         <div class="row g-0">
@@ -26,6 +26,8 @@
                         </div>
                     </div>
                 @endforeach
+
+                <div>{{ $posts->links('pagination::bootstrap-4') }}</div>
             </div>
 
 

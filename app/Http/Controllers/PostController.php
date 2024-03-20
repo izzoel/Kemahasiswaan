@@ -29,15 +29,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $excerpt = $request->input('excerpt');
+        $excerpt = !empty($excerpt) ? $excerpt : ' ';
+
         Post::create([
             'judul' => $request->input('judul'),
             'konten' => $request->input('konten'),
-            'excerpt' => $request->input('excerpt'),
+            'excerpt' => $excerpt,
             'id_kategori' => $request->input('kategori'),
             'thumbnail' => $request->file('thumbnail')->storeAs('thumbnail', $request->file('thumbnail')->getClientOriginalName())
         ]);
         return redirect(route('main'));
     }
+
 
     /**
      * Display the specified resource.
