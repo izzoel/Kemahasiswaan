@@ -15,8 +15,9 @@ class AdminController extends Controller
     public function index()
     {
         //return view admin.main.blade.php 
-        $artikels = Artikel::all();
-        return view('admin.main', compact('artikels'));
+        // $artikels = Artikel::all();
+        // return view('admin.main', compact('artikels'));
+        return view('admin.main');
     }
 
     /**

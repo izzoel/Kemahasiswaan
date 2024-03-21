@@ -32,10 +32,12 @@ Route::get('/login', [AdminController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('main');
+    // Route::get('/admin', [AdminController::class, 'index'])->name('show-artikel');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
 
 
     Route::get('/admin/artikel/show', [ArtikelController::class, 'show'])->name('show-artikel');
+    Route::get('/admin/artikel/show/edit', [ArtikelController::class, 'showEdit'])->name('show-edit-artikel');
     Route::post('/admin/artikel/store', [ArtikelController::class, 'store'])->name('store-artikel');
     Route::put('/admin/artikel/update/{id}', [ArtikelController::class, 'update'])->name('update-artikel');
     Route::get('/admin/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->name('delete-artikel');
@@ -44,4 +46,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');
+    Route::get('/admin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('delete-kategori');
 });

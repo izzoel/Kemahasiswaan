@@ -42,8 +42,8 @@
                                 <li><a><i class="fa fa-edit"></i> Post <span class="fa fa-chevron-down"></span></a>
                                     {{-- <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a> --}}
                                     <ul class="nav child_menu">
-                                        <li><a href="{{ route('main') }}">Artikel</a></li>
-                                        <li><a href="{{ route('show-galeri') }}">Galeri Prestasi</a></li>
+                                        <li><a href="{{ route('show-artikel') }}">Artikel</a></li>
+                                        <li><a href="{{ route('show-galeri') }}">Galeri</a></li>
                                         {{-- <li><a href="form_validation.html">Form Validation</a></li>
                                         <li><a href="form_wizards.html">Form Wizard</a></li>
                                         <li><a href="form_upload.html">Form Upload</a></li>
@@ -269,7 +269,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="x_panel">
-                                @include('admin.artikel')
+                                @if (Request::url() == route('show-artikel'))
+                                    @include('admin.artikel')
+                                @elseif (Request::url() == route('show-galeri'))
+                                    @include('admin.galeri')
+                                @endif
                             </div>
                         </div>
                     </div>

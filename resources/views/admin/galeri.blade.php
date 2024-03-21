@@ -1,7 +1,5 @@
-@extends('main')
-
 <div class="x_title">
-    <h2>Post <span class="badge bg-primary text-white">Galeri Prestasi</span></h2>
+    <h2>Post <span class="badge bg-primary text-white">Galeri</span></h2>
     <ul class="nav navbar-right panel_toolbox" style="min-width: 0px">
         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
     </ul>
@@ -14,9 +12,9 @@
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
-                    <th class="col">Judul</th>
-                    <th class="col-auto">Kategori</th>
-                    <th class="col">Thumbnail</th>
+                    <th class="col">Deskripsi</th>
+                    <th class="col-auto">Gambar</th>
+                    <th class="col">Kategori</th>
                     <th class="col-auto">Aksi</th>
                 </tr>
             </thead>

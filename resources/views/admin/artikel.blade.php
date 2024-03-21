@@ -53,5 +53,5 @@
     </div>
 </div>
 
-@include('modals.artikel')
+@include('modals.modal_artikel')
 {{-- @include('modals.post') --}}

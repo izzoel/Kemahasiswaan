@@ -11,14 +11,15 @@
                         <div class="card mb-5 border-0 font-primary">
                             <div class="row g-0">
                                 <div class="col-md-5">
-                                    <img src=" {{ asset('storage/' . $post->thumbnail) }}"
+                                    <img src=" {{ asset('storage/' . $artikel->thumbnail) }}"
                                         class="img-fluid blog-card-img" alt="blog-img">
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body mt-0 pt-0">
-                                        <a class="card-link text-primary" href="#">{{ $post->kategori->nama }}</a>
-                                        <h5 class="card-title mt-2 h5">{{ $post->judul }}</h5>
-                                        <p class="fs-6">{{ $post->excerpt }}..</p>
+                                        <a class="card-link text-primary"
+                                            href="#">{{ $artikel->kategori->nama }}</a>
+                                        <h5 class="card-title mt-2 h5">{{ $artikel->judul }}</h5>
+                                        <p class="fs-6">{{ $artikel->excerpt }}..</p>
                                         <a href="#"
                                             class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-0">Selengkapnya..</a>
                                     </div>

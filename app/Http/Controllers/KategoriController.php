@@ -28,12 +28,15 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $kategori = Kategori::where('nama', $request->input('kategori'))->first();
+        $kategori = Kategori::where('nama', $request->input('kategori-store'))->first();
 
         if (!$kategori) {
             $kategori = Kategori::create([
-                'nama' => $request->input('kategori'),
+                'nama' => $request->input('kategori-store'),
             ]);
+        } else {
+            // entah kenapa ini berhasil
+            dd('kategori sudah ada');
         }
     }
 
@@ -67,8 +70,9 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kategori $kategori)
+    public function destroy($id)
     {
-        //
+        Kategori::destroy($id);
+        return back();
     }
 }

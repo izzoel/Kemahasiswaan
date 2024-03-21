@@ -48,7 +48,8 @@
                                 <div class="input-group mb-3 col-md-11 col-sm-11 ">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail"
-                                            onchange="document.getElementById('thumbnail-label').textContent = this.files[0].name">
+                                            onchange="document.getElementById('thumbnail-label').textContent = this.files[0].name"
+                                            accept="image/*">
                                         <label class="custom-file-label" id="thumbnail-label" for="thumbnail">Choose
                                             file</label>
                                     </div>
@@ -80,7 +81,7 @@
             <div class="modal-content">
                 <div class="modal-header pb-1">
                     <h5 class="modal-title" id="staticBackdropLabel">
-                        <h2>Artikel <span class="badge bg-warning text-dark">Update</span></h2>
+                        <h2>Artikel <span class="badge bg-warning text-dark">Edit</span></h2>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -124,7 +125,7 @@
                                                 alt="{{ $artikel->thumbnail }}" class="img-fluid mr-3">
                                             <div class="custom-file">
                                                 <input type="file" class="form-control-file" id="thumbnail"
-                                                    name="thumbnailEdit">
+                                                    name="thumbnailEdit" accept="image/*">
                                             </div>
                                         </div>
                                     </div>
@@ -132,7 +133,7 @@
                             </div>
                         </div>
 
-                        <textarea name="kontenEdit" id="summernoteEdit{{ $artikel->id }}">{{ $artikel->konten }}</textarea>
+                        <textarea name="kontenEdit" id="summernote-edit{{ $artikel->id }}">{{ $artikel->konten }}</textarea>
                         <input type="hidden" name="excerptEdit" id="excerptEdit{{ $artikel->id }}">
                         <input type="hidden" name="thumbnail" value="{{ $artikel->thumbnail }}">
 
@@ -167,8 +168,22 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="kategori">Nama Kategori</label>
-                        <input type="text" class="form-control rounded" id="kategori" name="kategori" required>
+                        <input type="text" class="form-control rounded" id="kategori-store" name="kategori-store"
+                            required>
                     </div>
+
+                    @foreach ($kategoris as $kategori)
+                        <a type="button" href="{{ route('delete-kategori', $kategori->id) }}">
+                            @php
+                                $colors = ['primary', 'secondary', 'success', 'warning', 'info', 'dark'];
+                                $rand_keys = array_rand($colors, 1);
+                            @endphp
+                            <span class="badge bg-{{ $colors[$rand_keys] }} text-white">
+                                {{ $kategori->nama }}
+                                <span style="color:red;">&times;</span>
+                            </span>
+                        </a>
+                    @endforeach
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

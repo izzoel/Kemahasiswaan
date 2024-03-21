@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class ArtikelController extends Controller
@@ -28,17 +29,20 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        $konten = $request->input('konten');
+        $konten = !empty($konten) ? $konten : ' ';
+
         $excerpt = $request->input('excerpt');
         $excerpt = !empty($excerpt) ? $excerpt : ' ';
 
         Artikel::create([
             'judul' => $request->input('judul'),
-            'konten' => $request->input('konten'),
+            'konten' => $konten,
             'excerpt' => $excerpt,
             'id_kategori' => $request->input('kategori'),
             'thumbnail' => $request->file('thumbnail')->storeAs('thumbnail', $request->file('thumbnail')->getClientOriginalName())
         ]);
-        return redirect(route('main'));
+        return back();
     }
 
 
@@ -48,6 +52,14 @@ class ArtikelController extends Controller
     public function show(Artikel $artikel)
     {
         //
+        $artikels = Artikel::all();
+        $kategoris = Kategori::all();
+
+        return view('admin.main', compact('artikels', 'kategoris'));
+    }
+
+    public function showEdit()
+    {
         $artikels = Artikel::all();
         return response($artikels);
     }
@@ -65,6 +77,12 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, Artikel $artikel, $id)
     {
+        $konten = $request->input('kontenEdit');
+        $konten = !empty($konten) ? $konten : ' ';
+
+        $excerpt = $request->input('excerptEdit');
+        $excerpt = !empty($excerpt) ? $excerpt : ' ';
+
         if ($request->hasFile('thumbnailEdit')) {
             $thumbnail = $request->file('thumbnailEdit')->storeAs('thumbnail', $request->file('thumbnailEdit')->getClientOriginalName());
         } else {
@@ -73,15 +91,15 @@ class ArtikelController extends Controller
 
         $data = [
             'judul' => $request->input('judulEdit'),
-            'konten' => $request->input('kontenEdit'),
-            'excerpt' => $request->input('excerptEdit'),
+            'konten' => $konten,
+            'excerpt' => $excerpt,
             'kategori' => $request->input('kategoriEdit'),
             'thumbnail' => $thumbnail
         ];
 
         Artikel::find($id)->update($data);
 
-        return redirect(route('main'));
+        return back();
     }
 
     /**
