@@ -7,13 +7,13 @@
 </div>
 <div class="x_content">
     <div class="row">
-        <table id="galeri_prestasi" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
+        <table id="galeri" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
             width="100%">
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
-                    <th class="col">Deskripsi</th>
                     <th class="col-auto">Gambar</th>
+                    <th class="col">Deskripsi</th>
                     <th class="col">Kategori</th>
                     <th class="col-auto">Aksi</th>
                 </tr>
@@ -25,3 +25,5 @@
 
     </div>
 </div>
+
+@include('modals.modal_galeri')

@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->name('delete-artikel');
 
     Route::get('/admin/galeri/show', [GaleriController::class, 'show'])->name('show-galeri');
+    Route::post('/admin/galeri/store', [GaleriController::class, 'store'])->name('store-galeri');
+
 
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');

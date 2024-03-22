@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h3 class="h4 mb-3">Postingan Kemahsiswaan</h4>
+                <h3 class="h4 mb-3">Postingan Kemahasiswaan</h4>
                     @foreach ($artikels as $artikel)
                         <div class="card mb-5 border-0 font-primary">
                             <div class="row g-0">

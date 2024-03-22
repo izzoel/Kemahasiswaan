@@ -17,9 +17,7 @@
             ]
         });
     });
-</script>
 
-<script>
     $('#summernote').summernote({
         placeholder: 'Tulis sesuatu yang menginspirasimu!',
         tabsize: 2,

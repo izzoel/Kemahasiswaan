@@ -17,7 +17,7 @@ class AdminController extends Controller
         //return view admin.main.blade.php 
         // $artikels = Artikel::all();
         // return view('admin.main', compact('artikels'));
-        return view('admin.main');
+        return redirect('admin/artikel/show');
     }
 
     /**

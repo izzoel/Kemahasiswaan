@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class GaleriController extends Controller
@@ -28,7 +29,22 @@ class GaleriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //   $konten = $request->input('konten');
+        // $konten = !empty($konten) ? $konten : ' ';
+
+        // $excerpt = $request->input('excerpt');
+        // $excerpt = !empty($excerpt) ? $excerpt : ' ';
+
+        // Artikel::create([
+        //     'judul' => $request->input('judul'),
+        //     'konten' => $konten,
+        //     'excerpt' => $excerpt,
+        //     'id_kategori' => $request->input('kategori'),
+        //     'thumbnail' => $request->file('thumbnail')->storeAs('thumbnail', $request->file('thumbnail')->getClientOriginalName())
+        // ]);
+        // return back();
+
+        dd($request->all());
     }
 
     /**
@@ -38,7 +54,8 @@ class GaleriController extends Controller
     {
         //
         $galeris = Galeri::all();
-        return view('admin.main', compact('galeris'));
+        $kategoris = Kategori::all();
+        return view('admin.main', compact('galeris', 'kategoris'));
     }
 
     /**
