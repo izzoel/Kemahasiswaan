@@ -29,22 +29,20 @@ class GaleriController extends Controller
      */
     public function store(Request $request)
     {
-        //   $konten = $request->input('konten');
-        // $konten = !empty($konten) ? $konten : ' ';
+        $konten = $request->input('konten');
+        $konten = !empty($konten) ? $konten : ' ';
 
-        // $excerpt = $request->input('excerpt');
-        // $excerpt = !empty($excerpt) ? $excerpt : ' ';
+        $excerpt = $request->input('excerpt');
+        $excerpt = !empty($excerpt) ? $excerpt : ' ';
 
-        // Artikel::create([
-        //     'judul' => $request->input('judul'),
-        //     'konten' => $konten,
-        //     'excerpt' => $excerpt,
-        //     'id_kategori' => $request->input('kategori'),
-        //     'thumbnail' => $request->file('thumbnail')->storeAs('thumbnail', $request->file('thumbnail')->getClientOriginalName())
-        // ]);
-        // return back();
-
-        dd($request->all());
+        Galeri::create([
+            'deskripsi' => $request->input('deskripsi'),
+            'gambar' => $request->file('gambar')->storeAs('thumbnail', $request->file('gambar')->getClientOriginalName()),
+            'id_kategori' => $request->input('kategori'),
+            'konten' => $konten,
+            'excerpt' => $excerpt,
+        ]);
+        return back();
     }
 
     /**
@@ -69,16 +67,39 @@ class GaleriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Galeri $galeri)
+    public function update(Request $request, Galeri $galeri, $id)
     {
-        //
+        $konten = $request->input('kontenEdit');
+        $konten = !empty($konten) ? $konten : ' ';
+
+        $excerpt = $request->input('excerptEdit');
+        $excerpt = !empty($excerpt) ? $excerpt : ' ';
+
+        if ($request->hasFile('gambarEdit')) {
+            $gambar = $request->file('gambarEdit')->storeAs('thumbnail', $request->file('gambarEdit')->getClientOriginalName());
+        } else {
+            $gambar = $request->input('gambarEdit');
+        }
+
+        $data = [
+            'deskripsi' => $request->input('deskripsiEdit'),
+            'gambar' => $gambar,
+            'id_kategori' => $request->input('kategoriEdit'),
+            'konten' => $konten,
+            'excerpt' => $excerpt
+        ];
+
+        Galeri::find($id)->update($data);
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Galeri $galeri)
+    public function destroy($id)
     {
-        //
+        Galeri::destroy($id);
+        return back();
     }
 }

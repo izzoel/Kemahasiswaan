@@ -19,6 +19,31 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($galeris as $galeri)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $galeri->gambar) }}"
+                                class="img-responsive center-block d-block mx-auto"
+                                style="max-width: 300px; max-height: 300px;">
+                        </td>
+                        <td>{{ $galeri->deskripsi }}</td>
+                        <td>{{ $galeri->Kategori->name }}</td>
+                        <td>
+                            <div class="btn-group mr-2" role="group" aria-label="Denger group">
+                                <a href="{{ route('delete-galeri', $galeri->id) }}" class="btn btn-sm btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal"
+                                    data-target="#edit-galeri{{ $galeri->id }}">
+                                    Edit
+                                </button>
+                                <a href="#" class="btn btn-sm btn-success">Lihat</a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
 
             </tbody>
         </table>
@@ -27,3 +52,4 @@
 </div>
 
 @include('modals.modal_galeri')
+@include('modals.modal_kategori')

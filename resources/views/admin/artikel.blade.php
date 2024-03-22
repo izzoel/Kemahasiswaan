@@ -54,4 +54,4 @@
 </div>
 
 @include('modals.modal_artikel')
-{{-- @include('modals.post') --}}
+@include('modals.modal_kategori')

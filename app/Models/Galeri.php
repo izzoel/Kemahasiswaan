@@ -10,9 +10,11 @@ class Galeri extends Model
     use HasFactory;
 
     protected $fillable = [
-        'deskripsi',
         'gambar',
-        'id_kategori'
+        'deskripsi',
+        'id_kategori',
+        'konten',
+        'excerpt'
     ];
 
     public function kategori()

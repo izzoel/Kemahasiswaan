@@ -9,6 +9,15 @@
             $.each(response, function(index, data) {
                 $('#kategori').append('<option value="' + data.id +
                     '">' + data.nama + '</option>');
+
+                // Memeriksa apakah option dengan value data.id sudah ada dalam select
+                var existingOption = $('#kategoriEdit option[value="' + data.id + '"]');
+
+                // Jika belum ada, maka append option baru
+                if (existingOption.length === 0) {
+                    $('#kategoriEdit').append('<option value="' + data.id + '">' + data.nama +
+                        '</option>');
+                }
             });
         },
         error: function(xhr, status, error) {

@@ -32,7 +32,6 @@ Route::get('/login', [AdminController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('main');
-    // Route::get('/admin', [AdminController::class, 'index'])->name('show-artikel');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
 
 
@@ -44,9 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/galeri/show', [GaleriController::class, 'show'])->name('show-galeri');
     Route::post('/admin/galeri/store', [GaleriController::class, 'store'])->name('store-galeri');
+    Route::put('/admin/galeri/update/{id}', [GaleriController::class, 'update'])->name('update-galeri');
+    Route::get('/admin/galeri/destroy/{id}', [GaleriController::class, 'destroy'])->name('delete-galeri');
 
-
-    Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');
+    Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('delete-kategori');
 });

@@ -17,4 +17,35 @@
             ]
         });
     });
+
+    $.ajax({
+        url: "{{ route('show-edit-artikel') }}",
+        method: 'GET',
+        success: function(data) {
+            data.forEach(function(galeri) {
+                $('#summernoteEdit' + galeri.id).summernote({
+                    placeholder: 'Tulis sesuatu yang menginspirasimu!',
+                    tabsize: 2,
+                    height: 400,
+                    callbacks: {
+                        onInit: function() {
+                            var $noteEditable = $('#summernoteEdit' + galeri.id).next(
+                                '.note-editor').find('.note-editable');
+                            var plainContent = $noteEditable.text();
+                            var excerpt = plainContent.substring(0, 300);
+                            $('#excerptEdit' + galeri.id).val(excerpt);
+                        },
+                        onKeyup: function(e) {
+                            var $noteEditable = $('#summernoteEdit' + galeri.id).next(
+                                    '.note-editor')
+                                .find('.note-editable');
+                            var plainContent = $noteEditable.text();
+                            var excerpt = plainContent.substring(0, 300);
+                            $('#excerptEdit' + galeri.id).val(excerpt);
+                        }
+                    }
+                });
+            });
+        }
+    });
 </script>

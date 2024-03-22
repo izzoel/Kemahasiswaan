@@ -34,6 +34,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+@include('scripts.script_main');
 @include('scripts.script_artikel');
 @include('scripts.script_kategori');
 @include('scripts.script_galeri');
