@@ -28,7 +28,7 @@
                                 style="max-width: 300px; max-height: 300px;">
                         </td>
                         <td>{{ $galeri->deskripsi }}</td>
-                        <td>{{ $galeri->Kategori->name }}</td>
+                        <td>{{ $galeri->kategori->nama }}</td>
                         <td>
                             <div class="btn-group mr-2" role="group" aria-label="Denger group">
                                 <a href="{{ route('delete-galeri', $galeri->id) }}" class="btn btn-sm btn-danger"><i

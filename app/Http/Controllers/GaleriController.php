@@ -78,7 +78,7 @@ class GaleriController extends Controller
         if ($request->hasFile('gambarEdit')) {
             $gambar = $request->file('gambarEdit')->storeAs('thumbnail', $request->file('gambarEdit')->getClientOriginalName());
         } else {
-            $gambar = $request->input('gambarEdit');
+            $gambar = $request->input('gambar');
         }
 
         $data = [
