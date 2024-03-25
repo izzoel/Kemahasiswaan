@@ -40,14 +40,22 @@
                                     </ul>
                                 </li> --}}
                                 <li><a><i class="fa fa-edit"></i> Post <span class="fa fa-chevron-down"></span></a>
-                                    {{-- <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a> --}}
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('show-artikel') }}">Artikel</a></li>
                                         <li><a href="{{ route('show-galeri') }}">Galeri</a></li>
-                                        {{-- <li><a href="form_validation.html">Form Validation</a></li>
-                                        <li><a href="form_wizards.html">Form Wizard</a></li>
-                                        <li><a href="form_upload.html">Form Upload</a></li>
-                                        <li><a href="form_buttons.html">Form Buttons</a></li> --}}
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-table"></i> Data <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('show-ormawa') }}">Organisasi Mahasiwa</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-desktop"></i> Layanan <span
+                                            class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="general_elements.html">Pengajuan Kegiatan</a></li>
+                                        <li><a href="media_gallery.html">Pengajuan Dana</a></li>
+                                        <li><a href="media_gallery.html">Peminjaman Ruangan</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> UI Elements <span
@@ -157,7 +165,7 @@
             </div>
 
             <!-- top navigation -->
-            <div class="top_nav">
+            {{-- <div class="top_nav">
                 <div class="nav_menu">
                     <div class="nav toggle">
                         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -259,7 +267,7 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </div> --}}
             <!-- /top navigation -->
 
             <!-- page content -->
@@ -273,6 +281,8 @@
                                     @include('admin.artikel')
                                 @elseif (Request::url() == route('show-galeri'))
                                     @include('admin.galeri')
+                                @elseif (Request::url() == route('show-ormawa'))
+                                    @include('admin.ormawa')
                                 @endif
                             </div>
                         </div>

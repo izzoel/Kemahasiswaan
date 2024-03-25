@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Routing\Route as RoutingRoute;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\ArtikelController;
-use App\Http\Controllers\GaleriController;
-use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\OrmawaController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\KategoriController;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('delete-kategori');
+
+    Route::get('/admin/ormawa/show', [OrmawaController::class, 'show'])->name('show-ormawa');
+    Route::post('/admin/ormawa/store', [OrmawaController::class, 'store'])->name('store-ormawa');
+    Route::put('/admin/ormawa/update/{id}', [OrmawaController::class, 'update'])->name('update-ormawa');
+    Route::get('/admin/ormawa/destroy/{id}', [OrmawaController::class, 'destroy'])->name('delete-ormawa');
 });

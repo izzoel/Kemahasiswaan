@@ -4,17 +4,8 @@
             <img class="brand-logo-img img-fluid" src="images/facebook.svg" alt="img">
             <img class="brand-logo-img img-fluid" src="images/tinder.svg" alt="img">
             <img class="brand-logo-img img-fluid" src="images//airbnb.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/microsoft.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/hubspp.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/tinder.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/facebook.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/tinder.svg" alt="img">
             <img class="brand-logo-img img-fluid" src="images//airbnb.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/microsoft.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/hubspp.svg" alt="img">
-            <img class="brand-logo-img img-fluid" src="images/tinder.svg" alt="img">
+            <img class="brand-logo-img img-fluid" src="images//airbnb.svg" alt="img">
         </div>
-    </div>
-    </div>
     </div>
 </section>

@@ -20,11 +20,11 @@
                     </div>
                     <p class="mb-3 fw-medium fs-4 text-primary">Hello, myself Rick....</p>
                     <h1 class="mb-4">Creating fast website and softwares </h1>
-                    <p class="mb-5">Lorem ipsum dolor sit amet, consecttur adipiscing Orci
-                        fauff cibus urna, sed senectus iaculis leo condimentum. Maenas nec adipiscing neque,
-                        pellentesque
-                        in. Metus
-                        fusce.</p>
+                    <p class="mb-5">Direktorat Kemahasiswaan dan Alumni merupakan unit kerja di lingkungan Universitas
+                        Borneo Lestari berada di bawah pengelolaan Wakil Rektor III bidang kemahasiswaan yang mengurusi
+                        berbagai layanan kemahasiswaan dan alumni. Dalam pelaksanaan tugasnya, Direktorat Kemahasiswaan
+                        bertugas untuk memberikan pelayanan terhadap mahasiswa aktif maupun calon alumni untuk
+                        mempersiapkan mereka sebagai lulusan yang siap kerja.</p>
                     <a href="#" class="btn btn-primary btn-lg">Know About Me</a>
                 </div>
             </div>
@@ -46,7 +46,7 @@
     <!--================== Brand Logo Section End ==================-->
 
     <!--================== Pengantar Section Start ==================-->
-
+    @include('pengantar')
     <!--================== Pengantar Section End ==================-->
 
     <!--================== Service Section Start ==================-->
@@ -68,7 +68,7 @@
     <!--================== Project Section Start ==================-->
     @include('galeri')
     <!--================== Project Section End ==================-->
-    @include('modals/login')
+    @include('modals/modal_login')
 </body>
 
 @include('partials/blocks/foot')

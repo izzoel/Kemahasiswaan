@@ -38,3 +38,5 @@
 @include('scripts.script_artikel');
 @include('scripts.script_kategori');
 @include('scripts.script_galeri');
+
+@include('scripts.script_ormawa');
