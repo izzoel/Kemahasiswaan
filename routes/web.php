@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DanaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KegiatanController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -55,4 +57,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/ormawa/store', [OrmawaController::class, 'store'])->name('store-ormawa');
     Route::put('/admin/ormawa/update/{id}', [OrmawaController::class, 'update'])->name('update-ormawa');
     Route::get('/admin/ormawa/destroy/{id}', [OrmawaController::class, 'destroy'])->name('delete-ormawa');
+
+    Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
+    Route::post('/admin/kegiatan/store', [KegiatanController::class, 'store'])->name('store-kegiatan');
+    Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
+    Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
+
+    Route::get('/admin/dana/show', [DanaController::class, 'show'])->name('show-dana');
+    Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');
+    Route::put('/admin/dana/update/{id}', [DanaController::class, 'update'])->name('update-dana');
+    Route::get('/admin/dana/destroy/{id}', [DanaController::class, 'destroy'])->name('delete-dana');
 });

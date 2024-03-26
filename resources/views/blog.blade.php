@@ -16,8 +16,9 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body mt-0 pt-0">
-                                        <a class="card-link text-primary"
-                                            href="#">{{ $artikel->kategori->nama }}</a>
+                                        <a class="card-link text-primary" href="#">
+                                            {{ $artikel->kategori->nama }}
+                                        </a>
                                         <h5 class="card-title mt-2 h5">{{ $artikel->judul }}</h5>
                                         <p class="fs-6">{{ $artikel->excerpt }}..</p>
                                         <a href="#"
@@ -28,7 +29,6 @@
                             </div>
                         </div>
                     @endforeach
-
                     <div>{{ $artikels->links('pagination::bootstrap-4') }}</div>
             </div>
 

@@ -53,9 +53,9 @@
                                 <li><a><i class="fa fa-desktop"></i> Layanan <span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="general_elements.html">Pengajuan Kegiatan</a></li>
-                                        <li><a href="media_gallery.html">Pengajuan Dana</a></li>
-                                        <li><a href="media_gallery.html">Peminjaman Ruangan</a></li>
+                                        <li><a href="{{ route('show-kegiatan') }}">Pengajuan Kegiatan</a></li>
+                                        <li><a href="{{ route('show-dana') }}">Pengajuan Dana</a></li>
+                                        {{-- <li><a href="media_gallery.html">Peminjaman Ruangan</a></li> --}}
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> UI Elements <span
@@ -283,6 +283,10 @@
                                     @include('admin.galeri')
                                 @elseif (Request::url() == route('show-ormawa'))
                                     @include('admin.ormawa')
+                                @elseif (Request::url() == route('show-kegiatan'))
+                                    @include('admin.kegiatan')
+                                @elseif (Request::url() == route('show-dana'))
+                                    @include('admin.dana')
                                 @endif
                             </div>
                         </div>
