@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/ormawa/destroy/{id}', [OrmawaController::class, 'destroy'])->name('delete-ormawa');
 
     Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
+    Route::get('/admin/kegiatan/show/edit', [KegiatanController::class, 'showEdit'])->name('show-edit-kegiatan');
     Route::post('/admin/kegiatan/store', [KegiatanController::class, 'store'])->name('store-kegiatan');
     Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
     Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');

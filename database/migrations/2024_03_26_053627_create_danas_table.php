@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('danas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_ormawa');
+            $table->string('tanggal_kegiatan');
+            $table->bigInteger('id_kegiatan');
             $table->string('dana');
-            $table->string('surat');
-            $table->string('nama');
-            $table->string('tanggal');
             $table->string('berkas');
-            $table->boolean('approved')->default(false);
+            $table->enum('status', ['Ditinjau', 'Disetujui', 'Ditolak', 'Ditunda']);
             $table->timestamps();
         });
     }

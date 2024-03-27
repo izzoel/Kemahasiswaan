@@ -29,9 +29,12 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         Kegiatan::create([
-            'nama' => $request->input('nama'),
+            'id_ormawa' => $request->input('id_ormawa'),
             'tanggal' => $request->input('tanggal'),
+            'nama' => $request->input('nama'),
+            'anggaran' => $request->input('anggaran'),
             'berkas' => $request->file('berkas')->storeAs('kegiatan', $request->file('berkas')->getClientOriginalName()),
+            'status' => $request->input('status'),
         ]);
         return back();
     }
@@ -43,6 +46,11 @@ class KegiatanController extends Controller
     {
         $kegiatans = Kegiatan::all();
         return view('admin.main', compact('kegiatans'));
+    }
+    public function showEdit(Kegiatan $kegiatan)
+    {
+        $kegiatans = Kegiatan::all();
+        return response($kegiatans);
     }
 
     /**

@@ -9,9 +9,16 @@ class Kegiatan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama',
+        'id_ormawa',
         'tanggal',
+        'nama',
+        'anggaran',
         'berkas',
-        'approved',
+        'status',
     ];
+
+    public function ormawa()
+    {
+        return $this->belongsTo(Ormawa::class, 'id_ormawa');
+    }
 }

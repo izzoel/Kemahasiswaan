@@ -9,11 +9,16 @@ class Dana extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id_ormawa',
+        'tanggal_kegiatan',
+        'id_kegiatan',
         'dana',
-        'surat',
-        'nama',
-        'tanggal',
         'berkas',
-        'approved',
+        'status',
     ];
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, 'id_kegiatan');
+    }
 }

@@ -4,16 +4,10 @@
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-
-            // Append options from the database to the select element
             $.each(response, function(index, data) {
                 $('#kategori').append('<option value="' + data.id +
                     '">' + data.nama + '</option>');
-
-                // Memeriksa apakah option dengan value data.id sudah ada dalam select
                 var existingOption = $('#kategoriEdit option[value="' + data.id + '"]');
-
-                // Jika belum ada, maka append option baru
                 if (existingOption.length === 0) {
                     $('#kategoriEdit').append('<option value="' + data.id + '">' + data.nama +
                         '</option>');
@@ -29,7 +23,6 @@
 
         var selectedValue = $('#kategori').val();
         if ($('#kategori option[value="' + selectedValue + '"]').length > 0) {
-            // If the value already exists, show an alert and return
             alert('Kategori sudah ada');
             return;
         }
@@ -37,7 +30,7 @@
         $.ajax({
             type: 'POST',
             url: "{{ route('store-kategori') }}",
-            data: $('#kategoriForm').serialize(), // Serialize form data
+            data: $('#kategoriForm').serialize(),
             success: function(data) {
                 $.ajax({
                     url: "{{ route('show-kategori') }}",

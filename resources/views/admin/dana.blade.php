@@ -1,5 +1,5 @@
 <div class="x_title">
-    <h2>Pengajuan <span class="badge bg-primary text-white">Kegiatan</span></h2>
+    <h2>Pengajuan <span class="badge bg-primary text-white">Dana</span></h2>
     <ul class="nav navbar-right panel_toolbox" style="min-width: 0px">
         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
     </ul>
@@ -12,10 +12,11 @@
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
-                    <th class="col-auto">Pengajuan Dana</th>
-                    <th class="col-auto">Surat Pengajuan Dana</th>
-                    <th class="col">Nama Kegiatan</th>
+                    <th class="col-auto">Ormawa</th>
                     <th class="col-auto">Rentang Tanggal</th>
+                    <th class="col-auto">Nama Kegiatan</th>
+                    <th class="col-auto">Keperluan Dana</th>
+                    <th class="col-auto">Berkas</th>
                     <th class="col-auto">Status</th>
                     <th class="col-auto">Aksi</th>
                 </tr>
@@ -24,16 +25,19 @@
                 @foreach ($danas as $dana)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $dana->jumlah }}</td>
-                        <td>{{ $dana->surat }}</td>
-                        <td>{{ $dana->nama }}</td>
-                        <td>{{ $dana->tanggal }}</td>
+                        <td>{{ $dana->kegiatan->ormawa->nama }}</td>
+                        <td>{{ $dana->kegiatan->tanggal }}</td>
+                        <td>{{ $dana->kegiatan->nama }}</td>
+                        <td>{{ $dana->dana }}</td>
                         <td>
-                            <div class="custom-control custom-switch mt-0 pt-0">
-                                <input type="checkbox" class="custom-control-input" id="status">
-                                <label class="custom-control-label text-dark" for="status"
-                                    style="padding-top: 0.2px ">Approve</label>
-                            </div>
+                            <a href="{{ asset('storage/' . $dana->berkas) }}" target="_blank"><i class="fa fa-file"></i>
+                                {{ substr($dana->berkas, 5) }}</a>
+                        </td>
+                        <td>
+                            <span
+                                class="badge badge-{{ $dana->status === 'pending' ? 'warning' : ($dana->status === 'approved' ? 'success' : 'danger') }}">{{ $dana->status }}</span>
+                            <input type="checkbox" class="custom-control-input" id="approved{{ $dana->id }}"
+                                name="approved" {{ $dana->status === 'approved' ? 'checked' : '' }}>
                         </td>
                         <td>
                             <div class="btn-group mr-2" role="group">

@@ -12,8 +12,10 @@
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
-                    <th class="col">Nama Kegiatan</th>
+                    <th class="col-auto">Ormawa</th>
                     <th class="col-auto">Rentang Tanggal</th>
+                    <th class="col-auto">Nama Kegiatan</th>
+                    <th class="col-auto">Jumlah Anggaran</th>
                     <th class="col-auto">Proposal Kegiatan</th>
                     <th class="col-auto">Status</th>
                     <th class="col-auto">Aksi</th>
@@ -23,23 +25,24 @@
                 @foreach ($kegiatans as $kegiatan)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $kegiatan->nama }}</td>
+                        <td>{{ $kegiatan->ormawa->nama }}</td>
                         <td>{{ $kegiatan->tanggal }}</td>
+                        <td>{{ $kegiatan->nama }}</td>
+                        <td>{{ $kegiatan->anggaran }}</td>
                         <td>
                             <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
                                     class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a>
                         </td>
                         <td>
-                            <div class="custom-control custom-switch mt-0 pt-0">
-                                <input type="checkbox" class="custom-control-input" id="status">
-                                <label class="custom-control-label text-dark" for="status"
-                                    style="padding-top: 0.2px ">Approve</label>
-                            </div>
+                            <span
+                                class="badge badge-{{ $kegiatan->status === 'pending' ? 'warning' : ($kegiatan->status === 'approved' ? 'success' : 'danger') }}">{{ $kegiatan->status }}</span>
+                            <input type="checkbox" class="custom-control-input" id="approved{{ $kegiatan->id }}"
+                                name="approved" {{ $kegiatan->status === 'approved' ? 'checked' : '' }}>
                         </td>
                         <td>
                             <div class="btn-group mr-2" role="group">
-                                <a href="{{ route('delete-kegiatan', $kegiatan->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></a>
+                                <a href="{{ route('delete-kegiatan', $kegiatan->id) }}"
+                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </div>
                             <div class="btn-group mr-2" role="group">
                                 <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"

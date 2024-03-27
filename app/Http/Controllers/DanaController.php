@@ -29,7 +29,20 @@ class DanaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->input('tanggal_kegiatan'), $request->all());
+        // dd($request->all());
+        $d = Dana::create([
+            'id_ormawa' => $request->input('id_ormawa'),
+            'tanggal_kegiatan' => $request->input('tanggal'),
+            'id_kegiatan' => $request->input('id_kegiatan'),
+            'dana' => $request->input('dana'),
+            'berkas' => $request->file('berkas')->storeAs('dana', $request->file('berkas')->getClientOriginalName()),
+            'status' => $request->input('status'),
+
+        ]);
+
+        // dd($d);
+        return back();
     }
 
     /**

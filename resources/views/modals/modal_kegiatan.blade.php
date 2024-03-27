@@ -14,6 +14,19 @@
             <form method="POST" action="{{ route('store-kegiatan') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
+
+
+                    <div class="row mb-4">
+                        <div class="col p-0">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 ">Rentang Tanggal</label>
+                                <div class="col-md-10 col-sm-10 ">
+                                    <input type="text" class="form-control rounded" name="tanggal"
+                                        placeholder="..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-4">
                         <div class="col p-0">
                             <div class="form-group">
@@ -27,9 +40,10 @@
                     <div class="row mb-4">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 ">Rentang Tanggal</label>
+                                <label class="control-label col-md-2 col-sm-2 ">Jumlah Anggaran</label>
                                 <div class="col-md-10 col-sm-10 ">
-                                    <input type="text" class="form-control rounded" name="tanggal" />
+                                    <input type="text" class="form-control rounded" name="anggaran" id="anggaran"
+                                        placeholder="...">
                                 </div>
                             </div>
                         </div>
@@ -56,6 +70,10 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
+
+                <input type="text" name="id_ormawa" id="id_ormawa" value="{{ auth()->user()->id }}">
+                <input type="text" name="status" id="status" value="Ditinjau">
+
             </form>
         </div>
     </div>
@@ -85,8 +103,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 ">Nama Kegiatan</label>
                                     <div class="col-md-10 col-sm-10 ">
-                                        <input class="form-control rounded" placeholder="..." name="namaEdit" required
-                                            value="{{ $kegiatan->nama }}">
+                                        <input class="form-control rounded" placeholder="..." name="namaEdit"
+                                            required value="{{ $kegiatan->nama }}">
                                     </div>
                                 </div>
                             </div>

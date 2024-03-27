@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('id_ormawa');
             $table->string('tanggal');
+            $table->string('nama');
+            $table->string('anggaran');
             $table->string('berkas');
-            $table->boolean('approved')->default(false);
+            $table->enum('status', ['Ditinjau', 'Disetujui', 'Ditolak', 'Ditunda']);
             $table->timestamps();
         });
     }
