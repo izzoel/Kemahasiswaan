@@ -2,10 +2,10 @@
 <header class="navigation border-bottom">
     <nav class="navbar  navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <a class="navbar-brand" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
                 <i class="fas fa-users"></i>
             </a>
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ url('/') }}">
 
                 <span class="text-white p-1 rounded" style="background-color: #1b36f7">kemahasiswaan</span>
                 <b style="color: black">.unbl</b>

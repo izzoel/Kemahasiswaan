@@ -22,7 +22,7 @@
                 <div class="card text-center  border-0 bg-white radius shadow px-3 py-5" data-aos="fade-right"
                     data-aos-duration="1000">
                     <div class="card-icon mb-3">
-                        <i class="fas fa-cloud "></i>
+                        <i class="fa fa-comments"></i>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Konseling</h4>
@@ -38,7 +38,7 @@
             <div class="col-lg-4 col-md-6 card-item">
                 <div class="card text-center  border-0 bg-white radius shadow px-3 py-5">
                     <div class="card-icon  mb-3">
-                        <i class="far fa-lightbulb "></i>
+                        <i class="fa fa-graduation-cap" style="color: #e86e16"></i>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Beasiwa</h4>
@@ -55,7 +55,7 @@
                 <div class="card text-center  border-0 bg-white radius shadow px-3 py-5" data-aos="fade-left"
                     data-aos-duration="1500">
                     <div class="card-icon mb-3">
-                        <i class="fas fa-suitcase-rolling "></i>
+                        <i class="fa fa-trophy" style="color: #acde0a"></i>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Prestasi</h4>

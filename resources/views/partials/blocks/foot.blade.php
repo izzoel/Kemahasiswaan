@@ -12,7 +12,7 @@
                             <d style="color: #1b36f7">Developed</d>
                         </a> by
                         <a rel="nofollow" href="https://izzoel.github.io/ " target="blank">
-                            <d style="color: #1b36f7">Zetware</d>
+                            <d style="color: #1b36f7">zetware</d>
                         </a>
                         @2024
                     </p>
