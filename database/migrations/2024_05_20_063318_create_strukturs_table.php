@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ormawas', function (Blueprint $table) {
+        Schema::create('strukturs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('logo');
-            $table->text('keterangan');
+            $table->string('id_ormawa');
             $table->string('mahasiswa');
             $table->string('jabatan');
+            $table->string('prodi');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ormawas');
+        Schema::dropIfExists('strukturs');
     }
 };

@@ -19,7 +19,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-1 col-sm-1 ">Nama Organisasi</label>
                                 <div class="col-md-11 col-sm-11 ">
-                                    <input class="form-control rounded" placeholder="..." name="nama" required>
+                                    <input class="form-control rounded" placeholder="..." id="nama" name="nama"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -46,6 +47,20 @@
                                 <label class="control-label col-md-1 col-sm-1 ">Keterangan</label>
                                 <div class="col-md-11 col-sm-11 ">
                                     <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row mb-4">
+                        <div class="col p-0">
+                            <div class="form-group">
+                                <label class="control-label col-md-1 col-sm-1 ">Username</label>
+                                <div class="col-md-11 col-sm-11 ">
+                                    <input class="form-control rounded" placeholder="..." id="username" name="username"
+                                        required>
                                 </div>
                             </div>
                         </div>

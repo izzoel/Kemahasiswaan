@@ -9010,7 +9010,7 @@ a:hover {
 }
 
 .dots {
-  border: 0 solid transparent;
+  border: 0 solid transparent rgba(27, 54, 247,0.5);
   border-radius: 50%;
   width: 150px;
   height: 150px;
@@ -9020,7 +9020,7 @@ a:hover {
 }
 .dots::before, .dots::after {
   content: "";
-  border: 15px solid rgba(255, 87, 51, 0.5);
+  border: 15px solid rgba(27, 54, 247,0.5);
   border-radius: 50%;
   width: inherit;
   height: inherit;

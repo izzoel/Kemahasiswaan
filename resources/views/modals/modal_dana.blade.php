@@ -14,17 +14,6 @@
             <form method="POST" action="{{ route('store-dana') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    {{-- <div class="row mb-4">
-                        <div class="col p-0">
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 ">Ormawa</label>
-                                <div class="col-md-10 col-sm-10 ">
-                                    <input class="form-control rounded" placeholder="..." name="id_ormawa"
-                                        id="id_ormawa" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="row mb-4">
                         <div class="col p-0">
                             <div class="form-group">
@@ -48,7 +37,6 @@
                                 <div class="col-md-10 col-sm-10 ">
                                     <input type="text" class="form-control rounded" name="tanggal_kegiatan"
                                         id="tanggal_kegiatan" placeholder="..." disabled />
-
                                 </div>
                             </div>
                         </div>

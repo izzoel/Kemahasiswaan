@@ -1,4 +1,11 @@
 <!--================== Header Section Start ==================-->
+<div class="preloader">
+    <div class="dots">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
 <header class="navigation border-bottom">
     <nav class="navbar  navbar-expand-lg">
         <div class="container">

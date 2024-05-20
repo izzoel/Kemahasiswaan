@@ -31,18 +31,20 @@
                         <td>{{ $kegiatan->anggaran }}</td>
                         <td>
                             <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
-                                    class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a>
+                                    class="fa fa-file"></i> lihat </a>
+                            {{-- <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
+                                    class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a> --}}
                         </td>
                         <td>
                             <span
-                                class="badge badge-{{ $kegiatan->status === 'pending' ? 'warning' : ($kegiatan->status === 'approved' ? 'success' : 'danger') }}">{{ $kegiatan->status }}</span>
-                            <input type="checkbox" class="custom-control-input" id="approved{{ $kegiatan->id }}"
-                                name="approved" {{ $kegiatan->status === 'approved' ? 'checked' : '' }}>
+                                class="badge badge-{{ $kegiatan->status === 'verifikasi' ? 'warning' : ($kegiatan->status === 'approved' ? 'success' : 'danger') }}">{{ $kegiatan->status }}</span>
+                            {{-- <input type="checkbox" class="custom-control-input" id="approved{{ $kegiatan->id }}"
+                                name="approved" {{ $kegiatan->status === 'approved' ? 'checked' : '' }}> --}}
                         </td>
                         <td>
                             <div class="btn-group mr-2" role="group">
-                                <a href="{{ route('delete-kegiatan', $kegiatan->id) }}"
-                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="{{ route('delete-kegiatan', $kegiatan->id) }}" class="btn btn-sm btn-danger"><i
+                                        class="fa fa-trash"></i></a>
                             </div>
                             <div class="btn-group mr-2" role="group">
                                 <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"

@@ -28,13 +28,20 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->input('status') == 'verifikasi') {
+            $status = 'verifikasi';
+        } elseif ($request->input('status') == 'approved') {
+            $status = 'approved';
+        } else {
+            $status = 'ditolak';
+        }
         Kegiatan::create([
             'id_ormawa' => $request->input('id_ormawa'),
             'tanggal' => $request->input('tanggal'),
             'nama' => $request->input('nama'),
             'anggaran' => $request->input('anggaran'),
             'berkas' => $request->file('berkas')->storeAs('kegiatan', $request->file('berkas')->getClientOriginalName()),
-            'status' => $request->input('status'),
+            'status' => $status,
         ]);
         return back();
     }
@@ -44,12 +51,24 @@ class KegiatanController extends Controller
      */
     public function show(Kegiatan $kegiatan)
     {
-        $kegiatans = Kegiatan::all();
+        if (auth()->user()->role == 'admin') {
+            $kegiatan = Kegiatan::all();
+        } else {
+            $kegiatan = Kegiatan::where('id_ormawa', auth()->user()->id)->get();
+        }
+        $kegiatans = $kegiatan;
+
         return view('admin.main', compact('kegiatans'));
     }
     public function showEdit(Kegiatan $kegiatan)
     {
-        $kegiatans = Kegiatan::all();
+        if (auth()->user()->role == 'admin') {
+            $kegiatan = Kegiatan::all();
+        } else {
+            $kegiatan = Kegiatan::where('id_ormawa', auth()->user()->id)->get();
+        }
+        $kegiatans = $kegiatan;
+        // $kegiatans = Kegiatan::all();
         return response($kegiatans);
     }
 

@@ -70,9 +70,9 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-
-                <input type="text" name="id_ormawa" id="id_ormawa" value="{{ auth()->user()->id }}">
-                <input type="text" name="status" id="status" value="Ditinjau">
+                <input type="hidden" name="id_ormawa" value="{{ auth()->user()->id }}">
+                <input type="text" value="{{ auth()->user()->username }}">
+                <input type="text" name="status" id="status" value="verifikasi">
 
             </form>
         </div>

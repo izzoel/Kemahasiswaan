@@ -30,8 +30,9 @@
                             sagittis et
                             nuasslla ntis enim vel suspend wergisse eu masgnis suada vitae, ullamchper nisl eget gravda.
                         </p>
-                        <a href="portfolio-single.html" class="text-primary card-link mb-0 small">Selengkapnya<i
-                                class="fas fa-arrow-right ms-2"></i></a>
+                        <a href="#" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-1">
+                            Lihat <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -46,8 +47,9 @@
                             sagittis et
                             nuasslla ntis enim vel suspend wergisse eu masgnis suada vitae, ullamchper nisl eget gravda.
                         </p>
-                        <a href="#" class="text-primary card-link mb-0 small">Selengkapnya<i
-                                class="fas fa-arrow-right ms-2"></i></a>
+                        <a href="#" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-1">
+                            Lihat <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,7 +68,7 @@
                         {{-- <a href="#" class="text-primary card-link mb-0 small">
                             Selengkapnya<i class="fas fa-arrow-right ms-2"></i>
                         </a> --}}
-                        <a href="#" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-0">
+                        <a href="#" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-1">
                             Lihat <i class="fas fa-arrow-right ms-2"></i>
                         </a>
                     </div>

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dana;
-use Illuminate\Http\Request;
+use App\Models\Ormawa;
 use App\Models\Kegiatan;
+use Illuminate\Http\Request;
 
 class DanaController extends Controller
 {
@@ -52,7 +53,8 @@ class DanaController extends Controller
     {
         $danas = Dana::all();
         $kegiatans = Kegiatan::all();
-        return view('admin.main', compact('danas', 'kegiatans'));
+        $id_ormawa = Ormawa::value('id');
+        return view('admin.main', compact('danas', 'kegiatans', 'id_ormawa'));
     }
 
     /**

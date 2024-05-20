@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ormawa;
+use App\Models\User;
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\password;
 
 class OrmawaController extends Controller
 {
@@ -28,10 +31,18 @@ class OrmawaController extends Controller
      */
     public function store(Request $request)
     {
+        $password = bcrypt(strrev($request->input('username')));
+        // dd($request->all(), $password);
         Ormawa::create([
             'nama' => $request->input('nama'),
             'logo' => $request->file('logo')->storeAs('ormawa', $request->file('logo')->getClientOriginalName()),
             'keterangan' => $request->input('keterangan'),
+        ]);
+
+        User::create([
+            'username' => $request->input('username'),
+            'role' => 'ormawa',
+            'password' => $password
         ]);
         return back();
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\StrukturController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -57,6 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/ormawa/store', [OrmawaController::class, 'store'])->name('store-ormawa');
     Route::put('/admin/ormawa/update/{id}', [OrmawaController::class, 'update'])->name('update-ormawa');
     Route::get('/admin/ormawa/destroy/{id}', [OrmawaController::class, 'destroy'])->name('delete-ormawa');
+
+    Route::get('/admin/ormawa/struktur/show', [StrukturController::class, 'show'])->name('show-struktur');
+    Route::post('/admin/ormawa/struktur/store', [StrukturController::class, 'store'])->name('store-struktur');
 
     Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
     Route::get('/admin/kegiatan/show/edit', [KegiatanController::class, 'showEdit'])->name('show-edit-kegiatan');

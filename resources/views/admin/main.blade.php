@@ -20,7 +20,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>John Doe</h2>
+                            <h2>{{ strtoupper(auth()->user()->username) }}</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -39,15 +39,23 @@
                                         <li><a href="index3.html">Dashboard3</a></li>
                                     </ul>
                                 </li> --}}
-                                <li><a><i class="fa fa-edit"></i> Post <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{ route('show-artikel') }}">Artikel</a></li>
-                                        <li><a href="{{ route('show-galeri') }}">Galeri</a></li>
-                                    </ul>
-                                </li>
+
+                                @if (auth()->user()->role == 'admin')
+                                    <li><a><i class="fa fa-edit"></i> Post <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('show-artikel') }}">Artikel</a></li>
+                                            <li><a href="{{ route('show-galeri') }}">Galeri</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+
                                 <li><a><i class="fa fa-table"></i> Data <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="{{ route('show-ormawa') }}">Organisasi Mahasiwa</a></li>
+                                        @if (auth()->user()->role == 'admin')
+                                            <li><a href="{{ route('show-ormawa') }}">Organisasi Mahasiwa</a></li>
+                                        @elseif (auth()->user()->role != 'admin')
+                                            <li><a href="{{ route('show-struktur') }}">Struktur Organisasi</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> Layanan <span
@@ -283,6 +291,8 @@
                                     @include('admin.galeri')
                                 @elseif (Request::url() == route('show-ormawa'))
                                     @include('admin.ormawa')
+                                @elseif (Request::url() == route('show-struktur'))
+                                    @include('admin.struktur')
                                 @elseif (Request::url() == route('show-kegiatan'))
                                     @include('admin.kegiatan')
                                 @elseif (Request::url() == route('show-dana'))
