@@ -18,7 +18,9 @@
                     <th class="col-auto">Jumlah Anggaran</th>
                     <th class="col-auto">Proposal Kegiatan</th>
                     <th class="col-auto">Status</th>
-                    <th class="col-auto">Aksi</th>
+                    {{-- @if (auth()->user()->role == 'admin')
+                        <th class="col-auto">Aksi</th>
+                    @endif --}}
                 </tr>
             </thead>
             <tbody>
@@ -36,21 +38,26 @@
                                     class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a> --}}
                         </td>
                         <td>
-                            <span
-                                class="badge badge-{{ $kegiatan->status === 'verifikasi' ? 'warning' : ($kegiatan->status === 'approved' ? 'success' : 'danger') }}">{{ $kegiatan->status }}</span>
+                            <a type="button" data-toggle="modal" data-target="#statusPengajuan">
+                                <span
+                                    class="badge badge-{{ $kegiatan->status === 'verifikasi' ? 'warning' : ($kegiatan->status === 'approved' ? 'success' : 'danger') }}">{{ $kegiatan->status }}
+                                </span>
+                            </a>
                             {{-- <input type="checkbox" class="custom-control-input" id="approved{{ $kegiatan->id }}"
                                 name="approved" {{ $kegiatan->status === 'approved' ? 'checked' : '' }}> --}}
                         </td>
-                        <td>
-                            <div class="btn-group mr-2" role="group">
-                                <a href="{{ route('delete-kegiatan', $kegiatan->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></a>
-                            </div>
-                            <div class="btn-group mr-2" role="group">
-                                <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
-                                    data-target="#edit-kegiatan{{ $kegiatan->id }}">Edit</button>
-                            </div>
-                        </td>
+                        {{-- @if (auth()->user()->role == 'admin')
+                            <td>
+                                <div class="btn-group mr-2" role="group">
+                                    <a href="{{ route('delete-kegiatan', $kegiatan->id) }}"
+                                        class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                </div>
+                                <div class="btn-group mr-2" role="group">
+                                    <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
+                                        data-target="#edit-kegiatan{{ $kegiatan->id }}">Edit</button>
+                                </div>
+                            </td>
+                        @endif --}}
                     </tr>
                 @endforeach
             </tbody>
