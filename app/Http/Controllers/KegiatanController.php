@@ -28,12 +28,12 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('status') == 'verifikasi') {
-            $status = 'verifikasi';
-        } elseif ($request->input('status') == 'approved') {
-            $status = 'approved';
+        if ($request->input('status') == 'Ditinjau') {
+            $status = 'Ditinjau';
+        } elseif ($request->input('status') == 'Disetujui') {
+            $status = 'Disetujui';
         } else {
-            $status = 'ditolak';
+            $status = 'Ditolak';
         }
         Kegiatan::create([
             'id_ormawa' => $request->input('id_ormawa'),

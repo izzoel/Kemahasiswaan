@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             <span
-                                class="badge badge-{{ $dana->status === 'pending' ? 'warning' : ($dana->status === 'approved' ? 'success' : 'danger') }}">{{ $dana->status }}</span>
+                                class="badge badge-{{ $dana->status === 'Ditinjau' ? 'warning' : ($dana->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $dana->status }}</span>
                             <input type="checkbox" class="custom-control-input" id="approved{{ $dana->id }}"
                                 name="approved" {{ $dana->status === 'approved' ? 'checked' : '' }}>
                         </td>

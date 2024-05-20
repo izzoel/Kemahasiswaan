@@ -18,9 +18,9 @@
                     <th class="col-auto">Jumlah Anggaran</th>
                     <th class="col-auto">Proposal Kegiatan</th>
                     <th class="col-auto">Status</th>
-                    {{-- @if (auth()->user()->role == 'admin')
+                    @if (auth()->user()->role != 'admin')
                         <th class="col-auto">Aksi</th>
-                    @endif --}}
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -38,15 +38,15 @@
                                     class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a> --}}
                         </td>
                         <td>
-                            <a type="button" data-toggle="modal" data-target="#statusPengajuan">
+                            <a type="button" data-toggle="modal" data-target="#editStatus{{ $kegiatan->id }}">
                                 <span
-                                    class="badge badge-{{ $kegiatan->status === 'verifikasi' ? 'warning' : ($kegiatan->status === 'approved' ? 'success' : 'danger') }}">{{ $kegiatan->status }}
+                                    class="badge badge-{{ $kegiatan->status === 'Ditinjau' ? 'warning' : ($kegiatan->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $kegiatan->status }}
                                 </span>
                             </a>
                             {{-- <input type="checkbox" class="custom-control-input" id="approved{{ $kegiatan->id }}"
                                 name="approved" {{ $kegiatan->status === 'approved' ? 'checked' : '' }}> --}}
                         </td>
-                        {{-- @if (auth()->user()->role == 'admin')
+                        @if (auth()->user()->role != 'admin')
                             <td>
                                 <div class="btn-group mr-2" role="group">
                                     <a href="{{ route('delete-kegiatan', $kegiatan->id) }}"
@@ -57,7 +57,7 @@
                                         data-target="#edit-kegiatan{{ $kegiatan->id }}">Edit</button>
                                 </div>
                             </td>
-                        @endif --}}
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
@@ -67,3 +67,4 @@
 </div>
 
 @include('modals.modal_kegiatan')
+@include('modals.modal_status')
