@@ -38,7 +38,8 @@
                                     class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a> --}}
                         </td>
                         <td>
-                            <a type="button" data-toggle="modal" data-target="#editStatus{{ $kegiatan->id }}">
+                            <a type="button" data-toggle="modal"
+                                data-target="#editStatus{{ auth()->user()->role === 'admin' ? $kegiatan->id : '' }}">
                                 <span
                                     class="badge badge-{{ $kegiatan->status === 'Ditinjau' ? 'warning' : ($kegiatan->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $kegiatan->status }}
                                 </span>
