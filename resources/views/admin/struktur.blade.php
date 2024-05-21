@@ -16,6 +16,7 @@
                     <th class="col">Nama Lengkap</th>
                     <th class="col">Jabatan</th>
                     <th class="col">Program Studi</th>
+                    <th class="col">Foto Profil</th>
                     <th class="col-auto">Aksi</th>
                 </tr>
             </thead>
@@ -26,6 +27,11 @@
                         <td>{{ $struktur->mahasiswa }}</td>
                         <td>{{ $struktur->jabatan }}</td>
                         <td>{{ $struktur->prodi }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $struktur->profil) }}"
+                                class="img-responsive center-block d-block mx-auto"
+                                style="max-width: 150px; max-height: 150px;">
+                        </td>
                         <td>
                             <div class="btn-group mr-2" role="group">
                                 <a href="{{ route('delete-ormawa', $struktur->id) }}" class="btn btn-sm btn-danger"><i

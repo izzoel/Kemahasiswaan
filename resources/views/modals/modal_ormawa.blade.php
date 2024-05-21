@@ -51,6 +51,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-4">
+                        <div class="col p-0">
+                            <div class="form-group">
+                                <label class="control-label col-md-1 col-sm-1 ">Anggaran</label>
+                                <div class="col-md-11 col-sm-11 ">
+                                    <input class="form-control rounded" placeholder="..." id="anggaran" name="anggaran"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <hr>
 
@@ -61,6 +72,17 @@
                                 <div class="col-md-11 col-sm-11 ">
                                     <input class="form-control rounded" placeholder="..." id="username" name="username"
                                         required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col p-0">
+                            <div class="form-group">
+                                <label class="control-label col-md-1 col-sm-1 ">Password</label>
+                                <div class="col-md-11 col-sm-11 ">
+                                    <input type="password" class="form-control rounded" placeholder="..." id="password"
+                                        name="password" required>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +112,8 @@
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('update-ormawa', $ormawa->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('update-ormawa', $ormawa->id) }}"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
@@ -134,7 +157,46 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-4">
+                                <div class="col p-0">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1 col-sm-1 ">Anggaran</label>
+                                        <div class="col-md-11 col-sm-11 ">
+                                            <input class="form-control rounded" placeholder="..." id="anggaran"
+                                                name="anggaran" required value="{{ $ormawa->anggaran }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
 
+                            <div class="row mb-4">
+                                <div class="col p-0">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1 col-sm-1 ">Username</label>
+                                        <div class="col-md-11 col-sm-11 ">
+                                            <input class="form-control rounded" placeholder="..." id="username"
+                                                name="username" required
+                                                value="{{ \App\Models\User::find($ormawa->id)->username }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col p-0">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1 col-sm-1 ">Password</label>
+                                        <div class="col-md-11 col-sm-11 ">
+                                            <input type="password" class="form-control rounded" placeholder="..."
+                                                id="password" name="password" required>
+                                            <small id="passwordHelp" class="form-text text-muted col-12">
+                                                <span style="color:red">*</span> password baru
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                             <input type="hidden" name="logo" value="{{ $ormawa->logo }}">
                         </div>
                     </div>

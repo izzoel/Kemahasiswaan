@@ -33,6 +33,7 @@ class StrukturController extends Controller
             'mahasiswa' => $request->input('mahasiswa'),
             'jabatan' => $request->input('jabatan'),
             'prodi' => $request->input('prodi'),
+            'profil' => $request->file('profil')->storeAs('profil', $request->file('profil')->getClientOriginalName()),
         ]);
 
         return back();

@@ -37,5 +37,13 @@
             ]
         });
 
+
+        $('input[name="anggaran"]').on('keyup', function() {
+            $(this).val(function(index, value) {
+                return formatRupiah($(this).val(), 'Rp ');
+            });
+        });
+
+
     });
 </script>

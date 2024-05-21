@@ -14,6 +14,7 @@ class Struktur extends Model
         'mahasiswa',
         'jabatan',
         'prodi',
+        'profil',
     ];
 
     public function ormawa()

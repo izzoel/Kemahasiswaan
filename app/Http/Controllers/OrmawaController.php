@@ -31,7 +31,7 @@ class OrmawaController extends Controller
      */
     public function store(Request $request)
     {
-        $password = bcrypt(strrev($request->input('username')));
+        // $password = bcrypt($request->input('username'));
         // dd($request->all(), $password);
         Ormawa::create([
             'nama' => $request->input('nama'),
@@ -42,7 +42,7 @@ class OrmawaController extends Controller
         User::create([
             'username' => $request->input('username'),
             'role' => 'ormawa',
-            'password' => $password
+            'password' => bcrypt($request->input('password')),
         ]);
         return back();
     }

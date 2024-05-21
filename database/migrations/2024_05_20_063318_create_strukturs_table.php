@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('mahasiswa');
             $table->string('jabatan');
             $table->string('prodi');
+            $table->string('profil');
             $table->timestamps();
         });
     }

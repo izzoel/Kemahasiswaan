@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->text('logo');
             $table->text('keterangan');
-            $table->string('mahasiswa');
-            $table->string('jabatan');
+            $table->string('anggaran');
             $table->timestamps();
         });
     }

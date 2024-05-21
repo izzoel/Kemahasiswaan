@@ -15,6 +15,7 @@
                     <th class="col-auto">Nama Organisasi</th>
                     <th class="col-auto">Logo</th>
                     <th class="col">Keterangan</th>
+                    <th class="col-auto">Anggaran</th>
                     <th class="col-auto">Aksi</th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                                 style="max-width: 150px; max-height: 150px;">
                         </td>
                         <td>{{ $ormawa->keterangan }}</td>
+                        <td>{{ $ormawa->anggaran }}</td>
                         <td>
                             <div class="btn-group mr-2" role="group">
                                 <a href="{{ route('delete-ormawa', $ormawa->id) }}" class="btn btn-sm btn-danger"><i
