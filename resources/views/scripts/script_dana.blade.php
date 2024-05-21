@@ -2,6 +2,7 @@
     $(document).ready(function() {
         $('#dana').DataTable({
             dom: '<"row"<"col-md-6"B><"col-md-6"f>>rt<"row"<"col-md-6"l><"col-md-6"p>>',
+
             buttons: [{
                 text: '+',
                 className: 'btn btn-sm btn-primary',
@@ -11,7 +12,6 @@
             }]
         });
     });
-
 
     $.ajax({
         url: "{{ route('show-edit-kegiatan') }}",

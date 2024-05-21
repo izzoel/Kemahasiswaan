@@ -13,7 +13,7 @@
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('store-struktur') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('store-status-kegiatan') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row mb-4">
@@ -21,17 +21,17 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4 ">Status</label>
                                     <div class="col-md-8 ">
-                                        <select id="status" name="status" class="form-control p-2"
+                                        <select id="status{{ $kegiatan->id }}" name="status" class="form-control p-2"
                                             onchange="
                                                 if (this.value === 'Ditinjau') {
-                                                    $('#rektor').show('fast');
-                                                    $('#simpan').hide('fast');
+                                                    $('#rektor{{ $kegiatan->id }}').show('fast');
+                                                    $('#simpan{{ $kegiatan->id }}').hide('fast');
                                                 } else if (this.value === 'Disetujui') {
-                                                    $('#rektor').hide('fast');
-                                                    $('#simpan').show('fast');
+                                                    $('#rektor{{ $kegiatan->id }}').hide('fast');
+                                                    $('#simpan{{ $kegiatan->id }}').show('fast');
                                                 } else if (this.value === 'Ditolak') {
-                                                    $('#rektor').hide('fast');
-                                                    $('#simpan').show('fast');
+                                                    $('#rektor{{ $kegiatan->id }}').hide('fast');
+                                                    $('#simpan{{ $kegiatan->id }}').show('fast');
                                                 }
                                             ">
                                             @foreach (['Ditinjau', 'Disetujui', 'Ditolak'] as $status)
@@ -56,12 +56,13 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="id_ormawa" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="id_ormawa" value="{{ $kegiatan->ormawa->id }}">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" id="simpan" class="btn btn-primary"
+                        <button type="submit" id="simpan{{ $kegiatan->id }}" class="btn btn-primary"
                             style="{{ $kegiatan->status == 'Ditinjau' ? 'display : none' : '' }}">Simpan</button>
-                        <button type="submit" id="rektor" class="btn btn-success">Ke Rektor</button>
+                        <button type="submit" id="rektor{{ $kegiatan->id }}" class="btn btn-success">Ke
+                            Rektor</button>
                     </div>
                 </form>
             </div>

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('transaksi_kegiatans', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_kegiatan');
+            $table->string('status');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

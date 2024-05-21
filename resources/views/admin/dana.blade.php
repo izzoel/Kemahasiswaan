@@ -18,7 +18,9 @@
                     <th class="col-auto">Keperluan Dana</th>
                     <th class="col-auto">Berkas</th>
                     <th class="col-auto">Status</th>
-                    <th class="col-auto">Aksi</th>
+                    @if (auth()->user()->role != 'admin')
+                        <th class="col-auto">Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -31,24 +33,30 @@
                         <td>{{ $dana->dana }}</td>
                         <td>
                             <a href="{{ asset('storage/' . $dana->berkas) }}" target="_blank"><i class="fa fa-file"></i>
-                                {{ substr($dana->berkas, 5) }}</a>
+                                lihat</a>
                         </td>
                         <td>
-                            <span
-                                class="badge badge-{{ $dana->status === 'Ditinjau' ? 'warning' : ($dana->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $dana->status }}</span>
-                            <input type="checkbox" class="custom-control-input" id="approved{{ $dana->id }}"
-                                name="approved" {{ $dana->status === 'approved' ? 'checked' : '' }}>
+                            <a type="button" data-toggle="modal"
+                                data-target="#editStatus{{ auth()->user()->role === 'admin' ? $dana->id : '' }}">
+                                <span
+                                    class="badge badge-{{ $dana->status === 'Ditinjau' ? 'warning' : ($dana->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $dana->status }}
+                                </span>
+                            </a>
+                            {{-- <input type="checkbox" class="custom-control-input" id="approved{{ $dana->id }}"
+                                name="approved" {{ $dana->status === 'approved' ? 'checked' : '' }}> --}}
                         </td>
-                        <td>
-                            <div class="btn-group mr-2" role="group">
-                                <a href="{{ route('delete-dana', $dana->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></a>
-                            </div>
-                            <div class="btn-group mr-2" role="group">
-                                <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
-                                    data-target="#edit-dana{{ $dana->id }}">Edit</button>
-                            </div>
-                        </td>
+                        @if (auth()->user()->role != 'admin')
+                            <td>
+                                <div class="btn-group mr-2" role="group">
+                                    <a href="{{ route('delete-dana', $dana->id) }}" class="btn btn-sm btn-danger"><i
+                                            class="fa fa-trash"></i></a>
+                                </div>
+                                <div class="btn-group mr-2" role="group">
+                                    <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
+                                        data-target="#edit-dana{{ $dana->id }}">Edit</button>
+                                </div>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

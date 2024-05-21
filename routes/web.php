@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TransaksiKegiatan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DanaController;
 use App\Http\Controllers\AdminController;
@@ -67,6 +68,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/kegiatan/store', [KegiatanController::class, 'store'])->name('store-kegiatan');
     Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
     Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
+
+    Route::post('/admin/kegiatan/status/store', [TransaksiKegiatan::class, 'store'])->name('store-status-kegiatan');
+
 
     Route::get('/admin/dana/show', [DanaController::class, 'show'])->name('show-dana');
     Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');

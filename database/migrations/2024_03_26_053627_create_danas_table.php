@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('id_kegiatan');
             $table->string('dana');
             $table->string('berkas');
-            $table->enum('status', ['Ditinjau', 'Disetujui', 'Ditolak', 'Ditunda']);
+            $table->string('status');
             $table->timestamps();
         });
     }
