@@ -67,8 +67,9 @@ class PeriodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Periode $periode)
+    public function destroy(Periode $periode, $id)
     {
-        //
+        Periode::destroy($id);
+        return back();
     }
 }

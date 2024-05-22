@@ -1,17 +1,11 @@
 <div class="x_title">
     <h2 class="d-inline-block mr-3">Data <span class="badge bg-primary text-white">Ormawa</span></h2>
-    <h2 class="d-inline-block mr-2">Periode </h2>
-    <span class="d-inline-block ms-2">
-        <select id="periodePilih" name="periodePilih" class="custom-select">
-            @foreach ($periodes as $periode)
-                <option value="{{ $periode->id }}" {{ $periode->periode == old('periode') ? 'selected' : '' }}>
-                    {{ $periode->periode }}
-                </option>
-            @endforeach
-            <option disabled style="color: #f2f2f2;background-color: #fefefe;text-align: center;">──────────</option>
-            <option value="setting">Setting Periode</option>
-        </select>
-    </span>
+    <h2 class="d-inline-block mr-2">Periode
+        <span class="badge bg-primary text-white">
+            <a type="button" data-toggle="modal" data-target="#periodeIni">{{ $periode_pilih }}</a>
+        </span>
+    </h2>
+
     <ul class="nav navbar-right panel_toolbox" style="min-width: 0px">
         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
     </ul>
@@ -59,7 +53,6 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
 </div>
 

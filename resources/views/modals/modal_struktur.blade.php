@@ -96,7 +96,8 @@
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('update-ormawa', $struktur->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('update-struktur', $struktur->id) }}"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
@@ -106,8 +107,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Nama Lengkap</label>
                                         <div class="col-md-8">
-                                            <input class="form-control rounded" placeholder="..." id="mahasiswa"
-                                                name="mahasiswa" required value="{{ $struktur->mahasiswa }}">
+                                            <input class="form-control rounded" placeholder="..." name="mahasiswaEdit"
+                                                required value="{{ $struktur->mahasiswa }}">
                                         </div>
                                     </div>
                                 </div>
@@ -117,8 +118,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Jabatan</label>
                                         <div class="col-md-8">
-                                            <input class="form-control rounded" placeholder="..." id="jabatan"
-                                                name="jabatan" required value="{{ $struktur->jabatan }}">
+                                            <input class="form-control rounded" placeholder="..." name="jabatanEdit"
+                                                required value="{{ $struktur->jabatan }}">
                                         </div>
                                     </div>
                                 </div>
@@ -128,8 +129,14 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Program Studi</label>
                                         <div class="col-md-8">
-                                            <input class="form-control rounded" placeholder="..." id="prodi"
-                                                name="prodi" required>
+                                            <select name="prodiEdit" class="form-control p-2">
+                                                @foreach (['D3 Farmasi', 'D3 TLM', 'S1 Farmasi', 'S1 ARS', 'S1 Gizi', 'S1 Manajemen', 'S1 Hukum', 'S1 PGSD'] as $prodi)
+                                                    <option value="{{ $prodi }}"
+                                                        {{ $prodi == $struktur->prodi ? 'selected' : '' }}>
+                                                        {{ $prodi }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +145,7 @@
                             <div class="row mb-4">
                                 <div class="col p-0">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4 ">Logo</label>
+                                        <label class="control-label col-md-4 ">Foto Profil</label>
                                         <div class="input-group mb-3 col-md-8">
                                             <div class="input-group">
                                                 <img src="{{ asset('storage/' . $struktur->profil) }}"

@@ -59,16 +59,32 @@ class StrukturController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Struktur $struktur)
+    public function update(Request $request, Struktur $struktur, $id)
     {
-        //
+        if ($request->hasFile('profilEdit')) {
+            $profil = $request->file('profilEdit')->storeAs('profil', $request->file('profilEdit')->getClientOriginalName());
+        } else {
+            $profil = $request->input('profil');
+        }
+
+        $data = [
+            'mahasiswa' => $request->input('mahasiswaEdit'),
+            'jabatan' => $request->input('jabatanEdit'),
+            'prodi' => $request->input('prodiEdit'),
+            'kategori' => $request->input('kategoriEdit'),
+            'profil' => $profil,
+        ];
+
+        Struktur::find($id)->update($data);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Struktur $struktur)
+    public function destroy(Struktur $struktur, $id)
     {
-        //
+        Struktur::destroy($id);
+        return back();
     }
 }

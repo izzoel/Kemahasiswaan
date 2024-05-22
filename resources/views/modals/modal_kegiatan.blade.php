@@ -40,7 +40,7 @@
                     <div class="row mb-4">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 ">Jumlah Anggaran</label>
+                                <label class="control-label col-md-2 col-sm-2 ">Anggaran</label>
                                 <div class="col-md-10 col-sm-10 ">
                                     <input type="text" class="form-control rounded" name="anggaran" id="anggaran"
                                         placeholder="...">

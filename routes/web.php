@@ -1,18 +1,19 @@
 <?php
 
+use App\Models\Periode;
 use App\Models\TransaksiKegiatan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DanaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\OrmawaController;
+use App\Http\Controllers\ProkerController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
-use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\StrukturController;
-use App\Models\Periode;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -41,7 +42,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('main');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
 
-
     Route::get('/admin/artikel/show', [ArtikelController::class, 'show'])->name('show-artikel');
     Route::get('/admin/artikel/show/edit', [ArtikelController::class, 'showEdit'])->name('show-edit-artikel');
     Route::post('/admin/artikel/store', [ArtikelController::class, 'store'])->name('store-artikel');
@@ -58,18 +58,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('delete-kategori');
 
     Route::get('/admin/ormawa/show', [OrmawaController::class, 'show'])->name('show-ormawa');
+    Route::post('/admin/ormawa/show', [OrmawaController::class, 'show'])->name('show-ormawa');
     Route::post('/admin/ormawa/store', [OrmawaController::class, 'store'])->name('store-ormawa');
     Route::put('/admin/ormawa/update/{id}', [OrmawaController::class, 'update'])->name('update-ormawa');
     Route::get('/admin/ormawa/destroy/{id}', [OrmawaController::class, 'destroy'])->name('delete-ormawa');
 
+    Route::get('/admin/ormawa/proker/show', [ProkerController::class, 'show'])->name('show-proker');
+    Route::post('/admin/ormawa/proker/store', [ProkerController::class, 'store'])->name('store-proker');
+    Route::put('/admin/ormawa/proker/update/{id}', [ProkerController::class, 'update'])->name('update-proker');
+    Route::get('/admin/ormawa/proker/destroy/{id}', [ProkerController::class, 'destroy'])->name('delete-proker');
+
     Route::get('/admin/ormawa/struktur/show', [StrukturController::class, 'show'])->name('show-struktur');
     Route::post('/admin/ormawa/struktur/store', [StrukturController::class, 'store'])->name('store-struktur');
-
+    Route::put('/admin/ormawa/struktur/update/{id}', [StrukturController::class, 'update'])->name('update-struktur');
+    Route::get('/admin/ormawa/struktur/destroy/{id}', [StrukturController::class, 'destroy'])->name('delete-struktur');
 
     Route::get('/admin/ormawa/periode/show', [PeriodeController::class, 'show'])->name('show-periode');
     Route::post('/admin/ormawa/periode/store', [PeriodeController::class, 'store'])->name('store-periode');
-    Route::put('/admin/ormawa/periode/{id}', [PeriodeController::class, 'update'])->name('update-periode');
-    Route::get('/admin/ormawa/periode/{id}', [PeriodeController::class, 'destroy'])->name('delete-periode');
+    Route::put('/admin/ormawa/periode/update/{id}', [PeriodeController::class, 'update'])->name('update-periode');
+    Route::get('/admin/ormawa/periode/destroy/{id}', [PeriodeController::class, 'destroy'])->name('delete-periode');
 
     Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
     Route::get('/admin/kegiatan/show/edit', [KegiatanController::class, 'showEdit'])->name('show-edit-kegiatan');
@@ -78,7 +85,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
 
     Route::post('/admin/kegiatan/status/store', [TransaksiKegiatan::class, 'store'])->name('store-status-kegiatan');
-
 
     Route::get('/admin/dana/show', [DanaController::class, 'show'])->name('show-dana');
     Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');

@@ -19,7 +19,7 @@
                     <th class="col-auto">Proposal Kegiatan</th>
                     <th class="col-auto">Status</th>
                     @if (auth()->user()->role != 'admin')
-                        <th class="col-auto">Aksi</th>
+                        <th class="col-1">Aksi</th>
                     @endif
                 </tr>
             </thead>

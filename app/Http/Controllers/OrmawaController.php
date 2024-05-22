@@ -53,11 +53,23 @@ class OrmawaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ormawa $ormawa)
+    public function show(Ormawa $ormawa, Request $request)
     {
+        if (is_null($request->input('periodePilih'))) {
+            $periode_pilih = Periode::orderBy('periode', 'desc')->value('periode');
+        } else {
+            $periode_pilih = Periode::where('periode', $request->input('periodePilih'))->value('periode');
+            // dd($periode_pilih);
+        }
+
         $periodes = Periode::all();
-        $ormawas = Ormawa::all();
-        return view('admin.main', compact('ormawas', 'periodes'));
+
+        // $periode_pilih = Periode::orderBy('periode', 'desc')->value('periode');
+        $id_periode = Periode::orderBy('periode', 'desc')->value('id');
+        $id_periode = Periode::where('periode', $periode_pilih)->value('id');
+        $ormawas = Ormawa::where('id_periode', $id_periode)->get();
+        // dd($ormawas);
+        return view('admin.main', compact('ormawas', 'periodes', 'periode_pilih'));
     }
 
     /**

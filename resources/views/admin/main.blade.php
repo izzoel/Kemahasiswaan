@@ -32,13 +32,6 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                {{-- <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="index.html">Dashboard</a></li>
-                                        <li><a href="index2.html">Dashboard2</a></li>
-                                        <li><a href="index3.html">Dashboard3</a></li>
-                                    </ul>
-                                </li> --}}
 
                                 @if (auth()->user()->role == 'admin')
                                     <li><a><i class="fa fa-edit"></i> Post <span class="fa fa-chevron-down"></span></a>
@@ -54,8 +47,9 @@
                                         @if (auth()->user()->role == 'admin')
                                             <li><a href="{{ route('show-ormawa') }}">Organisasi Mahasiwa</a></li>
                                         @elseif (auth()->user()->role != 'admin')
-                                            <li><a href="{{ route('show-struktur') }}">Struktur Organisasi</a></li>
+                                            <li><a href="{{ route('show-struktur') }}">Struktur Ormawa</a></li>
                                         @endif
+                                        <li><a href="{{ route('show-proker') }}">Program Kerja Ormawa</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> Layanan <span
@@ -63,7 +57,6 @@
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('show-kegiatan') }}">Pengajuan Kegiatan</a></li>
                                         <li><a href="{{ route('show-dana') }}">Pengajuan Dana</a></li>
-                                        {{-- <li><a href="media_gallery.html">Peminjaman Ruangan</a></li> --}}
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> UI Elements <span
@@ -293,6 +286,8 @@
                                     @include('admin.ormawa')
                                 @elseif (Request::url() == route('show-struktur'))
                                     @include('admin.struktur')
+                                @elseif (Request::url() == route('show-proker'))
+                                    @include('admin.proker')
                                 @elseif (Request::url() == route('show-kegiatan'))
                                     @include('admin.kegiatan')
                                 @elseif (Request::url() == route('show-dana'))

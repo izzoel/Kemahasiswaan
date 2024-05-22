@@ -13,11 +13,11 @@
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
-                    <th class="col">Nama Lengkap</th>
-                    <th class="col">Jabatan</th>
-                    <th class="col">Program Studi</th>
-                    <th class="col">Foto Profil</th>
-                    <th class="col-auto">Aksi</th>
+                    <th class="col-5">Nama Lengkap</th>
+                    <th class="col-3">Jabatan</th>
+                    <th class="col-2">Program Studi</th>
+                    <th class="col-auto">Foto Profil</th>
+                    <th class="col-1">Aksi</th>
                 </tr>
             </thead>
             <tbody>

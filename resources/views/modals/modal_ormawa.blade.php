@@ -241,6 +241,39 @@
     </div>
 @endforeach
 
+<div class="modal fade" id="periodeIni" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header pb-1">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                    <h2>Periode <span class="badge bg-warning text-dark">Setting</span></h2>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body d-flex align-items-center justify-content-center">
+                <form method="POST" action="{{ route('show-ormawa', request('periodePilih')) }}">
+                    @csrf
+                    <div class="btn-group-vertical mx-auto">
+                        @foreach ($periodes as $periode)
+                            <button type="submit" name="periodePilih"
+                                class="btn btn-primary btn-sm rounded mb-1 mt-0"
+                                value="{{ $periode->periode }}">{{ $periode->periode }}</button>
+                        @endforeach
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning rounded mr-auto" data-toggle="modal" data-target="#settingPeriode"><i
+                        class="fa fa-cog"></i> Setting Periode</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="settingPeriode" data-backdrop="static" data-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
