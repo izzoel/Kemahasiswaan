@@ -1,5 +1,17 @@
 <div class="x_title">
-    <h2>Data <span class="badge bg-primary text-white">Ormawa</span></h2>
+    <h2 class="d-inline-block mr-3">Data <span class="badge bg-primary text-white">Ormawa</span></h2>
+    <h2 class="d-inline-block mr-2">Periode </h2>
+    <span class="d-inline-block ms-2">
+        <select id="periodePilih" name="periodePilih" class="custom-select">
+            @foreach ($periodes as $periode)
+                <option value="{{ $periode->id }}" {{ $periode->periode == old('periode') ? 'selected' : '' }}>
+                    {{ $periode->periode }}
+                </option>
+            @endforeach
+            <option disabled style="color: #f2f2f2;background-color: #fefefe;text-align: center;">──────────</option>
+            <option value="setting">Setting Periode</option>
+        </select>
+    </span>
     <ul class="nav navbar-right panel_toolbox" style="min-width: 0px">
         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
     </ul>
@@ -16,6 +28,7 @@
                     <th class="col-auto">Logo</th>
                     <th class="col">Keterangan</th>
                     <th class="col-auto">Anggaran</th>
+                    <th class="col-auto">Periode</th>
                     <th class="col-auto">Aksi</th>
                 </tr>
             </thead>
@@ -31,6 +44,7 @@
                         </td>
                         <td>{{ $ormawa->keterangan }}</td>
                         <td>{{ $ormawa->anggaran }}</td>
+                        <td>{{ $ormawa->periode->periode }}</td>
                         <td>
                             <div class="btn-group mr-2" role="group">
                                 <a href="{{ route('delete-ormawa', $ormawa->id) }}" class="btn btn-sm btn-danger"><i

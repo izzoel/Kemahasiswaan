@@ -55,11 +55,17 @@
                     <div class="row mb-4">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-4 ">Foto Profil</label>
+                                <label class="control-label col-md-4 ">Foto Profil
+                                    {{-- <small id="profilHelp" class="form-text text-muted col-12">
+                                        <span style="color:red">*</span> password baru
+                                    </small> --}}
+                                </label>
+
                                 <div class="input-group mb-3 col-md-8 ">
                                     <div class="input-group">
                                         <input type="file" class="form-control-file" id="profil" name="profil"
                                             accept="image/*">
+
                                     </div>
                                 </div>
                             </div>

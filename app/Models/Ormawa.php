@@ -13,5 +13,12 @@ class Ormawa extends Model
         'nama',
         'logo',
         'keterangan',
+        'anggaran',
+        'id_periode',
     ];
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class, 'id_periode');
+    }
 }

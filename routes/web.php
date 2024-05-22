@@ -10,7 +10,9 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\StrukturController;
+use App\Models\Periode;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -62,6 +64,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/ormawa/struktur/show', [StrukturController::class, 'show'])->name('show-struktur');
     Route::post('/admin/ormawa/struktur/store', [StrukturController::class, 'store'])->name('store-struktur');
+
+
+    Route::get('/admin/ormawa/periode/show', [PeriodeController::class, 'show'])->name('show-periode');
+    Route::post('/admin/ormawa/periode/store', [PeriodeController::class, 'store'])->name('store-periode');
+    Route::put('/admin/ormawa/periode/{id}', [PeriodeController::class, 'update'])->name('update-periode');
+    Route::get('/admin/ormawa/periode/{id}', [PeriodeController::class, 'destroy'])->name('delete-periode');
 
     Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
     Route::get('/admin/kegiatan/show/edit', [KegiatanController::class, 'showEdit'])->name('show-edit-kegiatan');

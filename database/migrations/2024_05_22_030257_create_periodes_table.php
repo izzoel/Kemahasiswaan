@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ormawas', function (Blueprint $table) {
+        Schema::create('periodes', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('logo');
-            $table->text('keterangan');
-            $table->string('anggaran');
-            $table->bigInteger('periode');
+            $table->string('periode');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ormawas');
+        Schema::dropIfExists('periodes');
     }
 };
