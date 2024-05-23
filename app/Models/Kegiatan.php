@@ -15,10 +15,15 @@ class Kegiatan extends Model
         'anggaran',
         'berkas',
         'status',
+        'id_status'
     ];
 
     public function ormawa()
     {
         return $this->belongsTo(Ormawa::class, 'id_ormawa');
+    }
+    public function stat()
+    {
+        return $this->belongsTo(TransaksiKegiatan::class, 'id_status');
     }
 }

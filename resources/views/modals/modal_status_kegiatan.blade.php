@@ -13,7 +13,9 @@
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('store-status-kegiatan') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('update-kegiatan', $kegiatan->id) }}">
+                    @method('PUT')
+                    @csrf
                     @csrf
                     <div class="modal-body">
                         <div class="row mb-4">
@@ -50,13 +52,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4 ">Keterangan</label>
                                     <div class="col-md-8 ">
-                                        <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan" required></textarea>
+                                        <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="id_ormawa" value="{{ $kegiatan->ormawa->id }}">
+                    <input type="hidden" name="id_kegiatan" value="{{ $kegiatan->id }}">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" id="simpan{{ $kegiatan->id }}" class="btn btn-primary"

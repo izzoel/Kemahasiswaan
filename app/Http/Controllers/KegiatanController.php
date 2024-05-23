@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
+use App\Models\TransaksiKegiatan;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -28,21 +29,27 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('status') == 'Ditinjau') {
-            $status = 'Ditinjau';
-        } elseif ($request->input('status') == 'Disetujui') {
-            $status = 'Disetujui';
-        } else {
-            $status = 'Ditolak';
-        }
         Kegiatan::create([
             'id_ormawa' => $request->input('id_ormawa'),
             'tanggal' => $request->input('tanggal'),
             'nama' => $request->input('nama'),
             'anggaran' => $request->input('anggaran'),
             'berkas' => $request->file('berkas')->storeAs('kegiatan', $request->file('berkas')->getClientOriginalName()),
-            'status' => $status,
+            'status' => 'Ditinjau',
         ]);
+
+        $id_kegiatan = Kegiatan::max('id');
+        // dd($id_kegiatan);
+        TransaksiKegiatan::create([
+            'id_kegiatan' => $id_kegiatan,
+            'status' => 'Ditinjau',
+            'keterangan' => 'Sedang ditinjau oleh Admin',
+        ]);
+
+        Kegiatan::find($id_kegiatan)->update([
+            'id_status' => TransaksiKegiatan::max('id'),
+        ]);
+
         return back();
     }
 
@@ -53,14 +60,15 @@ class KegiatanController extends Controller
      */
     public function show(Kegiatan $kegiatan)
     {
+
         if (auth()->user()->role == 'admin') {
             $kegiatan = Kegiatan::all();
         } else {
             $kegiatan = Kegiatan::where('id_ormawa', auth()->user()->id)->get();
         }
         $kegiatans = $kegiatan;
-
-        return view('admin.main', compact('kegiatans'));
+        $status = TransaksiKegiatan::all();
+        return view('admin.main', compact('kegiatans', 'status'));
     }
     public function showEdit(Kegiatan $kegiatan)
     {
@@ -87,18 +95,46 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->input('status') == 'Ditinjau') {
+            $status = 'Ditinjau';
+        } elseif ($request->input('status') == 'Disetujui') {
+            $status = 'Disetujui';
+        } elseif ($request->input('status') == 'Ditolak') {
+            $status = 'Ditolak';
+        } else {
+            $status = 'Ditinjau';
+        }
+
         if ($request->hasFile('berkasEdit')) {
             $berkas = $request->file('berkasEdit')->storeAs('kegiatan', $request->file('berkasEdit')->getClientOriginalName());
         } else {
             $berkas = $request->input('berkas');
         }
 
+        if (auth()->user()->role == 'admin') {
+            $data = [
+                'status' => $status,
+            ];
 
-        $data = [
-            'nama' => $request->input('namaEdit'),
-            'tanggal' => $request->input('tanggalEdit'),
-            'berkas' => $berkas,
-        ];
+            TransaksiKegiatan::find($id)->update([
+                'status' => $status,
+                'keterangan' => $request->input('keterangan'),
+            ]);
+
+            // TransaksiKegiatan::create([
+            //     'id_kegiatan' => $request->input('id_kegiatan'),
+            //     'status' => $status,
+            //     'keterangan' => $request->input('keterangan'),
+            // ]);
+        } else {
+            $data = [
+                'nama' => $request->input('namaEdit'),
+                'tanggal' => $request->input('tanggalEdit'),
+                'berkas' => $berkas,
+                'status' => 'Ditinjau',
+            ];
+        }
+
 
         Kegiatan::find($id)->update($data);
 

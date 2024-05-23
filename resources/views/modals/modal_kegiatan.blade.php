@@ -1,6 +1,6 @@
 <!-- Modal Tambah-->
 <div class="modal fade" id="tambahKegiatan" data-backdrop="static" data-keyboard="false" tabindex="-1">
-    <div class="modal-dialog" style="min-width: 95%">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header pb-1">
                 <h5 class="modal-title" id="staticBackdropLabel">
@@ -71,8 +71,7 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
                 <input type="hidden" name="id_ormawa" value="{{ auth()->user()->id }}">
-                <input type="text" value="{{ auth()->user()->username }}">
-                <input type="text" name="status" id="status" value="verifikasi">
+                <input type="hidden" name="status" id="status" value="verifikasi">
 
             </form>
         </div>
@@ -82,7 +81,7 @@
 @foreach ($kegiatans as $kegiatan)
     <div class="modal fade" id="edit-kegiatan{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false"
         tabindex="-1">
-        <div class="modal-dialog" style="min-width: 95%">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header pb-1">
                     <h5 class="modal-title" id="staticBackdropLabel">
@@ -149,6 +148,40 @@
                         <button type="submit" class="btn btn-warning">Update</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
+@foreach ($kegiatans as $kegiatan)
+    <div class="modal fade" id="status{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false"
+        tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header pb-1">
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        <h2>Edit <span class="badge bg-warning text-dark">Status</span></h2>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col p-0">
+                            <div class="form-group">
+                                <label class="control-label col-md-4 ">Keterangan</label>
+                                <div class="col-md-8 ">
+                                    <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan" disabled>{{ $kegiatan->stat->keterangan }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
             </div>
         </div>
     </div>

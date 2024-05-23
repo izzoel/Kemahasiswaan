@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ormawa;
 use App\Models\Proker;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,13 @@ class ProkerController extends Controller
     public function show(Proker $proker)
     {
         $prokers = Proker::all();
-        return view('admin.main', compact('prokers'));
+        if (auth()->user()->role == 'ormawa') {
+            $anggaran = Ormawa::find(auth()->user()->id)->anggaran;
+        } elseif (auth()->user()->role == 'admin') {
+            $anggaran = 0;
+        }
+
+        return view('admin.main', compact('prokers', 'anggaran'));
     }
 
     /**

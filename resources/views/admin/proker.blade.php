@@ -1,6 +1,8 @@
 <div class="x_title">
     <h2 class="d-inline-block mr-3">Data Program Kerja <span class="badge bg-primary text-white">Ormawa</span></h2>
-
+    @if (auth()->user()->role == 'ormawa')
+        <h2 class="d-inline-block mr-2">Anggaran <span class="badge bg-primary text-white">{{ $anggaran }}</span></h2>
+    @endif
 
     <ul class="nav navbar-right panel_toolbox" style="min-width: 0px">
         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>

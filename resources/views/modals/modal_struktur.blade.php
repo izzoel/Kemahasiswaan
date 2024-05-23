@@ -101,67 +101,67 @@
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
-                        <div class="modal-body">
-                            <div class="row mb-4">
-                                <div class="col p-0">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 ">Nama Lengkap</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control rounded" placeholder="..." name="mahasiswaEdit"
-                                                required value="{{ $struktur->mahasiswa }}">
-                                        </div>
+                        <div class="row mb-4">
+                            <div class="col p-0">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 ">Nama Lengkap</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rounded" placeholder="..." name="mahasiswaEdit"
+                                            required value="{{ $struktur->mahasiswa }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col p-0">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 ">Jabatan</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control rounded" placeholder="..." name="jabatanEdit"
-                                                required value="{{ $struktur->jabatan }}">
-                                        </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col p-0">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 ">Jabatan</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rounded" placeholder="..." name="jabatanEdit"
+                                            required value="{{ $struktur->jabatan }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col p-0">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 ">Program Studi</label>
-                                        <div class="col-md-8">
-                                            <select name="prodiEdit" class="form-control p-2">
-                                                @foreach (['D3 Farmasi', 'D3 TLM', 'S1 Farmasi', 'S1 ARS', 'S1 Gizi', 'S1 Manajemen', 'S1 Hukum', 'S1 PGSD'] as $prodi)
-                                                    <option value="{{ $prodi }}"
-                                                        {{ $prodi == $struktur->prodi ? 'selected' : '' }}>
-                                                        {{ $prodi }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col p-0">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 ">Program Studi</label>
+                                    <div class="col-md-8">
+                                        <select name="prodiEdit" class="form-control p-2">
+                                            @foreach (['D3 Farmasi', 'D3 TLM', 'S1 Farmasi', 'S1 ARS', 'S1 Gizi', 'S1 Manajemen', 'S1 Hukum', 'S1 PGSD'] as $prodi)
+                                                <option value="{{ $prodi }}"
+                                                    {{ $prodi == $struktur->prodi ? 'selected' : '' }}>
+                                                    {{ $prodi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="row mb-4">
-                                <div class="col p-0">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 ">Foto Profil</label>
-                                        <div class="input-group mb-3 col-md-8">
-                                            <div class="input-group">
-                                                <img src="{{ asset('storage/' . $struktur->profil) }}"
-                                                    class="img-responsive center-block d-block mx-auto"
-                                                    style="max-width: 150px; max-height: 150px;">
-                                                <div class="custom-file">
-                                                    <input type="file" class="form-control-file" id="profil"
-                                                        name="profilEdit" accept="image/*">
-                                                </div>
+                        <div class="row mb-4">
+                            <div class="col p-0">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 ">Foto Profil</label>
+                                    <div class="input-group mb-3 col-md-8">
+                                        <div class="input-group">
+                                            <img src="{{ asset('storage/' . $struktur->profil) }}"
+                                                class="img-responsive center-block d-block mx-auto"
+                                                style="max-width: 150px; max-height: 150px;">
+                                            <div class="custom-file">
+                                                <input type="file" class="form-control-file" id="profil"
+                                                    name="profilEdit" accept="image/*">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
+                        <input type="hidden" name="profil" value="{{ $struktur->profil }}">
+
                     </div>
 
                     <div class="modal-footer">

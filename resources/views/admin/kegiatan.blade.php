@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             <a type="button" data-toggle="modal"
-                                data-target="#editStatus{{ auth()->user()->role === 'admin' ? $kegiatan->id : '' }}">
+                                data-target="#{{ auth()->user()->role === 'admin' ? 'editStatus' . $kegiatan->id : 'status' . $kegiatan->id }}">
                                 <span
                                     class="badge badge-{{ $kegiatan->status === 'Ditinjau' ? 'warning' : ($kegiatan->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $kegiatan->status }}
                                 </span>
@@ -50,12 +50,15 @@
                         @if (auth()->user()->role != 'admin')
                             <td>
                                 <div class="btn-group mr-2" role="group">
-                                    <a href="{{ route('delete-kegiatan', $kegiatan->id) }}"
-                                        class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                    <button href="{{ route('delete-kegiatan', $kegiatan->id) }}"
+                                        class="btn btn-sm btn-danger"
+                                        {{ $kegiatan->status === 'Disetujui' || $kegiatan->status === 'Ditinjau' ? 'disabled' : '' }}><i
+                                            class="fa fa-trash"></i></button>
                                 </div>
                                 <div class="btn-group mr-2" role="group">
                                     <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
-                                        data-target="#edit-kegiatan{{ $kegiatan->id }}">Edit</button>
+                                        data-target="#edit-kegiatan{{ $kegiatan->id }}"
+                                        {{ $kegiatan->status === 'Disetujui' || $kegiatan->status === 'Ditinjau' ? 'disabled' : '' }}>Edit</button>
                                 </div>
                             </td>
                         @endif
