@@ -71,4 +71,4 @@
 </div>
 
 @include('modals.modal_kegiatan')
-@include('modals.modal_status_kegiatan')
+@include('modals.modal_status')

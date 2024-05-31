@@ -15,10 +15,15 @@ class Dana extends Model
         'dana',
         'berkas',
         'status',
+        'id_status',
     ];
 
     public function kegiatan()
     {
         return $this->belongsTo(Kegiatan::class, 'id_kegiatan');
+    }
+    public function stat()
+    {
+        return $this->belongsTo(TransaksiKegiatan::class, 'id_status');
     }
 }

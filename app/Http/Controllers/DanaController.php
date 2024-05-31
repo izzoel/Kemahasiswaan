@@ -6,6 +6,7 @@ use App\Models\Dana;
 use App\Models\Ormawa;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use App\Models\TransaksiKegiatan;
 
 class DanaController extends Controller
 {
@@ -40,6 +41,18 @@ class DanaController extends Controller
             'berkas' => $request->file('berkas')->storeAs('dana', $request->file('berkas')->getClientOriginalName()),
             'status' => $request->input('status'),
 
+        ]);
+
+        $id_kegiatan = Kegiatan::max('id');
+        // dd($id_kegiatan);
+        TransaksiKegiatan::create([
+            'id_kegiatan' => $id_kegiatan,
+            'status' => 'Ditinjau',
+            'keterangan' => 'Sedang ditinjau oleh Admin',
+        ]);
+
+        Dana::find($id_kegiatan)->update([
+            'id_status' => TransaksiKegiatan::max('id'),
         ]);
 
         // dd($d);

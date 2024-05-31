@@ -37,7 +37,7 @@
                         </td>
                         <td>
                             <a type="button" data-toggle="modal"
-                                data-target="#editStatus{{ auth()->user()->role === 'admin' ? $dana->id : '' }}">
+                                data-target="#{{ auth()->user()->role === 'admin' ? 'editStatus' . $dana->id : 'status' . $dana->id }}">
                                 <span
                                     class="badge badge-{{ $dana->status === 'Ditinjau' ? 'warning' : ($dana->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $dana->status }}
                                 </span>
@@ -66,3 +66,4 @@
 </div>
 
 @include('modals.modal_dana')
+@include('modals.modal_status_kegiatan')

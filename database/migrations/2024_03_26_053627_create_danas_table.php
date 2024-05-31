@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('dana');
             $table->string('berkas');
             $table->string('status');
+            $table->bigInteger('id_status');
             $table->timestamps();
         });
     }
