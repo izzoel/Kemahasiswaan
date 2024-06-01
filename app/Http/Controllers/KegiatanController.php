@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
-use App\Models\TransaksiKegiatan;
+use App\Models\TransaksiStatus;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -38,16 +38,17 @@ class KegiatanController extends Controller
             'status' => 'Ditinjau',
         ]);
 
-        $id_kegiatan = Kegiatan::max('id');
-        // dd($id_kegiatan);
-        TransaksiKegiatan::create([
-            'id_kegiatan' => $id_kegiatan,
+        $id_transaksi = Kegiatan::max('id');
+        // dd($id_transaksi);
+        TransaksiStatus::create([
+            'pengajuan' => 'Kegiatan',
+            'id_transaksi' => $id_transaksi,
             'status' => 'Ditinjau',
             'keterangan' => 'Sedang ditinjau oleh Admin',
         ]);
 
-        Kegiatan::find($id_kegiatan)->update([
-            'id_status' => TransaksiKegiatan::max('id'),
+        Kegiatan::find($id_transaksi)->update([
+            'id_status' => TransaksiStatus::max('id'),
         ]);
 
         return back();
@@ -67,7 +68,7 @@ class KegiatanController extends Controller
             $kegiatan = Kegiatan::where('id_ormawa', auth()->user()->id)->get();
         }
         $kegiatans = $kegiatan;
-        $status = TransaksiKegiatan::all();
+        $status = TransaksiStatus::all();
         return view('admin.main', compact('kegiatans', 'status'));
     }
     public function showEdit(Kegiatan $kegiatan)
@@ -116,12 +117,12 @@ class KegiatanController extends Controller
                 'status' => $status,
             ];
 
-            TransaksiKegiatan::find($id)->update([
+            TransaksiStatus::find($id)->update([
                 'status' => $status,
                 'keterangan' => $request->input('keterangan'),
             ]);
 
-            // TransaksiKegiatan::create([
+            // TransaksiStatus::create([
             //     'id_kegiatan' => $request->input('id_kegiatan'),
             //     'status' => $status,
             //     'keterangan' => $request->input('keterangan'),
@@ -136,7 +137,7 @@ class KegiatanController extends Controller
         }
 
 
-        Kegiatan::find($id)->update($data);
+        Kegiatan::find($request->input('id_kegiatan'))->update($data);
 
         return back();
     }

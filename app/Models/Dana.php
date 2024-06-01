@@ -24,6 +24,6 @@ class Dana extends Model
     }
     public function stat()
     {
-        return $this->belongsTo(TransaksiKegiatan::class, 'id_status');
+        return $this->belongsTo(TransaksiStatus::class, 'id_status');
     }
 }

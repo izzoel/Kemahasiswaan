@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TransaksiKegiatan;
+use App\Models\TransaksiStatus;
 use Illuminate\Http\Request;
 
-class TransaksiKegiatanController extends Controller
+class TransaksiStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class TransaksiKegiatanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TransaksiKegiatan $transaksiKegiatan)
+    public function show(TransaksiStatus $transaksiStatus)
     {
         //
     }
@@ -42,7 +42,7 @@ class TransaksiKegiatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TransaksiKegiatan $transaksiKegiatan)
+    public function edit(TransaksiStatus $transaksiStatus)
     {
         //
     }
@@ -50,7 +50,7 @@ class TransaksiKegiatanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TransaksiKegiatan $transaksiKegiatan)
+    public function update(Request $request, TransaksiStatus $transaksiStatus)
     {
         //
     }
@@ -58,7 +58,7 @@ class TransaksiKegiatanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TransaksiKegiatan $transaksiKegiatan)
+    public function destroy(TransaksiStatus $transaksiStatus)
     {
         //
     }

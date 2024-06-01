@@ -34,18 +34,14 @@
                         <td>
                             <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
                                     class="fa fa-file"></i> lihat </a>
-                            {{-- <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
-                                    class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a> --}}
                         </td>
                         <td>
                             <a type="button" data-toggle="modal"
-                                data-target="#{{ auth()->user()->role === 'admin' ? 'editStatus' . $kegiatan->id : 'status' . $kegiatan->id }}">
+                                data-target="#{{ auth()->user()->role === 'admin' ? 'statusKegiatan' . $kegiatan->id : 'status' . $kegiatan->id }}">
                                 <span
                                     class="badge badge-{{ $kegiatan->status === 'Ditinjau' ? 'warning' : ($kegiatan->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $kegiatan->status }}
                                 </span>
                             </a>
-                            {{-- <input type="checkbox" class="custom-control-input" id="approved{{ $kegiatan->id }}"
-                                name="approved" {{ $kegiatan->status === 'approved' ? 'checked' : '' }}> --}}
                         </td>
                         @if (auth()->user()->role != 'admin')
                             <td>

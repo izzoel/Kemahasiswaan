@@ -37,7 +37,7 @@
                         </td>
                         <td>
                             <a type="button" data-toggle="modal"
-                                data-target="#{{ auth()->user()->role === 'admin' ? 'editStatus' . $dana->id : 'status' . $dana->id }}">
+                                data-target="#{{ auth()->user()->role === 'admin' ? 'statusDana' . $dana->id : 'status' . $dana->id }}">
                                 <span
                                     class="badge badge-{{ $dana->status === 'Ditinjau' ? 'warning' : ($dana->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $dana->status }}
                                 </span>
@@ -48,12 +48,15 @@
                         @if (auth()->user()->role != 'admin')
                             <td>
                                 <div class="btn-group mr-2" role="group">
-                                    <a href="{{ route('delete-dana', $dana->id) }}" class="btn btn-sm btn-danger"><i
-                                            class="fa fa-trash"></i></a>
+                                    <button href="{{ route('delete-kegiatan', $dana->id) }}"
+                                        class="btn btn-sm btn-danger"
+                                        {{ $dana->status === 'Disetujui' || $dana->status === 'Ditinjau' ? 'disabled' : '' }}><i
+                                            class="fa fa-trash"></i></button>
                                 </div>
                                 <div class="btn-group mr-2" role="group">
-                                    <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
-                                        data-target="#edit-dana{{ $dana->id }}">Edit</button>
+                                    <button class="btn btn-sm btn-warning text-dark"
+                                        {{ $dana->status === 'Disetujui' || $dana->status === 'Ditinjau' ? 'disabled' : '' }}
+                                        data-toggle="modal" data-target="#edit-dana{{ $dana->id }}">Edit</button>
                                 </div>
                             </td>
                         @endif
@@ -66,4 +69,4 @@
 </div>
 
 @include('modals.modal_dana')
-@include('modals.modal_status_kegiatan')
+@include('modals.modal_status')
