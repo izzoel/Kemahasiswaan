@@ -68,7 +68,8 @@
                         {{-- <a href="#" class="text-primary card-link mb-0 small">
                             Selengkapnya<i class="fas fa-arrow-right ms-2"></i>
                         </a> --}}
-                        <a href="#" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-1">
+                        <a href="{{ route('prestasi') }}"
+                            class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-1">
                             Lihat <i class="fas fa-arrow-right ms-2"></i>
                         </a>
                     </div>

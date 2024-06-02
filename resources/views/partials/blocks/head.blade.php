@@ -32,7 +32,11 @@
                         <a class="nav-link @@about" href="about.html"
                             style="color: black !important">Beasiswa</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link @@prestasi" href="{{ route('prestasi') }}"
+                            style="color: black !important">Prestasi</a>
+                    </li>
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle @@portfolio @@portfolio-single"
                             href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false" style="color: black !important">
@@ -45,7 +49,7 @@
                             <li><a class="dropdown-item @@portfolio-single" href="portfolio-single.html"
                                     style="color: black !important">Portfolio single</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

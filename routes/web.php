@@ -33,6 +33,7 @@ use Illuminate\Routing\Route as RoutingRoute;
 // })->name('landing');
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
 
 Route::post('/login', [AdminController::class, 'login'])->name('login');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
