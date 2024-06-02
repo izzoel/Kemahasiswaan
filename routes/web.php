@@ -85,8 +85,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
     Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
 
-    // Route::post('/admin/kegiatan/status/store', [TransaksiStatusController::class, 'store'])->name('store-status');
-
     Route::get('/admin/dana/show', [DanaController::class, 'show'])->name('show-dana');
     Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');
     Route::put('/admin/dana/update/{id}', [DanaController::class, 'update'])->name('update-dana');

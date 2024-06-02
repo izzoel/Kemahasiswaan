@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `danas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table kms.danas: ~0 rows (approximately)
+-- Dumping data for table kms.danas: ~1 rows (approximately)
 DELETE FROM `danas`;
 /*!40000 ALTER TABLE `danas` DISABLE KEYS */;
 INSERT INTO `danas` (`id`, `id_ormawa`, `tanggal_kegiatan`, `id_kegiatan`, `dana`, `berkas`, `status`, `id_status`, `created_at`, `updated_at`) VALUES
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table kms.migrations: ~8 rows (approximately)
+-- Dumping data for table kms.migrations: ~13 rows (approximately)
 DELETE FROM `migrations`;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `ormawas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table kms.ormawas: ~0 rows (approximately)
+-- Dumping data for table kms.ormawas: ~1 rows (approximately)
 DELETE FROM `ormawas`;
 /*!40000 ALTER TABLE `ormawas` DISABLE KEYS */;
 INSERT INTO `ormawas` (`id`, `nama`, `logo`, `keterangan`, `anggaran`, `id_periode`, `created_at`, `updated_at`) VALUES
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `prokers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table kms.prokers: ~0 rows (approximately)
+-- Dumping data for table kms.prokers: ~1 rows (approximately)
 DELETE FROM `prokers`;
 /*!40000 ALTER TABLE `prokers` DISABLE KEYS */;
 INSERT INTO `prokers` (`id`, `id_ormawa`, `nama`, `tanggal`, `anggaran`, `keterangan`, `created_at`, `updated_at`) VALUES
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `strukturs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table kms.strukturs: ~0 rows (approximately)
+-- Dumping data for table kms.strukturs: ~1 rows (approximately)
 DELETE FROM `strukturs`;
 /*!40000 ALTER TABLE `strukturs` DISABLE KEYS */;
 INSERT INTO `strukturs` (`id`, `id_ormawa`, `mahasiswa`, `jabatan`, `prodi`, `profil`, `created_at`, `updated_at`) VALUES
