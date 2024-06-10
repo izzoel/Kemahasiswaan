@@ -25,4 +25,9 @@ class LandingController extends Controller
                 $galeris = Galeri::orderBy('updated_at', 'desc')->take(4)->get();
                 return view('prestasi', compact('galeris'));
         }
+        public function galeri()
+        {
+                $galeris = Galeri::orderBy('updated_at', 'desc')->take(4)->get();
+                return view('galeries', compact('galeris'));
+        }
 }

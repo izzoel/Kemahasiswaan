@@ -7,23 +7,22 @@
 
 
     <!--================== Hero Area Section Start ==================-->
-    <section class="hero-area section" style="padding-top:0px;padding-bottom:0px">
-        {{-- <div class="container"> --}}
-        {{-- <div class="row text-center"> --}}
-        {{-- <div class="col-lg-8 mx-auto"> --}}
-        {{-- <div class="hero-img mx-auto position-relative mb-1" data-aos="zoom-in" data-aos-duration="700">
+    <section class="hero-area section ">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center m-2 mt-4">
                         <img src="{{ asset('images/kemahasiswaan.webp') }}" alt="img"
-                            style="width: 300px; height: 300px;">
-                        <span class="shape shape-1"></span>
-                        <span class="shape shape-2"></span>
-                        <span class="shape shape-3"></span>
-                        <span class="shape shape-4"></span>
+                            style="width: 300px; height: 300px; margin-left: auto;" data-aos="zoom-in"
+                            data-aos-duration="700">
+                    </div>
+                    {{-- <div class="me-4 text-right" data-aos="fade-right" data-aos-duration="1500">
+                        <h2>Daftarkan Prestasimu Disini!</h2>
                     </div> --}}
-        {{-- <p class="mb-3 fw-medium fs-4 text-primary">Hello, myself Rick....</p> --}}
-        {{-- <h2 class="mb-4" data-aos="fade-up" data-aos-duration="700">Direktorat Kemahasiswaan dan Alumni
-                    </h2> --}}
-        {{-- <p class="mb-1" data-aos="fade-down" data-aos-duration="1000">Direktorat Kemahasiswaan dan Alumni
-                        merupakan unit kerja di lingkungan Universitas
+                </div>
+                <div class=" col-md-6" data-aos="fade-left" data-aos-duration="1500">
+                    <p class="mb-0"><b style="color: #006bde">Direktorat Kemahasiswaan</b> dan <b
+                            style="color: #006bde">Alumni</b> merupakan unit kerja di lingkungan Universitas
                         Borneo Lestari berada di bawah pengelolaan <b style="color: #006bde">Wakil Rektor III</b> bidang
                         kemahasiswaan yang
                         melayani
@@ -31,11 +30,16 @@
                         bertugas untuk memberikan pelayanan terhadap <b style="color: #006bde">mahasiswa aktif</b>
                         maupun <b style="color: #006bde">calon alumni</b>
                         untuk
-                        mempersiapkan mereka sebagai lulusan yang <b style="color: #006bde">siap kerja</b>.</p> --}}
-        {{-- <a href="#" class="btn btn-primary btn-lg">Know About Me</a> --}}
-        {{-- </div> --}}
-        {{-- </div> --}}
-        {{-- </div> --}}
+                        mempersiapkan mereka sebagai lulusan yang <b style="color: #006bde">siap kerja</b>.</p>
+                    <div class="me-4 text-left mt-4" data-aos="fade-right" data-aos-duration="1500">
+                        <h2>Daftarkan Prestasimu Disini!</h2>
+                    </div>
+                    <a name="" id="" class="btn btn-lg btn-primary mt-2" href="#" role="button"
+                        data-toggle="modal" data-target="#tambahPrestasi">Daftar Prestasi
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="has-circle">
             <span class="circle circle-1"></span>
             <span class="circle circle-2"></span>
@@ -76,6 +80,9 @@
     @include('galeri')
     <!--================== Project Section End ==================-->
     @include('modals/modal_login')
+    @include('modals/modal_prestasi')
+
+
 </body>
 
 @include('partials/blocks/foot')

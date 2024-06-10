@@ -138,7 +138,7 @@
                             </div>
                         </div>
 
-                        <textarea name="kontenEdit" id="summernoteEdit{{ $galeri->id }}">{{ $galeri->konten }}</textarea>
+                        <textarea name="kontenEdit" id="summernoteEdit{{ $galeri->id }}" style="display: none;">{{ $galeri->konten }} </textarea>
                         <input type="hidden" name="excerptEdit" id="excerptEdit{{ $galeri->id }}">
                         <input type="hidden" name="gambar" value="{{ $galeri->gambar }}">
 

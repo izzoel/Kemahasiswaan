@@ -89,7 +89,8 @@
                     </div>
                 </div> --}}
                <div class="col-12 mx-auto text-center">
-                   <a href="portfolio.html" class="btn btn-outline-primary text-capitailize fw-medium py-2">view
+                   <a href="{{ route('galeries') }}"
+                       class="btn btn-outline-primary text-capitailize fw-medium py-2">view
                        all</a>
                </div>
            </div>

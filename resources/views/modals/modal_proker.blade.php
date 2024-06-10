@@ -11,7 +11,7 @@
                 </button>
             </div>
 
-            <form method="POST" action="{{ route('store-proker') }}"">
+            <form method="POST" action="{{ route('store-proker') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="row mb-4">

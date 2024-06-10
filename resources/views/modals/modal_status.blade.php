@@ -17,7 +17,6 @@
                     <form method="POST" action="{{ route('update-kegiatan', $kegiatan->stat->id) }}">
                         @method('PUT')
                         @csrf
-                        @csrf
                         <div class="modal-body">
                             <div class="row mb-4">
                                 <div class="col p-0">
