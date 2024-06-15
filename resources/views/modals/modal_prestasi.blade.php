@@ -14,18 +14,19 @@
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <div class="row mb-4">
+                    <div class="row mb-3">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lengkap</label>
-                                <div class="col-md-8">
-                                    <input class="form-control rounded" placeholder="..." id="nama" name="nama"
-                                        required>
-                                </div>
+                                <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                                    {{-- <option value="AL">Alabama</option>
+
+                                    <option value="WY">Wyoming</option> --}}
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tahun Lomba</label>
@@ -36,7 +37,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lomba</label>
@@ -47,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tingkat Lomba</label>
@@ -58,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Raihan Prestasi</label>
@@ -69,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-0">
+                    <div class="row mb-3">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 ">File Sertifikat</label>
@@ -86,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-0">
+                    <div class="row mb-3">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 ">File Dokumentasi</label>
@@ -103,14 +104,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-0">
+                    <div class="row mb-3">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 ">File Pas Foto</label>
                                 <div class="input-group mb-3 col-md-8 col-sm-8">
                                     <div class="custom-file mb-0 pb-0">
-                                        <input type="file" class="custom-file-input" id="foto"
-                                            name="foto"
+                                        <input type="file" class="custom-file-input" id="foto" name="foto"
                                             onchange="document.getElementById('berkas-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
                                         <label class="custom-file-label" id="berkas-label" for="berkas">Choose
@@ -121,7 +121,6 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="id_ormawa" value="{{ auth()->user()->id }}">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -130,3 +129,5 @@
         </div>
     </div>
 </div>
+
+@include('scripts/script_landing')
