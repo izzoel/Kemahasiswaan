@@ -13,6 +13,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\TransaksiStatusController;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -91,4 +92,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');
     Route::put('/admin/dana/update/{id}', [DanaController::class, 'update'])->name('update-dana');
     Route::get('/admin/dana/destroy/{id}', [DanaController::class, 'destroy'])->name('delete-dana');
+
+    Route::get('/admin/mahasiswa/show', [MahasiswaController::class, 'show'])->name('show-mahasiswa');
+    Route::post('/admin/mahasiswa/store', [MahasiswaController::class, 'store'])->name('store-mahasiswa');
+    Route::post('/import/mahasiswa/import', [MahasiswaController::class, 'import'])->name('import-mahasiswa');
 });

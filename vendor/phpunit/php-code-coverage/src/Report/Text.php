@@ -306,10 +306,8 @@ final class Text
 
     private function format(string $color, int $padding, false|string $string): string
     {
-        if ($color === '') {
-            return (string) $string . PHP_EOL;
-        }
+        $reset = $color ? self::COLOR_RESET : '';
 
-        return $color . str_pad((string) $string, $padding) . self::COLOR_RESET . PHP_EOL;
+        return $color . str_pad((string) $string, $padding) . $reset . PHP_EOL;
     }
 }

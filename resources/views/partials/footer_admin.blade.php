@@ -44,3 +44,5 @@
 @include('scripts.script_ormawa');
 @include('scripts.script_kegiatan');
 @include('scripts.script_dana');
+
+@include('scripts.script_prestasi');

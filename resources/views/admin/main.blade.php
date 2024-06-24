@@ -46,6 +46,7 @@
                                     <ul class="nav child_menu">
                                         @if (auth()->user()->role == 'admin')
                                             <li><a href="{{ route('show-ormawa') }}">Organisasi Mahasiwa</a></li>
+                                            <li><a href="{{ route('show-mahasiswa') }}">Data Mahasiwa</a></li>
                                         @elseif (auth()->user()->role != 'admin')
                                             <li><a href="{{ route('show-struktur') }}">Struktur Ormawa</a></li>
                                         @endif
@@ -286,6 +287,8 @@
                                     @include('admin.ormawa')
                                 @elseif (Request::url() == route('show-struktur'))
                                     @include('admin.struktur')
+                                @elseif (Request::url() == route('show-mahasiswa'))
+                                    @include('admin.mahasiswa')
                                 @elseif (Request::url() == route('show-proker'))
                                     @include('admin.proker')
                                 @elseif (Request::url() == route('show-kegiatan'))

@@ -9,12 +9,11 @@
  */
 namespace PHPUnit\Metadata;
 
-use PHPUnit\Exception;
 use RuntimeException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
-final class ReflectionException extends RuntimeException implements Exception
+final class ReflectionException extends RuntimeException implements \PHPUnit\Exception
 {
 }
