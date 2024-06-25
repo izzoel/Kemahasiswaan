@@ -11,7 +11,7 @@
                 </button>
             </div>
 
-            <form method="POST" action="" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('store-prestasi') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row mb-3">
@@ -19,22 +19,20 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lengkap</label>
                                 <div class="col-md-8">
-                                    <select id="nama" class="js-example-basic-multiple" name="nama[]"
-                                        multiple="multiple" style="width: 100%;min-width: 100%;"></select>
+                                    <select id="nama" name="nama[]" multiple="multiple"
+                                        style="width: 100%;min-width: 100%;"></select>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
+                    <div class="row mb-1">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tahun Lomba</label>
                                 <div class="col-md-8">
-                                    {{-- <input type="number" class="form-control rounded" name="tahun" placeholder="..."
-                                        min="2000" required /> --}}
-                                    <input type="text" class="form-control rounded" id="datepicker" name="tahun"
-                                        placeholder="Select Year">
+                                    <input class="datepicker form-control rounded" name="tahun" placeholder="..."
+                                        required style="margin-bottom: .9em" pattern="\d{4}" maxlength="4">
+
                                 </div>
                             </div>
 
@@ -45,19 +43,23 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lomba</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="raihan"
-                                        placeholder="..." />
+                                    <input type="text" class="form-control rounded" name="lomba" placeholder="..."
+                                        style="margin-bottom: .9em">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tingkat Lomba</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="tingkat"
-                                        placeholder="..." />
+                                    <select id="tingkat" name="tingkat" style="width: 100%;min-width: 100%;">
+                                        <option value="Lokal">Lokal</option>
+                                        <option value="Regional">Regional</option>
+                                        <option value="Nasional">Nasional</option>
+                                        <option value="Internasional">Internasional</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -67,13 +69,13 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Raihan Prestasi</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="raihan"
-                                        placeholder="..." />
+                                    <input type="text" class="form-control rounded" name="prestasi" placeholder="..."
+                                        style="margin-bottom: 1em">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 ">File Sertifikat</label>
@@ -81,16 +83,16 @@
                                     <div class="custom-file mb-0 pb-0">
                                         <input type="file" class="custom-file-input" id="sertifikat"
                                             name="sertifikat"
-                                            onchange="document.getElementById('berkas-label').textContent = this.files[0].name"
+                                            onchange="document.getElementById('sertifikat-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
-                                        <label class="custom-file-label" id="berkas-label" for="berkas">Choose
+                                        <label class="custom-file-label" id="sertifikat-label" for="sertifikat">Choose
                                             file</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 ">File Dokumentasi</label>
@@ -98,26 +100,27 @@
                                     <div class="custom-file mb-0 pb-0">
                                         <input type="file" class="custom-file-input" id="dokumentasi"
                                             name="dokumentasi"
-                                            onchange="document.getElementById('berkas-label').textContent = this.files[0].name"
+                                            onchange="document.getElementById('dokumentasi-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
-                                        <label class="custom-file-label" id="berkas-label" for="berkas">Choose
+                                        <label class="custom-file-label" id="dokumentasi-label"
+                                            for="dokumentasi">Choose
                                             file</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 ">File Pas Foto</label>
-                                <div class="input-group mb-3 col-md-8 col-sm-8">
+                                <div class="input-group mb-3 col-md-8 col-sm-8 ">
                                     <div class="custom-file mb-0 pb-0">
                                         <input type="file" class="custom-file-input" id="foto"
                                             name="foto"
-                                            onchange="document.getElementById('berkas-label').textContent = this.files[0].name"
+                                            onchange="document.getElementById('foto-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
-                                        <label class="custom-file-label" id="berkas-label" for="berkas">Choose
+                                        <label class="custom-file-label" id="foto-label" for="foto">Choose
                                             file</label>
                                     </div>
                                 </div>

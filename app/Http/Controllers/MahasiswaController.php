@@ -59,7 +59,7 @@ class MahasiswaController extends Controller
 
     public function select()
     {
-        $mahasiswa = Mahasiswa::all();
+        $mahasiswa = Mahasiswa::orderBy('nama', 'asc')->get();
         return response()->json($mahasiswa);
     }
 

@@ -13,10 +13,11 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\StrukturController;
-use App\Http\Controllers\TransaksiStatusController;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\TransaksiStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ use Illuminate\Routing\Route as RoutingRoute;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
 Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'select'])->name('select-mahasiswa');
+Route::post('/prestasi/store', [PrestasiController::class, 'store'])->name('store-prestasi');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeries');
 
 Route::post('/login', [AdminController::class, 'login'])->name('login');

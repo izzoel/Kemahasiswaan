@@ -1,11 +1,18 @@
 <script>
     $(document).ready(function() {
         // Initialize Select2
-        $('.js-example-basic-multiple').select2({
-            dropdownCssClass: 'big-drop', // Apply custom class to the dropdownropdownCssClass: 'custom-scrollbar'
-            width: 'resolve' // Ensure the dropdown width is correctly set
+        $('#nama').select2({
+            // dropdownCssClass: 'big-drop', // Apply custom class to the dropdownropdownCssClass: 'custom-scrollbar'
+            // width: 'resolve', // Ensure the dropdown width is correctly set
+            placeholder: "-- Pilih --",
+            allowClear: true
+        }).val(null).trigger('change');
 
-        });
+        $('#tingkat').select2({
+            placeholder: "-- Pilih --",
+            allowClear: true,
+            minimumResultsForSearch: Infinity,
+        }).val(null).trigger('change');
 
         // AJAX request to fetch data from the server
         $.ajax({
@@ -19,8 +26,8 @@
                 // Iterate through the data and add options
                 $.each(data, function(index, mahasiswa) {
                     $('#nama').append(
-                        '<option value="' + mahasiswa.id + '">' + mahasiswa.nama +
-                        '</option>'
+                        '<option value="' + mahasiswa.nim + '">' + mahasiswa.nama +
+                        ' (' + mahasiswa.nim + ')' + '</option>'
                     );
                 });
 
@@ -32,17 +39,11 @@
             }
         });
 
-        // $('#datepicker').datepicker({
-        //     uiLibrary: 'bootstrap4',
-        // });
-        // $('#datepicker').datepicker({
-        //     uiLibrary: 'bootstrap5',
-        //     format: 'yyyy',
-        //     viewMode: 'years',
-        //     minViewMode: 'years'
-        // });
-
-
+        $(".datepicker").datepicker({
+            format: 'yyyy',
+            viewMode: 'years',
+            minViewMode: 'years'
+        });
 
     });
 </script>
