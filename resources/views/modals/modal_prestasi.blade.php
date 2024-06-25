@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header pb-1">
                 <h5 class="modal-title" id="staticBackdropLabel">
-                    <h2>Daftar<span class="badge bg-primary text-white">Prestasi</span></h2>
+                    <h2>Daftar <span class="badge bg-primary text-white">Prestasi</span></h2>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -18,23 +18,26 @@
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lengkap</label>
-                                <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                                    {{-- <option value="AL">Alabama</option>
-
-                                    <option value="WY">Wyoming</option> --}}
-                                </select>
+                                <div class="col-md-8">
+                                    <select id="nama" class="js-example-basic-multiple" name="nama[]"
+                                        multiple="multiple" style="width: 100%;min-width: 100%;"></select>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tahun Lomba</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="tahun"
-                                        placeholder="..." />
+                                    {{-- <input type="number" class="form-control rounded" name="tahun" placeholder="..."
+                                        min="2000" required /> --}}
+                                    <input type="text" class="form-control rounded" id="datepicker" name="tahun"
+                                        placeholder="Select Year">
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -42,7 +45,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lomba</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="lomba"
+                                    <input type="text" class="form-control rounded" name="raihan"
                                         placeholder="..." />
                                 </div>
                             </div>
@@ -110,7 +113,8 @@
                                 <label class="control-label col-md-4 col-sm-4 ">File Pas Foto</label>
                                 <div class="input-group mb-3 col-md-8 col-sm-8">
                                     <div class="custom-file mb-0 pb-0">
-                                        <input type="file" class="custom-file-input" id="foto" name="foto"
+                                        <input type="file" class="custom-file-input" id="foto"
+                                            name="foto"
                                             onchange="document.getElementById('berkas-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
                                         <label class="custom-file-label" id="berkas-label" for="berkas">Choose
@@ -130,4 +134,4 @@
     </div>
 </div>
 
-@include('scripts/script_landing')
+@include('scripts/script_prestasi')

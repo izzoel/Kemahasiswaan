@@ -33,6 +33,7 @@ class MahasiswaController extends Controller
         return redirect()->back();
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -54,6 +55,12 @@ class MahasiswaController extends Controller
     {
         $mahasiswas = Mahasiswa::all();
         return view('admin.main', compact('mahasiswas'));
+    }
+
+    public function select()
+    {
+        $mahasiswa = Mahasiswa::all();
+        return response()->json($mahasiswa);
     }
 
     /**

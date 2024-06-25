@@ -35,6 +35,7 @@ use Illuminate\Routing\Route as RoutingRoute;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
+Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'select'])->name('select-mahasiswa');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeries');
 
 Route::post('/login', [AdminController::class, 'login'])->name('login');
