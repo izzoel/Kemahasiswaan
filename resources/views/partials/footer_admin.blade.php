@@ -46,3 +46,8 @@
 @include('scripts.script_dana');
 
 @include('scripts.script_prestasi');
+
+
+@if (Auth::user()->role == 'admin')
+    @include('scripts.script_mahasiswa');
+@endif

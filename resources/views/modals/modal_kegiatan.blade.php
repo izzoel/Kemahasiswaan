@@ -173,7 +173,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 ">Keterangan</label>
                                 <div class="col-md-8 ">
-                                    <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan" disabled>{{ $kegiatan->stat->keterangan }}</textarea>
+                                    <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan" disabled>{{ $kegiatan->stat->keterangan ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>

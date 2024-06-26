@@ -60,7 +60,7 @@
                                         <li><a href="{{ route('show-dana') }}">Pengajuan Dana</a></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-desktop"></i> UI Elements <span
+                                {{-- <li><a><i class="fa fa-desktop"></i> UI Elements <span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="general_elements.html">General Elements</a></li>
@@ -95,10 +95,10 @@
                                         <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
                                         <li><a href="fixed_footer.html">Fixed Footer</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
-                        <div class="menu_section">
+                        {{-- <div class="menu_section">
                             <h3>Live On</h3>
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-bug"></i> Additional Pages <span
@@ -142,13 +142,18 @@
                                 <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span
                                             class="label label-success pull-right">Coming Soon</span></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
 
                     </div>
-                    <!-- /sidebar menu -->
+
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-warning text-dark" href="{{ route('logout') }}" role="button"><i
+                                class="fa fa-sign-out"></i> Logout</a>
+                    </div>
+
 
                     <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small">
+                    {{-- <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" title="Settings">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         </a>
@@ -161,7 +166,9 @@
                         <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
-                    </div>
+
+                        
+                    </div> --}}
                     <!-- /menu footer buttons -->
                 </div>
             </div>
@@ -328,8 +335,8 @@
 
             <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
                 <div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i
-                            class="fa fa-font"></i><b class="caret"></b></a>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                     </ul>
                 </div>
@@ -358,8 +365,7 @@
 
                 <div class="btn-group">
                     <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-                    <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i
-                            class="fa fa-italic"></i></a>
+                    <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
                     <a class="btn" data-edit="strikethrough" title="Strikethrough"><i
                             class="fa fa-strikethrough"></i></a>
                     <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i

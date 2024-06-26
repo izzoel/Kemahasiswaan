@@ -14,7 +14,7 @@
                         </button>
                     </div>
 
-                    <form method="POST" action="{{ route('update-kegiatan', $kegiatan->stat->id) }}">
+                    <form method="POST" action="{{ route('update-kegiatan', $kegiatan->stat->id ?? '') }}">
                         @method('PUT')
                         @csrf
                         <div class="modal-body">
@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Keterangan</label>
                                         <div class="col-md-8 ">
-                                            <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $kegiatan->stat->keterangan }}</textarea>
+                                            <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $kegiatan->stat->keterangan ?? '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>

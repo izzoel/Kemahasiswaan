@@ -120,7 +120,7 @@
                                 <div class="col-md-8 ">
                                     <select id="prodi" name="prodi" class="form-control p-2" required>
                                         <option value="" {{ old('prodi') == null ? 'selected' : '' }} disabled>
-                                            --Pilih--
+                                            --Pilih fakultas dulu--
                                         </option>
                                     </select>
                                 </div>
@@ -136,77 +136,3 @@
         </div>
     </div>
 </div>
-
-{{-- @foreach ($prokers as $proker)
-    <div class="modal fade" id="edit-proker{{ $proker->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header pb-1">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                        <h2>Anggota <span class="badge bg-warning text-dark">Edit</span></h2>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form method="POST" action="{{ route('update-proker', $proker->id) }}">
-                    @method('PUT')
-                    @csrf
-                    <div class="modal-body">
-                        <div class="row mb-4">
-                            <div class="col p-0">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4 ">Program Kerja</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control rounded" placeholder="..." name="namaEdit" required
-                                            value="{{ $proker->nama }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col p-0">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Tanggal Pelaksanaan</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control rounded" name="tanggalEdit"
-                                            value="{{ $proker->tanggal }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col p-0">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Anggaran</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control rounded" name="anggaranEdit"
-                                            placeholder="..." value="{{ $proker->anggaran }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col p-0">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4 ">Keterangan</label>
-                                    <div class="col-md-8 ">
-                                        <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keteranganEdit"
-                                            value="{{ $proker->keterangan }}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-warning">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-@endforeach --}}

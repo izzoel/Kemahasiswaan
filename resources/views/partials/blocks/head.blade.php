@@ -14,8 +14,8 @@
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
 
-                <span class="text-white p-1 rounded" style="background-color: #1b36f7">kemahasiswaan</span>
-                <b style="color: black">.unbl</b>
+                <b style="color: black">kemahasiswaan</b>
+                <span class="text-white p-1 rounded" style="background-color: #1b36f7">.unbl</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -25,7 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color: black !important">
                 <ul class="navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link @@home text-dark" aria-current="page" href="index.html"
+                        <a class="nav-link" href="https://tracer.unbl.ac.id/" style="color: black !important">Tracer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @@home" aria-current="page" href="index.html"
                             style="color: black !important">Informasi</a>
                     </li>
                     <li class="nav-item">
