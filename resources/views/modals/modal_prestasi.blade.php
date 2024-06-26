@@ -31,7 +31,7 @@
                                 <label class="control-label col-md-4">Tahun Lomba</label>
                                 <div class="col-md-8">
                                     <input class="datepicker form-control rounded" name="tahun" placeholder="..."
-                                        required style="margin-bottom: .9em" pattern="\d{4}" maxlength="4">
+                                        style="margin-bottom: .9em" pattern="\d{4}" maxlength="4" required>
 
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                                 <label class="control-label col-md-4">Nama Lomba</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control rounded" name="lomba" placeholder="..."
-                                        style="margin-bottom: .9em">
+                                        style="margin-bottom: .9em" required>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tingkat Lomba</label>
                                 <div class="col-md-8">
-                                    <select id="tingkat" name="tingkat" style="width: 100%;min-width: 100%;">
+                                    <select id="tingkat" name="tingkat" style="width: 100%;min-width: 100%;" required>
                                         <option value="Lokal">Lokal</option>
                                         <option value="Regional">Regional</option>
                                         <option value="Nasional">Nasional</option>
@@ -70,7 +70,7 @@
                                 <label class="control-label col-md-4">Raihan Prestasi</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control rounded" name="prestasi" placeholder="..."
-                                        style="margin-bottom: 1em">
+                                        style="margin-bottom: 1em" required>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                         <input type="file" class="custom-file-input" id="sertifikat"
                                             name="sertifikat"
                                             onchange="document.getElementById('sertifikat-label').textContent = this.files[0].name"
-                                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
+                                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf" required>
                                         <label class="custom-file-label" id="sertifikat-label" for="sertifikat">Choose
                                             file</label>
                                     </div>
@@ -101,7 +101,7 @@
                                         <input type="file" class="custom-file-input" id="dokumentasi"
                                             name="dokumentasi"
                                             onchange="document.getElementById('dokumentasi-label').textContent = this.files[0].name"
-                                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
+                                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf" required>
                                         <label class="custom-file-label" id="dokumentasi-label"
                                             for="dokumentasi">Choose
                                             file</label>
@@ -119,7 +119,7 @@
                                         <input type="file" class="custom-file-input" id="foto"
                                             name="foto"
                                             onchange="document.getElementById('foto-label').textContent = this.files[0].name"
-                                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
+                                            accept="image/*" required>
                                         <label class="custom-file-label" id="foto-label" for="foto">Choose
                                             file</label>
                                     </div>
@@ -130,7 +130,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button id="simpanPrestasi" type="submit" class="btn btn-primary">Kirim</button>
                 </div>
             </form>
         </div>

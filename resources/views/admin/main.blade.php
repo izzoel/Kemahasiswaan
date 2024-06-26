@@ -26,8 +26,9 @@
                         <div class="profile_info">
                             <h2>{{ strtoupper(auth()->user()->username) }}</h2>
                             <span>
-                                <a class="badge btn btn-warning btn-sm text-dark" href="{{ route('logout') }}"
-                                    role="button"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a id="logout" class="badge btn btn-warning btn-sm text-dark"
+                                    href="{{ route('logout') }}" role="button"><i class="fa fa-sign-out"></i>
+                                    Logout</a>
                             </span>
                         </div>
                     </div>
@@ -334,7 +335,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    Developed by <a href="https://izzoel.github.io/">zetware</a>
                 </div>
                 <div class="clearfix"></div>
             </footer>

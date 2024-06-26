@@ -12,4 +12,22 @@
             }
         }
     });
+
+    $('#logout').on('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior (i.e., the link from being followed)
+
+        Swal.fire({
+            title: 'Logout dari aplikasi?',
+            icon: 'warning',
+            html: `<a autofocus></a>`,
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Logout!',
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('logout') }}"; // Redirect to the logout route
+            }
+        });
+    });
 </script>

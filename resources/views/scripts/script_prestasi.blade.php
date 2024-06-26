@@ -46,5 +46,26 @@
             minViewMode: 'years'
         });
 
+        // $('#simpanPrestasi').on('click', function(event) {
+        //     event.preventDefault(); // Prevent the default behavior (i.e., the link from being followed)
+
+        //     Swal.fire({
+        //         title: 'Kirim Data ?',
+        //         icon: 'warning',
+        //         html: `<a autofocus></a>`,
+        //         showCancelButton: true,
+        //         reverseButtons: true,
+        //         confirmButtonColor: '#007bff',
+        //         confirmButtonText: 'Kirim!',
+
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             window.location.href =
+        //                 "{{ route('store-prestasi') }}"; // Redirect to the logout route
+        //         }
+        //     });
+
+        // });
+
     });
 </script>

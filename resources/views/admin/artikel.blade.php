@@ -31,11 +31,11 @@
                                 style="max-width: 300px; max-height: 300px;">
                         </td>
                         <td>
-                            <div class="btn-group mr-2" role="group" aria-label="Denger group">
-                                <a href="{{ route('delete-artikel', $artikel->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></a>
+                            <div class="btn-group mr-2" role="group">
+                                <a id="deleteArtikel" href="{{ route('delete-artikel', $artikel->id) }}"
+                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </div>
-                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                            <div class="btn-group mr-2" role="group">
                                 <button type="button" class="btn btn-warning" data-toggle="modal"
                                     data-target="#edit-artikel{{ $artikel->id }}">
                                     Edit
