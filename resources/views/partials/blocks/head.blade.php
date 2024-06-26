@@ -13,9 +13,12 @@
                 <i class="fas fa-users"></i>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
-
-                <b style="color: black">kemahasiswaan</b>
-                <span class="text-white p-1 rounded" style="background-color: #1b36f7">.unbl</span>
+                {{-- <a class="site_title"> --}}
+                <img src="{{ asset('images/site.png') }}" alt="" width="300" height="300"
+                    class="img-fluid">
+                {{-- </a> --}}
+                {{-- <b style="color: black">kemahasiswaan</b> --}}
+                <span class="text-white p-1 rounded" style="background-color: #09114d">.unbl</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

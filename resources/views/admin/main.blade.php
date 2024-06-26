@@ -6,8 +6,8 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i>
-                            <span>Kemahasiswaan</span>
+                        <a class="site_title">
+                            <img src="{{ asset('images/site_sidebar.png') }}" alt="" class="img-fluid">
                         </a>
                     </div>
 
@@ -16,11 +16,19 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="{{ asset('images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                            @if (auth()->user()->role == 'admin')
+                                <img src="{{ asset('images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                            @elseif (auth()->user()->role == 'ormawa')
+                                <img src="{{ asset('storage/ormawa/[LOGO] ' . strtoupper(auth()->user()->username) . '.jpg') }}"
+                                    alt="..." class="img-circle profile_img">
+                            @endif
                         </div>
                         <div class="profile_info">
-                            <span>Welcome,</span>
                             <h2>{{ strtoupper(auth()->user()->username) }}</h2>
+                            <span>
+                                <a class="badge btn btn-warning btn-sm text-dark" href="{{ route('logout') }}"
+                                    role="button"><i class="fa fa-sign-out"></i> Logout</a>
+                            </span>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -30,7 +38,7 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <h3>General</h3>
+                            <h3>Menu</h3>
                             <ul class="nav side-menu">
 
                                 @if (auth()->user()->role == 'admin')
@@ -44,13 +52,24 @@
 
                                 <li><a><i class="fa fa-table"></i> Data <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                        <li><a>Organisasi Mahasiwa<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                @if (auth()->user()->role == 'admin')
+                                                    <li class="sub_menu"><a href="{{ route('show-ormawa') }}">Data
+                                                            Ormawa</a>
+                                                    </li>
+                                                @elseif (auth()->user()->role != 'admin')
+                                                    <li><a href="{{ route('show-struktur') }}">Struktur Ormawa</a>
+                                                    </li>
+                                                @endif
+                                                <li><a href="{{ route('show-proker') }}">Program Kerja Ormawa</a>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         @if (auth()->user()->role == 'admin')
-                                            <li><a href="{{ route('show-ormawa') }}">Organisasi Mahasiwa</a></li>
-                                            <li><a href="{{ route('show-mahasiswa') }}">Data Mahasiwa</a></li>
-                                        @elseif (auth()->user()->role != 'admin')
-                                            <li><a href="{{ route('show-struktur') }}">Struktur Ormawa</a></li>
+                                            <li><a href="{{ route('show-prestasi') }}">Prestasi</a></li>
+                                            <li><a href="{{ route('show-mahasiswa') }}">Mahasiwa</a></li>
                                         @endif
-                                        <li><a href="{{ route('show-proker') }}">Program Kerja Ormawa</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> Layanan <span
@@ -146,10 +165,10 @@
 
                     </div>
 
-                    <div class="d-flex justify-content-center">
+                    {{-- <div class="d-flex justify-content-center">
                         <a class="btn btn-warning text-dark" href="{{ route('logout') }}" role="button"><i
                                 class="fa fa-sign-out"></i> Logout</a>
-                    </div>
+                    </div> --}}
 
 
                     <!-- /menu footer buttons -->
@@ -294,14 +313,16 @@
                                     @include('admin.ormawa')
                                 @elseif (Request::url() == route('show-struktur'))
                                     @include('admin.struktur')
-                                @elseif (Request::url() == route('show-mahasiswa'))
-                                    @include('admin.mahasiswa')
                                 @elseif (Request::url() == route('show-proker'))
                                     @include('admin.proker')
                                 @elseif (Request::url() == route('show-kegiatan'))
                                     @include('admin.kegiatan')
                                 @elseif (Request::url() == route('show-dana'))
                                     @include('admin.dana')
+                                @elseif (Request::url() == route('show-prestasi'))
+                                    @include('admin.prestasi')
+                                @elseif (Request::url() == route('show-mahasiswa'))
+                                    @include('admin.mahasiswa')
                                 @endif
                             </div>
                         </div>

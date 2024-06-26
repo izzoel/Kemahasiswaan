@@ -61,7 +61,8 @@ class PrestasiController extends Controller
      */
     public function show(Prestasi $prestasi)
     {
-        //
+        $prestasis = Prestasi::all();
+        return view('admin.main', compact('prestasis'));
     }
 
     /**

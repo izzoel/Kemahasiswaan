@@ -42,7 +42,7 @@
                         <i class="fa fa-graduation-cap" style="color: #e86e16"></i>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Beasiwa</h4>
+                        <h4 class="card-title">Beasiswa</h4>
                         <p class="card-text small">Lorem ipsum dolor amet, consesd ctetur adipiscing elit. Malesa est
                             sagittis et
                             nuasslla ntis enim vel suspend wergisse eu masgnis suada vitae, ullamchper nisl eget gravda.

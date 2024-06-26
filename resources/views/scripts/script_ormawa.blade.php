@@ -107,5 +107,7 @@
             }
         });
 
+        $('#prestasi').DataTable();
+
     });
 </script>

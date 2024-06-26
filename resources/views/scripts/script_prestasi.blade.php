@@ -1,5 +1,6 @@
 <script>
     $(document).ready(function() {
+
         // Initialize Select2
         $('#nama').select2({
             // dropdownCssClass: 'big-drop', // Apply custom class to the dropdownropdownCssClass: 'custom-scrollbar'

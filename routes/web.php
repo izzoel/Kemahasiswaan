@@ -18,6 +18,7 @@ use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\TransaksiStatusController;
+use App\Models\Prestasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,4 +100,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/mahasiswa/show', [MahasiswaController::class, 'show'])->name('show-mahasiswa');
     Route::post('/admin/mahasiswa/store', [MahasiswaController::class, 'store'])->name('store-mahasiswa');
     Route::post('/import/mahasiswa/import', [MahasiswaController::class, 'import'])->name('import-mahasiswa');
+
+    Route::get('/admin/prestasi/show', [PrestasiController::class, 'show'])->name('show-prestasi');
 });

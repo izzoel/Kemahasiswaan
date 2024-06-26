@@ -36,7 +36,7 @@ class OrmawaController extends Controller
         // dd($request->all(), $password);
         Ormawa::create([
             'nama' => $request->input('nama'),
-            'logo' => $request->file('logo')->storeAs('ormawa', $request->file('logo')->getClientOriginalName()),
+            'logo' => $request->file('logo')->storeAs('ormawa', '[LOGO] ' . $request->input('nama') . '.jpg'),
             'keterangan' => $request->input('keterangan'),
             'id_periode' => $request->input('id_periode'),
             'anggaran' => $request->input('anggaran'),
@@ -87,7 +87,7 @@ class OrmawaController extends Controller
     {
         // dd($request->all());
         if ($request->hasFile('logoEdit')) {
-            $logo = $request->file('logoEdit')->storeAs('ormawa', $request->file('logoEdit')->getClientOriginalName());
+            $logo = $request->file('logoEdit')->storeAs('ormawa', '[LOGO] ' . $request->input('namaEdit') . '.jpg');
         } else {
             $logo = $request->input('logo');
         }
