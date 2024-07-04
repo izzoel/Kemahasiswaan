@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Periode;
+use App\Models\Prestasi;
 use App\Models\TransaksiKegiatan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DanaController;
@@ -18,7 +19,6 @@ use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\TransaksiStatusController;
-use App\Models\Prestasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +36,8 @@ use App\Models\Prestasi;
 // })->name('landing');
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/informasi', [LandingController::class, 'informasi'])->name('informasi');
+Route::get('/pdf', [LandingController::class, 'pdf'])->name('pdf');
 Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
 Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'select'])->name('select-mahasiswa');
 Route::post('/prestasi/store', [PrestasiController::class, 'store'])->name('store-prestasi');

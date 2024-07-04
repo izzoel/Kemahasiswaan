@@ -51,6 +51,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
+    <!-- Flipbook StyleSheet -->
+    <link href="{{ asset('plugins/dflip/css/dflip.css') }}" rel="stylesheet">
+
+    <!-- Icons Stylesheet -->
+    <link href="{{ asset('plugins/dflip/css/themify-icons.css') }}" rel="stylesheet">
+
 </head>
 
 {{-- <body> --}}

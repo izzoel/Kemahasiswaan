@@ -76,6 +76,7 @@
     @include('galeri')
     <!--================== Project Section End ==================-->
     @include('modals/modal_login')
+
 </body>
 
 @include('partials/blocks/foot')

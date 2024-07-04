@@ -62,4 +62,11 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- jQuery 1.9.1 or above -->
+{{-- <script src="{{ asset('plugins/dflip/js/libs/jquery.min.js') }}" type="text/javascript"></script> --}}
+
+<!-- Flipbook main Js file -->
+<script src="{{ asset('plugins/dflip/js/dflip.min.js') }}" type="text/javascript"></script>
+@include('scripts.script_informasi');
+
 </html>
