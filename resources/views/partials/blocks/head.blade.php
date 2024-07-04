@@ -7,7 +7,7 @@
     </div>
 </div>
 <header class="navigation border-bottom">
-    <nav class="navbar  navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg pl-0">
         <div class="container-fluid d-flex flex-nowrap">
             <div class="d-none d-lg-block">
                 <a class="navbar-brand pr-0 mr-0" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
