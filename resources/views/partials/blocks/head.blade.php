@@ -20,9 +20,10 @@
                 </a>
             </div>
             <div class="d-lg-none">
-                <a class="navbar-brand" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    <img src="{{ asset('images/site.png') }}" alt="" width="250" height="250"
-                        class="img-fluid">
+                <a class="navbar-brand"
+                    href="{{ url('/') }}>
+                    <img src="{{ asset('images/site.png') }}"
+                    alt="" width="250" height="250" class="img-fluid">
                     <span class="text-white p-1 rounded" style="background-color: #09114d">.unbl</span>
                 </a>
             </div>
