@@ -9,19 +9,30 @@
 <header class="navigation border-bottom">
     <nav class="navbar  navbar-expand-lg">
         <div class="container-fluid d-flex flex-nowrap">
-            <a class="navbar-brand pr-0 mr-0" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
-                <i class="fas fa-users"></i>
-            </a>
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/site.png') }}" alt="" width="300" height="300"
-                    class="img-fluid">
-                <span class="text-white p-1 rounded" style="background-color: #09114d">.unbl</span>
-            </a>
+            <div class="d-none d-lg-block">
+                <a class="navbar-brand pr-0 mr-0" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fas fa-users"></i>
+                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('images/site.png') }}" alt="" width="250" height="250"
+                        class="img-fluid">
+                    <span class="text-white p-1 rounded" style="background-color: #09114d">.unbl</span>
+                </a>
+            </div>
+            <div class="d-lg-none">
+                <a class="navbar-brand" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <img src="{{ asset('images/site.png') }}" alt="" width="250" height="250"
+                        class="img-fluid">
+                    <span class="text-white p-1 rounded" style="background-color: #09114d">.unbl</span>
+                </a>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent">
                 <i class="fas fa-bars"></i>
             </button>
+
+        </div>
+        <div class="container">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item">
