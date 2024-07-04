@@ -32,7 +32,7 @@
                     <div>{{ $artikels->links('pagination::bootstrap-4') }}</div>
             </div>
 
-            <div class="col-lg-4 col-xl-3 offset-xl-1">
+            <div class="col-lg-4 col-xl-3 offset-xl-1 d-none d-lg-block">
                 <div class="widget mb-5">
                     <h3 class="h4 mb-3">Informasi Terbaru</h4>
 
