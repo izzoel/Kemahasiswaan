@@ -8,8 +8,8 @@
 </div>
 <header class="navigation border-bottom">
     <nav class="navbar  navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
+        <div class="container-fluid d-flex flex-nowrap">
+            <a class="navbar-brand pr-0 mr-0" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
                 <i class="fas fa-users"></i>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
