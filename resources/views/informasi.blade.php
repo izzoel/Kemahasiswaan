@@ -22,7 +22,7 @@
 
             {{-- <div class="_df_thumb" id="flipbok_example" source="{{ asset('a.pdf') }}">a</div> --}}
 
-            <div class="_df_thumb" id="flipbok_example" thumb="a.jpg" source="a.pdf" style="height: 600px; width: 400px">
+            <div class="_df_thumb" id="flipbok_example" thumb="a.jpg" source="a.pdf" style="height: 400px; width: 300px">
             </div>
         </div>
         <div class="has-circle">
