@@ -21,135 +21,135 @@ $(document).ready(function () {
   });
 
   // brand log slider
-  $(".brand-logo-slider").slick({
-    dots: false,
-    infinite: true,
-    arrows: false,
-    autoplay: true,
-    fade: false,
-    speed: 300,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 991,
+  // $(".brand-logo-slider").slick({
+  //   dots: false,
+  //   infinite: true,
+  //   arrows: false,
+  //   autoplay: true,
+  //   fade: false,
+  //   speed: 300,
+  //   slidesToShow: 6,
+  //   slidesToScroll: 1,
+  //   responsive: [
+  //     {
+  //       breakpoint: 991,
 
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          dots: false,
-          infinite: true,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          dots: false,
-          infinite: true,
-          arrows: false,
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          dots: false,
-          infinite: true,
-          arrows: false,
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
+  //       settings: {
+  //         slidesToShow: 4,
+  //         slidesToScroll: 1,
+  //         dots: false,
+  //         infinite: true,
+  //         arrows: false,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 769,
+  //       settings: {
+  //         dots: false,
+  //         infinite: true,
+  //         arrows: false,
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 576,
+  //       settings: {
+  //         dots: false,
+  //         infinite: true,
+  //         arrows: false,
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // });
 
   // Testimonial-Slider
-  $(".testimonial-left-slider").slick({
-    dots: false,
-    infinite: true,
-    arrows: true,
-    autoplay: false,
-    prevArrow: '<i class="fas fa-arrow-left prev-arrow"></i>',
-    nextArrow: '<i class="fas fa-arrow-right next-arrow"></i>',
-    speed: 300,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    asNavFor: ".testimonial-right-slider",
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
-          infinite: true,
-          autoplay: false,
-        },
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          dots: false,
-          infinite: true,
-          arrows: false,
-          autoplay: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          dots: false,
-          infinite: true,
-          arrows: false,
-          autoplay: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
-  $(".testimonial-right-slider").slick({
-    dots: false,
-    infinite: true,
-    arrows: false,
-    autoplay: false,
-    fade: true,
-    speed: 300,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    asNavFor: ".testimonial-left-slider",
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          autoplay: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          autoplay: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
+  // $(".testimonial-left-slider").slick({
+  //   dots: false,
+  //   infinite: true,
+  //   arrows: true,
+  //   autoplay: false,
+  //   prevArrow: '<i class="fas fa-arrow-left prev-arrow"></i>',
+  //   nextArrow: '<i class="fas fa-arrow-right next-arrow"></i>',
+  //   speed: 300,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   asNavFor: ".testimonial-right-slider",
+  //   responsive: [
+  //     {
+  //       breakpoint: 991,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         dots: false,
+  //         infinite: true,
+  //         autoplay: false,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 769,
+  //       settings: {
+  //         dots: false,
+  //         infinite: true,
+  //         arrows: false,
+  //         autoplay: true,
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 576,
+  //       settings: {
+  //         dots: false,
+  //         infinite: true,
+  //         arrows: false,
+  //         autoplay: true,
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // });
+  // $(".testimonial-right-slider").slick({
+  //   dots: false,
+  //   infinite: true,
+  //   arrows: false,
+  //   autoplay: false,
+  //   fade: true,
+  //   speed: 300,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   asNavFor: ".testimonial-left-slider",
+  //   responsive: [
+  //     {
+  //       breakpoint: 991,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         infinite: true,
+  //         dots: false,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 769,
+  //       settings: {
+  //         autoplay: true,
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 576,
+  //       settings: {
+  //         autoplay: true,
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // });
 });
 
 // Preloader
@@ -185,11 +185,11 @@ $(document).ready(function () {
 
   var Shuffle = window.Shuffle;
 
-  var myShuffle = new Shuffle(document.querySelector(".my-shuffle"), {
-    itemSelector: ".image-item",
-    sizer: ".my-sizer-element",
-    buffer: 1,
-  });
+  // var myShuffle = new Shuffle(document.querySelector(".my-shuffle"), {
+  //   itemSelector: ".image-item",
+  //   sizer: ".my-sizer-element",
+  //   buffer: 1,
+  // });
 
   window.jQuery('input[name="shuffle-filter"]').on("change", function (evt) {
     var input = evt.currentTarget;

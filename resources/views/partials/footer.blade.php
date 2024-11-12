@@ -7,7 +7,7 @@
 <!-- aos -->
 <script src="{{ asset('plugins/aos/aos.js') }}"></script>
 <!-- isotope -->
-<script src="{{ asset('plugins/shuffle/shuffle.min.js') }}"></script>
+{{-- <script src="{{ asset('plugins/shuffle/shuffle.min.js') }}"></script> --}}
 <!-- Main Script -->
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/custom.min.js') }}"></script>
@@ -58,8 +58,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
-    integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- jQuery 1.9.1 or above -->
@@ -67,6 +66,9 @@
 
 <!-- Flipbook main Js file -->
 <script src="{{ asset('plugins/dflip/js/dflip.min.js') }}" type="text/javascript"></script>
-@include('scripts.script_informasi');
+{{-- @include('guest.scripts.script_informasi'); --}}
+@include('scripts.script_informasi')
+{{-- @include('guest.scripts.script_pedoman'); --}}
+@include('guest.scripts.script_modalLanding')
 
 </html>

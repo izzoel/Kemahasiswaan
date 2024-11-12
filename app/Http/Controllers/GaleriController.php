@@ -94,6 +94,12 @@ class GaleriController extends Controller
         return back();
     }
 
+    public function post(Request $request)
+    {
+
+        $galeri = Galeri::find($request->query('id'));
+        return response()->json($galeri);
+    }
     /**
      * Remove the specified resource from storage.
      */

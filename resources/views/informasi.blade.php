@@ -24,6 +24,8 @@
 
             <div class="_df_thumb" id="flipbok_example" thumb="a.jpg" source="a.pdf" style="height: 400px; width: 300px">
             </div>
+            <div class="_df_thumb" thumb="a.jpg" source="pdf.pdf" style="height: 400px; width: 300px">
+            </div>
         </div>
         <div class="has-circle">
             <span class="circle circle-1"></span>

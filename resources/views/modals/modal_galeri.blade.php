@@ -21,8 +21,7 @@
                                 <div class="input-group mb-3 col-md-11 col-sm-11 ">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="gambar" name="gambar"
-                                            onchange="document.getElementById('gambar-label').textContent = this.files[0].name"
-                                            accept="image/*">
+                                            onchange="document.getElementById('gambar-label').textContent = this.files[0].name" accept="image/*">
                                         <label class="custom-file-label" id="gambar-label" for="gambar">Choose
                                             file</label>
                                     </div>
@@ -73,9 +72,10 @@
     </div>
 </div>
 
+
+
 @foreach ($galeris as $galeri)
-    <div class="modal fade" id="edit-galeri{{ $galeri->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="edit-galeri{{ $galeri->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog" style="min-width: 95%">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -97,12 +97,10 @@
                                     <label class="control-label col-md-1 col-sm-1 ">Gambar</label>
                                     <div class="input-group mb-3 col-md-11 col-sm-11 ">
                                         <div class="input-group">
-                                            <img src="{{ asset('storage/' . $galeri->gambar) }}"
-                                                class="img-responsive center-block d-block mx-auto"
+                                            <img src="{{ asset('storage/' . $galeri->gambar) }}" class="img-responsive center-block d-block mx-auto"
                                                 style="max-width: 200px; max-height: 200px;">
                                             <div class="custom-file">
-                                                <input type="file" class="form-control-file" id="gambar"
-                                                    name="gambarEdit" accept="image/*">
+                                                <input type="file" class="form-control-file" id="gambar" name="gambarEdit" accept="image/*">
                                             </div>
                                         </div>
                                     </div>

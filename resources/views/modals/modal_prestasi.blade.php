@@ -19,8 +19,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lengkap</label>
                                 <div class="col-md-8">
-                                    <select id="nama" name="nama[]" multiple="multiple"
-                                        style="width: 100%;min-width: 100%;"></select>
+                                    <select id="nama" name="nama[]" multiple="multiple" style="width: 100%;min-width: 100%;"></select>
                                 </div>
                             </div>
                         </div>
@@ -30,8 +29,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tahun Lomba</label>
                                 <div class="col-md-8">
-                                    <input class="datepicker form-control rounded" name="tahun" placeholder="..."
-                                        style="margin-bottom: .9em" pattern="\d{4}" maxlength="4" required>
+                                    <input class="datepicker form-control rounded" name="tahun" placeholder="..." style="margin-bottom: .9em" pattern="\d{4}" maxlength="4"
+                                        required>
 
                                 </div>
                             </div>
@@ -43,8 +42,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Nama Lomba</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="lomba" placeholder="..."
-                                        style="margin-bottom: .9em" required>
+                                    <input type="text" class="form-control rounded" name="lomba" placeholder="..." style="margin-bottom: .9em" required>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +67,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Raihan Prestasi</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="prestasi" placeholder="..."
-                                        style="margin-bottom: 1em" required>
+                                    <input type="text" class="form-control rounded" name="prestasi" placeholder="..." style="margin-bottom: 1em" required>
                                 </div>
                             </div>
                         </div>
@@ -81,8 +78,7 @@
                                 <label class="control-label col-md-4 col-sm-4 ">File Sertifikat</label>
                                 <div class="input-group mb-3 col-md-8 col-sm-8 ">
                                     <div class="custom-file mb-0 pb-0">
-                                        <input type="file" class="custom-file-input" id="sertifikat"
-                                            name="sertifikat"
+                                        <input type="file" class="custom-file-input" id="sertifikat" name="sertifikat"
                                             onchange="document.getElementById('sertifikat-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf" required>
                                         <label class="custom-file-label" id="sertifikat-label" for="sertifikat">Choose
@@ -98,12 +94,10 @@
                                 <label class="control-label col-md-4 col-sm-4 ">File Dokumentasi</label>
                                 <div class="input-group mb-3 col-md-8 col-sm-8 ">
                                     <div class="custom-file mb-0 pb-0">
-                                        <input type="file" class="custom-file-input" id="dokumentasi"
-                                            name="dokumentasi"
+                                        <input type="file" class="custom-file-input" id="dokumentasi" name="dokumentasi"
                                             onchange="document.getElementById('dokumentasi-label').textContent = this.files[0].name"
                                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf" required>
-                                        <label class="custom-file-label" id="dokumentasi-label"
-                                            for="dokumentasi">Choose
+                                        <label class="custom-file-label" id="dokumentasi-label" for="dokumentasi">Choose
                                             file</label>
                                     </div>
                                 </div>
@@ -116,10 +110,8 @@
                                 <label class="control-label col-md-4 col-sm-4 ">File Pas Foto</label>
                                 <div class="input-group mb-3 col-md-8 col-sm-8 ">
                                     <div class="custom-file mb-0 pb-0">
-                                        <input type="file" class="custom-file-input" id="foto"
-                                            name="foto"
-                                            onchange="document.getElementById('foto-label').textContent = this.files[0].name"
-                                            accept="image/*" required>
+                                        <input type="file" class="custom-file-input" id="foto" name="foto"
+                                            onchange="document.getElementById('foto-label').textContent = this.files[0].name" accept="image/*" required>
                                         <label class="custom-file-label" id="foto-label" for="foto">Choose
                                             file</label>
                                     </div>
@@ -136,5 +128,8 @@
         </div>
     </div>
 </div>
+
+
+
 
 @include('scripts/script_prestasi')

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
+use App\Models\Galeri;
 use App\Models\Prestasi;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class PrestasiController extends Controller

@@ -19,8 +19,12 @@ class LandingController extends Controller
                 $galeris = Galeri::orderBy('updated_at', 'desc')->take(4)->get();
                 return view('landing', compact('artikels', 'informasi_terbaru', 'galeris'));
         }
-
-
+        public function beasiswa()
+        {
+                // $beasiswas = Galeri::orderBy('updated_at', 'desc')->take(4)->get();
+                // return view('beasiswa', compact('beasiswas'));
+                return view('beasiswa');
+        }
         public function prestasi()
         {
                 $galeris = Galeri::orderBy('updated_at', 'desc')->take(4)->get();
@@ -29,12 +33,16 @@ class LandingController extends Controller
         public function galeri()
         {
                 $galeris = Galeri::orderBy('updated_at', 'desc')->take(4)->get();
-                return view('galeries', compact('galeris'));
+                return view('guest.galeries', compact('galeris'));
         }
 
         public function informasi()
         {
                 return view('informasi');
+        }
+        public function pedoman()
+        {
+                return view('guest.pedoman');
         }
         public function pdf()
         {

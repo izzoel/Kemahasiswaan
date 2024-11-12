@@ -12,6 +12,7 @@ use App\Http\Controllers\ProkerController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PrestasiController;
@@ -36,12 +37,15 @@ use App\Http\Controllers\TransaksiStatusController;
 // })->name('landing');
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
-Route::get('/informasi', [LandingController::class, 'informasi'])->name('informasi');
+Route::get('/informasi/', [LandingController::class, 'informasi'])->name('informasi');
+Route::get('/informasi/pedoman', [LandingController::class, 'pedoman'])->name('pedoman');
 Route::get('/pdf', [LandingController::class, 'pdf'])->name('pdf');
+Route::get('/beasiswa', [LandingController::class, 'beasiswa'])->name('beasiswa');
 Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
 Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'select'])->name('select-mahasiswa');
 Route::post('/prestasi/store', [PrestasiController::class, 'store'])->name('store-prestasi');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeries');
+Route::get('/galeri/post', [GaleriController::class, 'post'])->name('post-galeri');
 
 Route::post('/login', [AdminController::class, 'login'])->name('login');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
@@ -104,4 +108,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/import/mahasiswa/import', [MahasiswaController::class, 'import'])->name('import-mahasiswa');
 
     Route::get('/admin/prestasi/show', [PrestasiController::class, 'show'])->name('show-prestasi');
+
+    Route::get('/admin/beasiswa/show', [BeasiswaController::class, 'show'])->name('show-beasiswa');
 });
