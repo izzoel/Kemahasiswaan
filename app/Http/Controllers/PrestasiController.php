@@ -24,7 +24,11 @@ class PrestasiController extends Controller
     {
         //
     }
-
+    public function lomba($id)
+    {
+        $lomba = Prestasi::Where('nim', $id)->get();
+        return response()->json($lomba);
+    }
     /**
      * Store a newly created resource in storage.
      */

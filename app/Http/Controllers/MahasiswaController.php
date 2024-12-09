@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Prestasi;
 use App\Imports\ImportMahasiswa;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -57,9 +58,14 @@ class MahasiswaController extends Controller
         return view('admin.main', compact('mahasiswas'));
     }
 
-    public function select()
+    public function prestasi()
     {
         $mahasiswa = Mahasiswa::orderBy('nama', 'asc')->get();
+        return response()->json($mahasiswa);
+    }
+    public function beasiswa()
+    {
+        $mahasiswa = Prestasi::orderBy('nama', 'asc')->get();
         return response()->json($mahasiswa);
     }
 

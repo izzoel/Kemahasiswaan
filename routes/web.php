@@ -41,8 +41,11 @@ Route::get('/informasi/', [LandingController::class, 'informasi'])->name('inform
 Route::get('/informasi/pedoman', [LandingController::class, 'pedoman'])->name('pedoman');
 Route::get('/pdf', [LandingController::class, 'pdf'])->name('pdf');
 Route::get('/beasiswa', [LandingController::class, 'beasiswa'])->name('beasiswa');
+Route::get('/beasiswa/mahasiswa', [MahasiswaController::class, 'beasiswa'])->name('beasiswa-mahasiswa');
+Route::post('/beasiswa/nonakademik/store', [BeasiswaController::class, 'nonakademik'])->name('store-nonakademik');
 Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
-Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'select'])->name('select-mahasiswa');
+Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'prestasi'])->name('prestasi-mahasiswa');
+Route::get('/prestasi/lomba/{id}', [PrestasiController::class, 'lomba'])->name('prestasi-lomba');
 Route::post('/prestasi/store', [PrestasiController::class, 'store'])->name('store-prestasi');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeries');
 Route::get('/galeri/post', [GaleriController::class, 'post'])->name('post-galeri');

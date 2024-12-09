@@ -31,10 +31,10 @@
                         untuk
                         mempersiapkan mereka sebagai lulusan yang <b style="color: #006bde">siap kerja</b>.</p>
                     <div class="me-4 text-left mt-4" data-aos="fade-right" data-aos-duration="1500">
-                        <h2>Daftarkan Prestasimu Disini!</h2>
+                        <h2>Daftar Beasiswa Disini!</h2>
                     </div>
-                    <a name="" id="" class="btn btn-lg btn-primary mt-2" href="#" role="button" data-toggle="modal" data-target="#tambahPrestasi">Daftar
-                        Prestasi
+                    <a name="" id="" class="btn btn-lg btn-primary mt-2" href="#" role="button" data-toggle="modal" data-target="#jenisBeasiswaModal">Daftar
+                        Beasiswa
                     </a>
                 </div>
             </div>
@@ -93,37 +93,9 @@
             </div>
         </div>
     </section>
-    <!--================== Hero Area Section End ==================-->
 
-    <!--================== Brand Logo Section start ==================-->
 
-    <!--================== Brand Logo Section End ==================-->
-
-    <!--================== Pengantar Section Start ==================-->
-    {{-- @include('pengantar') --}}
-    <!--================== Pengantar Section End ==================-->
-
-    <!--================== Service Section Start ==================-->
-    {{-- @include('layanan') --}}
-    <!--================== Service Section End ==================-->
-
-    <!--================== Blog Section Start ==================-->
-    {{-- @include('blog') --}}
-    <!--================== Blog Section End ==================-->
-
-    <!--================== Experience Section Start ==================-->
-
-    <!--================== Experience Section End ==================-->
-
-    <!--================== Testimonial Section Start ==================-->
-
-    <!--================== Testimonial Section End ==================-->
-
-    <!--================== Project Section Start ==================-->
-    {{-- @include('galeri') --}}
-    <!--================== Project Section End ==================-->
-    {{-- @include('modals/modal_login') --}}
-    {{-- @include('modals/modal_prestasi') --}}
+    @include('modals/modal_beasiswa')
 
 
 </body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 
 class BeasiswaController extends Controller
@@ -26,6 +27,30 @@ class BeasiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    public function nonakademik(Request $request)
+    {
+        $nim = $request->input('nama');
+        $prestasiData = Prestasi::where('nim', $nim)->first(); // Ambil data pertama yang cocok
+
+        if ($prestasiData) {
+            $data = [
+                'nim' => $nim,
+                'nama' => $prestasiData->nama,
+                'lomba' => $prestasiData->lomba,
+                'tahun' => $prestasiData->tahun,
+                'prestasi' => $prestasiData->prestasi,
+                'tingkat' => $prestasiData->tingkat,
+                'sertifikat' => $prestasiData->sertifikat,
+                'dokumentasi' => $prestasiData->dokumentasi,
+                'foto' => $prestasiData->foto
+            ];
+
+            dd($data); // Debugging output
+        } else {
+            // Tangani jika data tidak ditemukan
+            dd('Data tidak ditemukan');
+        }
+    }
     public function store(Request $request)
     {
         //
