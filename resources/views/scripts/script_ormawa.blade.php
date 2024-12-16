@@ -65,7 +65,7 @@
             dataType: 'json',
             success: function(response) {
                 $.each(response, function(index, data) {
-                    console.log(data.periode);
+                    // console.log(data.periode);
                     $('#id_periode').append(
                         '<option value="' + data.id +
                         '">' + data.periode +

@@ -41,12 +41,6 @@
                             </span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link @@informasi" href="{{ route('informasi') }}" style="color: {{ request()->is('informasi') ? 'red' : 'black' }} !important">
-                            <span onmouseover="this.style.color='{{ request()->is('informasi') ? 'black' : 'red' }}'"
-                                onmouseout="this.style.color='{{ request()->is('informasi') ? 'red' : 'black' }}'">Informasi</span>
-                        </a>
-                    </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle @@portfolio @@portfolio-single" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false" style="color: {{ request()->segment(1) == 'informasi' ? 'red' : 'black' }} !important">

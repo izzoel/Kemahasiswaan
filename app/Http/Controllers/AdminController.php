@@ -14,13 +14,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //return view admin.main.blade.php 
-        // $artikels = Artikel::all();
-        // return view('admin.main', compact('artikels'));
         if (auth()->user()->role == 'admin') {
             return redirect('admin/artikel/show');
-        } else {
+        } elseif (auth()->user()->role == 'ormawa') {
             return redirect('/admin/ormawa/struktur/show');
+        } elseif (auth()->user()->role == 'prodi') {
+            return redirect()->route('show-beasiswa', 'akademik');
         }
     }
 
@@ -75,16 +74,41 @@ class AdminController extends Controller
     public function login(Request $request,)
     {
         $credentials = $request->only('username', 'password');
-
         if (auth()->attempt($credentials)) {
+            // dd($credentials);
             // Jika otentikasi berhasil
             return redirect()->intended('admin');
         }
 
         // Jika otentikasi gagal
-        return redirect()->route('landing')->with('error', 'Email atau password salah.');
+        // dd($credentials);
+        return redirect()->route('landing')->with('error', 'Username atau password salah.');
     }
 
+    public function beasiswa(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        dd($credentials);
+
+        $validated = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::where('username', $validated['username'])
+            ->where('password', $validated['password']) // Pastikan hashing password diimplementasikan.
+            ->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        if ($user->role !== 'prodi') {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        return response()->json(['message' => 'Login successful', 'user' => $user], 200);
+    }
 
     public function logout()
     {

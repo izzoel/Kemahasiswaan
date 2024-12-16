@@ -11,7 +11,7 @@
                 </button>
             </div>
 
-            <form method="POST" action="{{ route('store-prestasi') }}" enctype="multipart/form-data">
+            <form id="formPrestasi" method="POST" action="{{ route('store-prestasi') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row mb-3">
@@ -27,7 +27,7 @@
                     <div class="row mb-1">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Tahun Lomba</label>
+                                <label class="control-label col-md-4">Tahun Prestasi</label>
                                 <div class="col-md-8">
                                     <input class="datepicker form-control rounded" name="tahun" placeholder="..." style="margin-bottom: .9em" pattern="\d{4}" maxlength="4"
                                         required>
@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Nama Lomba</label>
+                                <label class="control-label col-md-4">Nama Prestasi</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control rounded" name="lomba" placeholder="..." style="margin-bottom: .9em" required>
                                 </div>
@@ -50,7 +50,22 @@
                     <div class="row mb-3">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Tingkat Lomba</label>
+                                <label class="control-label col-md-4">Jenis Prestasi</label>
+                                <div class="col-md-8">
+                                    <select id="jenis" name="jenis" style="width: 100%;min-width: 100%;" required>
+                                        <option value="Olahraga">Olahraga</option>
+                                        <option value="Sains">Sains</option>
+                                        <option value="Seni">Seni</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col p-0">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Tingkat Prestasi</label>
                                 <div class="col-md-8">
                                     <select id="tingkat" name="tingkat" style="width: 100%;min-width: 100%;" required>
                                         <option value="Lokal">Lokal</option>
@@ -107,7 +122,7 @@
                     <div class="row">
                         <div class="col p-0">
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 ">File Pas Foto</label>
+                                <label class="control-label col-md-4 col-sm-4 ">File Foto</label>
                                 <div class="input-group mb-3 col-md-8 col-sm-8 ">
                                     <div class="custom-file mb-0 pb-0">
                                         <input type="file" class="custom-file-input" id="foto" name="foto"

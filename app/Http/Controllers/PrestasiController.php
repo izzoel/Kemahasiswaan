@@ -49,6 +49,7 @@ class PrestasiController extends Controller
                 'prodi' => $prodi,
                 'tahun' => $request->input('tahun'),
                 'lomba' => $request->input('lomba'),
+                'jenis' => $request->input('jenis'),
                 'tingkat' => $request->input('tingkat'),
                 'prestasi' => $request->input('prestasi'),
                 'sertifikat' => $request->file('sertifikat')->storeAs('prestasi/sertifikat', '[SERTIFIKAT] ' . $nama . ' ' . $request->input('lomba') . '.' . $request->file('sertifikat')->getClientOriginalExtension()),

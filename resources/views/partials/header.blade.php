@@ -7,7 +7,7 @@
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- ** Plugins Needed for the Project ** -->
     <!-- Slick -->
     <link rel="stylesheet" href="{{ asset('plugins/slick/slick.css') }}">
@@ -30,32 +30,31 @@
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
 
-    <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }} ">
 
-    <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }} " rel="stylesheet">
-    <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }} ">
+    <link rel="stylesheet" href="{{ asset('vendors/nprogress/nprogress.css') }}">
 
     <!-- bootstrap-progressbar -->
-    <link href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}">
     <!-- JQVMap -->
-    <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" />
     <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}">
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Datetime Picker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-    {{-- select2 --}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"
-        integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- select2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <!-- Flipbook StyleSheet -->
-    <link href="{{ asset('plugins/dflip/css/dflip.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/dflip/css/dflip.css') }}">
 
     <!-- Icons Stylesheet -->
-    <link href="{{ asset('plugins/dflip/css/themify-icons.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('plugins/dflip/css/themify-icons.css') }}" rel="stylesheet"> --}}
 
 </head>
 

@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('beasiswas', function (Blueprint $table) {
             $table->id();
+            $table->string('nim');
+            $table->string('nama');
+            $table->string('fakultas');
+            $table->string('prodi');
+            $table->string('jenis');
+            $table->string('lomba');
+            $table->string('tahun');
+            $table->string('prestasi');
+            $table->string('tingkat');
+            $table->string('sertifikat');
+            $table->string('dokumentasi');
+            $table->string('foto');
             $table->timestamps();
         });
     }

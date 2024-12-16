@@ -1,25 +1,11 @@
 <script>
     $(document).ready(function() {
-        $('#beasiswaAkademik').DataTable({
-            // // Customize DataTables layout
-            dom: '<"row"<"col-md-6"B><"col-md-6"f>>rt<"row"<"col-md-6"l><"col-md-6"p>>',
-            buttons: [{
-                text: '+',
-                className: 'btn btn-sm btn-primary',
-                action: function(e, dt, node, config) {
-                    $('#tambahAkademik').modal('toggle');
-
-                }
-            }]
-        });
-        $('#beasiswaNonakademik').DataTable({});
-
-        $('#nama_beasiswa_akademik').select2({
+        $('#nama_beasiswa_nonakademik').select2({
             placeholder: "-- Pilih --",
             allowClear: true,
-            dropdownParent: $('#tambahAkademik'),
+            dropdownParent: $('#nonakademikModal'),
             ajax: {
-                url: "{{ route('beasiswa-mahasiswa', '') }}" + "/akademik", // Endpoint yang menyediakan data
+                url: "{{ route('beasiswa-mahasiswa', '') }}" + "/nonakademik", // Endpoint yang menyediakan data
                 type: 'GET',
                 dataType: 'json',
                 delay: 250, // Jeda untuk mengurangi permintaan server
@@ -66,35 +52,45 @@
             }
         });
 
-        moment.locale('id');
+        $('#nonakademikModal').on('shown.bs.modal', function() {
+            var hasOptions = $('#nama_beasiswa_nonakademik option').length > 1; // Mengabaikan placeholder
 
-        $("#tahun").datepicker({
-            format: 'yyyy',
-            viewMode: 'years',
-            minViewMode: 'years'
-        });
-
-        $('#ips').on('input', function() {
-            let value = $(this).val();
-
-            // Hapus karakter yang tidak valid (hanya angka diperbolehkan)
-            value = value.replace(/[^0-9]/g, '');
-
-            // Batasi digit pertama hanya 1, 2, atau 3
-            if (value.length > 0) {
-                const firstDigit = value.charAt(0);
-                if (!['1', '2', '3'].includes(firstDigit)) {
-                    value = value.substring(1); // Hapus digit pertama jika tidak valid
-                }
+            if (!hasOptions) {
+                $('#prestasi').hide(); // Sembunyikan elemen prestasi jika tidak ada data
             }
 
-            // Tambahkan koma setelah digit pertama jika ada angka tambahan
-            if (value.length > 1) {
-                value = value.substring(0, 1) + ',' + value.substring(1);
-            }
+            $('#nama_beasiswa_nonakademik').on('change', function() {
+                var nim = $(this).val();
+                $('#prestasi').show();
+                $('#prestasi').empty();
 
-            // Perbarui nilai input
-            $(this).val(value);
+                $('#prestasi').select2({
+                    placeholder: "-- Pilih Prestasi --",
+                    allowClear: true,
+                    dropdownParent: $('#nonakademikModal'),
+                    ajax: {
+                        url: "{{ route('prestasi-lomba', '') }}" + "/" + nim,
+                        type: 'GET',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function(params) {
+                            return {
+                                search: params.term
+                            };
+                        },
+                        processResults: function(data) {
+                            return {
+                                results: data.map(prestasi => ({
+                                    id: prestasi.id,
+                                    text: prestasi.lomba + " (" + prestasi.tahun + ") " + prestasi
+                                        .prestasi + " tingkat " + prestasi.tingkat
+                                }))
+                            };
+                        }
+                    }
+                });
+            })
         });
+
     });
 </script>

@@ -41,7 +41,8 @@ Route::get('/informasi/', [LandingController::class, 'informasi'])->name('inform
 Route::get('/informasi/pedoman', [LandingController::class, 'pedoman'])->name('pedoman');
 Route::get('/pdf', [LandingController::class, 'pdf'])->name('pdf');
 Route::get('/beasiswa', [LandingController::class, 'beasiswa'])->name('beasiswa');
-Route::get('/beasiswa/mahasiswa', [MahasiswaController::class, 'beasiswa'])->name('beasiswa-mahasiswa');
+Route::get('/beasiswa/mahasiswa/{jenis}', [MahasiswaController::class, 'beasiswa'])->name('beasiswa-mahasiswa');
+Route::post('/beasiswa/akademik/login/', [AdminController::class, 'beasiswa'])->name('beasiswa-login');
 Route::post('/beasiswa/nonakademik/store', [BeasiswaController::class, 'nonakademik'])->name('store-nonakademik');
 Route::get('/prestasi', [LandingController::class, 'prestasi'])->name('prestasi');
 Route::get('/prestasi/mahasiswa', [MahasiswaController::class, 'prestasi'])->name('prestasi-mahasiswa');
@@ -112,5 +113,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/prestasi/show', [PrestasiController::class, 'show'])->name('show-prestasi');
 
-    Route::get('/admin/beasiswa/show', [BeasiswaController::class, 'show'])->name('show-beasiswa');
+    // Route::get('/admin/beasiswa/show', [BeasiswaController::class, 'show'])->name('show-beasiswa');
+    Route::get('/admin/beasiswa/show/{jenis}', [BeasiswaController::class, 'show'])->name('show-beasiswa');
+    // Route::get('/admin/beasiswa/nonakademik/show', [BeasiswaController::class, 'showNonakademik'])->name('show-nonakademik');
+    Route::post('/admin/beasiswa/akademik/store', [BeasiswaController::class, 'akademik'])->name('store-akademik');
 });

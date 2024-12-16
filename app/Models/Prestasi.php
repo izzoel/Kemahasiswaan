@@ -16,6 +16,7 @@ class Prestasi extends Model
         'prodi',
         'tahun',
         'lomba',
+        'jenis',
         'tingkat',
         'prestasi',
         'sertifikat',

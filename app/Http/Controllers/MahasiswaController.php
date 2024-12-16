@@ -63,9 +63,27 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::orderBy('nama', 'asc')->get();
         return response()->json($mahasiswa);
     }
-    public function beasiswa()
+    public function beasiswa(Request $request, $jenis)
     {
-        $mahasiswa = Prestasi::orderBy('nama', 'asc')->get();
+        if ($jenis == 'akademik') {
+            $mahasiswa = Mahasiswa::orderBy('nama', 'asc')->get();
+            return response()->json($mahasiswa);
+        } elseif ($jenis == 'nonakademik') {
+
+            $search = $request->input('search');
+            $data = Prestasi::where('nama', 'like', "%$search%")
+                ->orWhere('nim', 'like', "%$search%")
+                ->get();
+            return response()->json($data);
+        }
+
+        // $mahasiswa = Prestasi::orderBy('nama', 'asc')->get();
+        // return response()->json($mahasiswa);
+    }
+
+    public function akademik(Request $request)
+    {
+        $mahasiswa = Mahasiswa::orderBy('nama', 'asc')->get();
         return response()->json($mahasiswa);
     }
 

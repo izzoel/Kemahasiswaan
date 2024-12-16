@@ -10,15 +10,12 @@
     <!--================== Hero Area Section Start ==================-->
     <section style="background-color: #f9f9f9">
         <div class="container">
-            <div class="row justify-content-center align-items-center">
+            {{-- <div class="row justify-content-center align-items-center">
                 <div class="col-md-6">
                     <div class="d-flex align-items-center m-2 mt-4">
                         <img src="{{ asset('images/kemahasiswaan.webp') }}" alt="img" style="width: 300px; height: 300px; margin-left: auto;" data-aos="zoom-in"
                             data-aos-duration="700">
                     </div>
-                    {{-- <div class="me-4 text-right" data-aos="fade-right" data-aos-duration="1500">
-                        <h2>Daftarkan Prestasimu Disini!</h2>
-                    </div> --}}
                 </div>
                 <div class=" col-md-6" data-aos="fade-left" data-aos-duration="1500">
                     <p class="mb-0"><b style="color: #006bde">Direktorat Kemahasiswaan</b> dan <b style="color: #006bde">Alumni</b> merupakan unit kerja di lingkungan Universitas
@@ -37,6 +34,42 @@
                         Beasiswa
                     </a>
                 </div>
+            </div> --}}
+            <div class="row justify-content-md-center pt-5 pb-5">
+                <div class="col d-grid justify-content-md-end mt-4 me-2 ms-2" data-aos="fade-right" data-aos-duration="1500">
+                    <div class="card mx-auto" style="width: 25rem;">
+                        <div class="mx-auto d-block mt-3 position-relative text-center card-img-top">
+                            <img src="{{ asset('images/beasiswa-akademik.png') }}" alt="beasiswa-akademik" width="200">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Akademik</h5>
+                            <p class="card-text">Form pengajuan beasiswa jenis <b style="color: #007bff;">Akademik</b> Universitas Borneo Lestari.
+                            </p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a id="akademikLogin" class="btn btn-primary d-md-flex justify-content-md-end text-center text-light rounded" data-toggle="modal"
+                                    data-target="#loginModal" role="button">Daftar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col d-grid justify-content-md-start mt-4 me-2 ms-2" data-aos="fade-left" data-aos-duration="1500">
+                    <div class="card mx-auto" style="width: 25rem;">
+                        <div class="mx-auto d-block mt-3 position-relative text-center card-img-top">
+                            <img src="{{ asset('images/beasiswa-nonakademik.png') }}" alt="beasiswa-nonakademik" width="200">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Non Akademik</h5>
+                            <p class="card-text">Form pengajuan beasiswa jenis <b style="color: #007bff;">Non akademik</b> Universitas Borneo Lestari.
+                            </p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a class="btn btn-primary d-md-flex justify-content-md-end text-center text-light rounded" data-toggle="modal" data-target="#nonakademikModal"
+                                    role="button">Daftar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="has-circle">
@@ -95,8 +128,8 @@
     </section>
 
 
-    @include('modals/modal_beasiswa')
-
+    @include('modals/modal_login')
+    @include('guest/modals/modal_beasiswa')
 
 </body>
 

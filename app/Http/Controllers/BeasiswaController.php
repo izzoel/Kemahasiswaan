@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
+use App\Models\Mahasiswa;
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,26 @@ class BeasiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    public function akademik(Request $request)
+    {
+        $mahasiswa = Mahasiswa::where('nim', $request->input('nama'))->first();
+        $data = [
+            'nim' => $request->input('nama'),
+            'nama' => $mahasiswa->nama,
+            'fakultas' => $mahasiswa->fakultas,
+            'prodi' => $mahasiswa->prodi,
+            'jenis' => 'Akademik',
+            'semester' => $request->input('semester'),
+            'tahun' => $request->input('tahun'),
+            'ips' => $request->input('ips'),
+            'terbaik' => $request->input('terbaik'),
+            'surat' => $request->file('surat')->storeAs('beasiswa/surat', '[SURAT] ' . $mahasiswa->nama . ' ' . $request->input('terbaik') . '.' . $request->file('surat')->getClientOriginalExtension()),
+
+        ];
+        Beasiswa::create($data);
+        return back();
+        // dd($data);
+    }
     public function nonakademik(Request $request)
     {
         $nim = $request->input('nama');
@@ -36,6 +57,9 @@ class BeasiswaController extends Controller
             $data = [
                 'nim' => $nim,
                 'nama' => $prestasiData->nama,
+                'fakultas' => $prestasiData->fakultas,
+                'prodi' => $prestasiData->prodi,
+                'jenis' => 'Non Akademik',
                 'lomba' => $prestasiData->lomba,
                 'tahun' => $prestasiData->tahun,
                 'prestasi' => $prestasiData->prestasi,
@@ -44,10 +68,9 @@ class BeasiswaController extends Controller
                 'dokumentasi' => $prestasiData->dokumentasi,
                 'foto' => $prestasiData->foto
             ];
-
-            dd($data); // Debugging output
+            Beasiswa::create($data);
+            return back();
         } else {
-            // Tangani jika data tidak ditemukan
             dd('Data tidak ditemukan');
         }
     }
@@ -59,9 +82,33 @@ class BeasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Beasiswa $beasiswa)
+    public function show(Beasiswa $beasiswa, $jenis)
     {
-        //
+        if (auth()->check()) {
+            if (strpos($jenis, 'non') !== false) {
+                $jenis = str_replace('non', 'non ', $jenis);
+                $jenis = ucwords($jenis);
+            } else {
+                $jenis = ucfirst($jenis);
+            }
+
+            $beasiswas = Beasiswa::where('jenis', $jenis)->get();
+            return view('admin.main', compact('beasiswas', 'jenis'));
+            // return redirect('admin/artikel/show');
+        }
+        // $beasiswas = Beasiswa::all();
+        // return view('admin.main', compact('beasiswas'));
+    }
+
+    public function showAkademik(Beasiswa $beasiswa)
+    {
+        $nonakademiks = Beasiswa::where('jenis', 'Non Akademik')->get();
+        return view('admin.main', compact('nonakademiks'));
+    }
+    public function showNonakademik(Beasiswa $beasiswa)
+    {
+        $nonakademiks = Beasiswa::where('jenis', 'Non Akademik')->get();
+        return view('admin.main', compact('nonakademiks'));
     }
 
     /**

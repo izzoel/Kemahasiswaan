@@ -5,6 +5,12 @@
             allowClear: true
         }).val(null).trigger('change');
 
+        $('#jenis').select2({
+            placeholder: "-- Pilih --",
+            allowClear: true,
+            minimumResultsForSearch: Infinity,
+        }).val(null).trigger('change');
+
         $('#tingkat').select2({
             placeholder: "-- Pilih --",
             allowClear: true,
@@ -37,6 +43,33 @@
             viewMode: 'years',
             minViewMode: 'years'
         });
+
+        $("#simpanPrestasi").on("click", async function(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Kirim data?",
+                text: "Anda tidak dapat merubah lagi!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#007bff",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yap, Kirim!",
+                cancelButtonText: "Batal",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#formPrestasi").submit();
+                    Swal.fire({
+                        title: "Terkirim!",
+                        text: "Prestasi anda sudah terekamm!",
+                        icon: "success",
+                        confirmButtonColor: "#007bff",
+                    });
+                }
+            });
+        });
+
 
     });
 </script>

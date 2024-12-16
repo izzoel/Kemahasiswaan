@@ -2,6 +2,8 @@
 <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap -->
 <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+
+
 <!-- FastClick -->
 <script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
 <!-- NProgress -->
@@ -13,7 +15,8 @@
 
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('js/custom.min.js') }}"></script>
-
+<!-- Bootstrap Datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <!-- Datatables -->
 <script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
@@ -47,6 +50,7 @@
 @include('scripts.script_kegiatan');
 @include('scripts.script_dana');
 
+@include('scripts.script_beasiswa');
 @include('scripts.script_prestasi');
 
 

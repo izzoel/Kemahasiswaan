@@ -4,8 +4,6 @@
 
 
 <body>
-
-
     <!--================== Hero Area Section Start ==================-->
     <section class="hero-area section" style="padding-top:0px;padding-bottom:0px">
         <div class="has-circle">
