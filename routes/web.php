@@ -66,6 +66,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/artikel/update/{id}', [ArtikelController::class, 'update'])->name('update-artikel');
     Route::get('/admin/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->name('delete-artikel');
 
+    Route::get('/admin/beasiswa/show/{jenis}', [BeasiswaController::class, 'show'])->name('show-beasiswa');
+    Route::post('/admin/beasiswa/akademik/store', [BeasiswaController::class, 'akademik'])->name('store-akademik');
+    Route::get('/admin/beasiswa/destroy/{id}', [BeasiswaController::class, 'destroy'])->name('delete-beasiswa');
+
+    Route::get('/admin/dana/show', [DanaController::class, 'show'])->name('show-dana');
+    Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');
+    Route::put('/admin/dana/update/{id}', [DanaController::class, 'update'])->name('update-dana');
+    Route::get('/admin/dana/destroy/{id}', [DanaController::class, 'destroy'])->name('delete-dana');
+
     Route::get('/admin/galeri/show', [GaleriController::class, 'show'])->name('show-galeri');
     Route::post('/admin/galeri/store', [GaleriController::class, 'store'])->name('store-galeri');
     Route::put('/admin/galeri/update/{id}', [GaleriController::class, 'update'])->name('update-galeri');
@@ -74,6 +83,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/kategori/show', [KategoriController::class, 'show'])->name('show-kategori');
     Route::post('/admin/kategori/store', [KategoriController::class, 'store'])->name('store-kategori');
     Route::get('/admin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('delete-kategori');
+
+    Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
+    Route::get('/admin/kegiatan/show/edit', [KegiatanController::class, 'showEdit'])->name('show-edit-kegiatan');
+    Route::post('/admin/kegiatan/store', [KegiatanController::class, 'store'])->name('store-kegiatan');
+    Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
+    Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
+
+    Route::get('/admin/mahasiswa/show', [MahasiswaController::class, 'show'])->name('show-mahasiswa');
+    Route::post('/admin/mahasiswa/store', [MahasiswaController::class, 'store'])->name('store-mahasiswa');
+    Route::post('/import/mahasiswa/import', [MahasiswaController::class, 'import'])->name('import-mahasiswa');
 
     Route::get('/admin/ormawa/show', [OrmawaController::class, 'show'])->name('show-ormawa');
     Route::post('/admin/ormawa/show', [OrmawaController::class, 'show'])->name('show-ormawa');
@@ -96,25 +115,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/ormawa/periode/update/{id}', [PeriodeController::class, 'update'])->name('update-periode');
     Route::get('/admin/ormawa/periode/destroy/{id}', [PeriodeController::class, 'destroy'])->name('delete-periode');
 
-    Route::get('/admin/kegiatan/show', [KegiatanController::class, 'show'])->name('show-kegiatan');
-    Route::get('/admin/kegiatan/show/edit', [KegiatanController::class, 'showEdit'])->name('show-edit-kegiatan');
-    Route::post('/admin/kegiatan/store', [KegiatanController::class, 'store'])->name('store-kegiatan');
-    Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
-    Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
-
-    Route::get('/admin/dana/show', [DanaController::class, 'show'])->name('show-dana');
-    Route::post('/admin/dana/store', [DanaController::class, 'store'])->name('store-dana');
-    Route::put('/admin/dana/update/{id}', [DanaController::class, 'update'])->name('update-dana');
-    Route::get('/admin/dana/destroy/{id}', [DanaController::class, 'destroy'])->name('delete-dana');
-
-    Route::get('/admin/mahasiswa/show', [MahasiswaController::class, 'show'])->name('show-mahasiswa');
-    Route::post('/admin/mahasiswa/store', [MahasiswaController::class, 'store'])->name('store-mahasiswa');
-    Route::post('/import/mahasiswa/import', [MahasiswaController::class, 'import'])->name('import-mahasiswa');
-
     Route::get('/admin/prestasi/show', [PrestasiController::class, 'show'])->name('show-prestasi');
-
-    // Route::get('/admin/beasiswa/show', [BeasiswaController::class, 'show'])->name('show-beasiswa');
-    Route::get('/admin/beasiswa/show/{jenis}', [BeasiswaController::class, 'show'])->name('show-beasiswa');
-    // Route::get('/admin/beasiswa/nonakademik/show', [BeasiswaController::class, 'showNonakademik'])->name('show-nonakademik');
-    Route::post('/admin/beasiswa/akademik/store', [BeasiswaController::class, 'akademik'])->name('store-akademik');
 });

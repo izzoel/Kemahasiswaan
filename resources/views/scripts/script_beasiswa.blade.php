@@ -96,5 +96,42 @@
             // Perbarui nilai input
             $(this).val(value);
         });
+
+
+        $('#deleteBeasiswa').on('click', function(event) {
+            event.preventDefault();
+
+            var articleId = $(this).data('id');
+
+            Swal.fire({
+                title: 'Hapus artikel?',
+                text: 'Tindakan ini tidak dapat dibatalkan.',
+                icon: 'warning',
+                showCancelButton: true,
+                reverseButtons: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Lakukan permintaan AJAX DELETE
+                    $.ajax({
+                        url: "{{ route('delete-beasiswa', '') }}" + "/akademik",
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token
+                        },
+                        success: function(response) {
+                            Swal.fire('Berhasil!', 'Artikel berhasil dihapus.', 'success');
+                            location.reload(); // Segarkan halaman setelah berhasil
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Gagal!', 'Artikel gagal dihapus.', 'error');
+                        }
+                    });
+                }
+            });
+        });
+
     });
 </script>

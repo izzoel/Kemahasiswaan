@@ -94,10 +94,7 @@ class BeasiswaController extends Controller
 
             $beasiswas = Beasiswa::where('jenis', $jenis)->get();
             return view('admin.main', compact('beasiswas', 'jenis'));
-            // return redirect('admin/artikel/show');
         }
-        // $beasiswas = Beasiswa::all();
-        // return view('admin.main', compact('beasiswas'));
     }
 
     public function showAkademik(Beasiswa $beasiswa)
@@ -105,6 +102,7 @@ class BeasiswaController extends Controller
         $nonakademiks = Beasiswa::where('jenis', 'Non Akademik')->get();
         return view('admin.main', compact('nonakademiks'));
     }
+
     public function showNonakademik(Beasiswa $beasiswa)
     {
         $nonakademiks = Beasiswa::where('jenis', 'Non Akademik')->get();
@@ -130,8 +128,16 @@ class BeasiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Beasiswa $beasiswa)
+    public function destroy(Beasiswa $beasiswa, $id)
     {
-        //
+        $beasiswa = Beasiswa::findOrFail($id);
+
+        dd($beasiswa);
+        try {
+            $beasiswa->delete();
+            return response()->json(['success' => 'Data dihapus']); // Berikan respon JSON
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Gagal'], 500); // Tangani kesalahan
+        }
     }
 }

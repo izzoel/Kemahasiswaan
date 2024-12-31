@@ -45,6 +45,7 @@
                                         <ul class="nav child_menu">
                                             <li><a href="{{ route('show-artikel') }}">Artikel</a></li>
                                             <li><a href="{{ route('show-galeri') }}">Galeri</a></li>
+                                            {{-- <li><a href="{{ }}">Pedoman</a></li> --}}
                                         </ul>
                                     </li>
                                 @endif

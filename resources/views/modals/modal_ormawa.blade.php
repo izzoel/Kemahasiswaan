@@ -19,8 +19,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2 ">Nama Organisasi</label>
                                 <div class="col-sm-10 ">
-                                    <input class="form-control rounded" placeholder="..." id="nama" name="nama"
-                                        required>
+                                    <input class="form-control rounded" placeholder="..." id="nama-ormawa" name="nama" required>
                                 </div>
                             </div>
                         </div>
@@ -32,8 +31,7 @@
                                 <div class="input-group mb-3 col-sm-10 ">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="logo" name="logo"
-                                            onchange="document.getElementById('logo-label').textContent = this.files[0].name"
-                                            accept="image/*">
+                                            onchange="document.getElementById('logo-label').textContent = this.files[0].name" accept="image/*">
                                         <label class="custom-file-label" id="logo-label" for="logo">Choose
                                             file</label>
                                     </div>
@@ -56,8 +54,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2 ">Anggaran</label>
                                 <div class="col-sm-10 ">
-                                    <input class="form-control rounded" placeholder="..." id="anggaran" name="anggaran"
-                                        required>
+                                    <input class="form-control rounded" placeholder="..." id="anggaran" name="anggaran" required>
                                 </div>
                             </div>
                         </div>
@@ -82,8 +79,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2 ">Username</label>
                                 <div class="col-sm-10 ">
-                                    <input class="form-control rounded" placeholder="..." id="username" name="username"
-                                        required>
+                                    <input class="form-control rounded" placeholder="..." id="username" name="username" required>
                                 </div>
                             </div>
                         </div>
@@ -93,8 +89,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2 ">Password</label>
                                 <div class="col-sm-10 ">
-                                    <input type="password" class="form-control rounded" placeholder="..." id="password"
-                                        name="password" required>
+                                    <input type="password" class="form-control rounded" placeholder="..." id="password" name="password" required>
                                 </div>
                             </div>
                         </div>
@@ -111,8 +106,7 @@
 </div>
 
 @foreach ($ormawas as $ormawa)
-    <div class="modal fade" id="edit-ormawa{{ $ormawa->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="edit-ormawa{{ $ormawa->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -124,8 +118,7 @@
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('update-ormawa', $ormawa->id) }}"
-                    enctype="multipart/form-data">
+                <form method="POST" action="{{ route('update-ormawa', $ormawa->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
@@ -135,8 +128,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-2 ">Nama Organisasi</label>
                                         <div class="col-sm-10 ">
-                                            <input class="form-control rounded" placeholder="..." name="namaEdit"
-                                                required value="{{ $ormawa->nama }}">
+                                            <input class="form-control rounded" placeholder="..." name="namaEdit" required value="{{ $ormawa->nama }}">
                                         </div>
                                     </div>
                                 </div>
@@ -147,12 +139,10 @@
                                         <label class="control-label col-sm-2 ">Logo</label>
                                         <div class="input-group mb-3 col-sm-10 ">
                                             <div class="input-group">
-                                                <img src="{{ asset('storage/' . $ormawa->logo) }}"
-                                                    class="img-responsive center-block d-block mx-auto"
+                                                <img src="{{ asset('storage/' . $ormawa->logo) }}" class="img-responsive center-block d-block mx-auto"
                                                     style="max-width: 150px; max-height: 150px;">
                                                 <div class="custom-file">
-                                                    <input type="file" class="form-control-file" id="logo"
-                                                        name="logoEdit" accept="image/*">
+                                                    <input type="file" class="form-control-file" id="logo" name="logoEdit" accept="image/*">
                                                 </div>
                                             </div>
                                         </div>
@@ -174,8 +164,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-2 ">Anggaran</label>
                                         <div class="col-sm-10 ">
-                                            <input class="form-control rounded" placeholder="..." id="anggaranEdit"
-                                                name="anggaranEdit" required value="{{ $ormawa->anggaran }}">
+                                            <input class="form-control rounded" placeholder="..." id="anggaranEdit" name="anggaranEdit" required
+                                                value="{{ $ormawa->anggaran }}">
                                         </div>
                                     </div>
                                 </div>
@@ -188,8 +178,7 @@
                                         <div class="col-sm-10 ">
                                             <select name="periodeEdit" class="form-control p-2">
                                                 @foreach ($periodes as $periode)
-                                                    <option value="{{ $periode->id }}"
-                                                        {{ $periode->id == $ormawa->id_periode ? 'selected' : '' }}>
+                                                    <option value="{{ $periode->id }}" {{ $periode->id == $ormawa->id_periode ? 'selected' : '' }}>
                                                         {{ $periode->periode }}
                                                     </option>
                                                 @endforeach
@@ -205,8 +194,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-2 ">Username</label>
                                         <div class="col-sm-10 ">
-                                            <input class="form-control rounded" placeholder="..." id="username"
-                                                name="usernameEdit" required
+                                            <input class="form-control rounded" placeholder="..." id="username" name="usernameEdit" required
                                                 value="{{ \App\Models\User::find($ormawa->id)->username }}">
                                         </div>
                                     </div>
@@ -217,8 +205,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-2 ">Password</label>
                                         <div class="col-sm-10 ">
-                                            <input type="password" class="form-control rounded" placeholder="..."
-                                                id="password" name="passwordEdit">
+                                            <input type="password" class="form-control rounded" placeholder="..." id="password" name="passwordEdit">
                                             <small id="passwordHelp" class="form-text text-muted col-12">
                                                 <span style="color:red">*</span> password baru
                                             </small>
@@ -258,16 +245,14 @@
                     @csrf
                     <div class="btn-group-vertical mx-auto">
                         @foreach ($periodes as $periode)
-                            <button type="submit" name="periodePilih"
-                                class="btn btn-primary btn-sm rounded mb-1 mt-0"
+                            <button type="submit" name="periodePilih" class="btn btn-primary btn-sm rounded mb-1 mt-0"
                                 value="{{ $periode->periode }}">{{ $periode->periode }}</button>
                         @endforeach
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-warning rounded mr-auto" data-toggle="modal" data-target="#settingPeriode"><i
-                        class="fa fa-cog"></i> Setting Periode</button>
+                <button class="btn btn-warning rounded mr-auto" data-toggle="modal" data-target="#settingPeriode"><i class="fa fa-cog"></i> Setting Periode</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             </div>
         </div>
@@ -287,8 +272,7 @@
             </div>
 
             <div class="modal-body">
-                <table id="periodeTable" class="table table-striped table-bordered dt-responsive nowrap"
-                    cellspacing="0" width="100%">
+                <table id="periodeTable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th class="col-auto">#</th>
@@ -303,12 +287,10 @@
                                 <td>{{ $periode->periode }}</td>
                                 <td>
                                     <div class="btn-group mr-2" role="group">
-                                        <a href="{{ route('delete-periode', $periode->id) }}"
-                                            class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('delete-periode', $periode->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                     <div class="btn-group mr-2" role="group">
-                                        <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
-                                            data-target="#edit-periode{{ $periode->id }}">Edit</button>
+                                        <button class="btn btn-sm btn-warning text-dark" data-toggle="modal" data-target="#edit-periode{{ $periode->id }}">Edit</button>
                                     </div>
                                 </td>
                             </tr>
@@ -343,8 +325,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm">Periode</label>
                                 <div class="col-sm ">
-                                    <input class="form-control rounded" placeholder="..." id="periode"
-                                        name="periode" required>
+                                    <input class="form-control rounded" placeholder="..." id="periode" name="periode" required>
                                 </div>
                             </div>
                         </div>
@@ -362,8 +343,7 @@
 
 
 @foreach ($periodes as $periode)
-    <div class="modal fade" id="edit-periode{{ $periode->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="edit-periode{{ $periode->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -384,8 +364,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm">Periode</label>
                                     <div class="col-sm ">
-                                        <input class="form-control rounded" placeholder="..." name="periodeEdit"
-                                            required value="{{ $periode->periode }}">
+                                        <input class="form-control rounded" placeholder="..." name="periodeEdit" required value="{{ $periode->periode }}">
                                     </div>
                                 </div>
                             </div>

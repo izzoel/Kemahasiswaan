@@ -22,6 +22,7 @@
                         <th class="col-auto">Indek Prestasi Semester</th>
                         <th class="col-auto">Prestasi Akademik</th>
                         <th class="col-auto">Surat Keterangan Prestasi</th>
+                        <th class="col-auto">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,9 +36,19 @@
                             <td>{{ $beasiswa->tahun }}</td>
                             <td>{{ $beasiswa->ips }}</td>
                             <td>{{ $beasiswa->terbaik }}</td>
-
                             <td>
                                 <a href="{{ asset('storage/' . $beasiswa->surat) }}" target="_blank"><i class="fa fa-file"></i> lihat </a>
+                            </td>
+                            <td>
+                                <div class="btn-group mr-2" role="group">
+                                    <a id="deleteBeasiswa" href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                </div>
+                                <div class="btn-group mr-2" role="group">
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit-artikel{{ $artikel->id }}">
+                                        Edit
+                                    </button>
+                                    <a href="#" class="btn btn-sm btn-success">Lihat</a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
