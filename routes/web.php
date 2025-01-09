@@ -56,7 +56,8 @@ Route::get('/login', [AdminController::class, 'login'])->name('login');
 
 
 
-Route::group(['middleware' => ['auth']], function () {
+// Route::group(['middleware' => ['auth']], function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('main');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
 

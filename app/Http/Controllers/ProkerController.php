@@ -47,7 +47,7 @@ class ProkerController extends Controller
     {
         $prokers = Proker::all();
         if (auth()->user()->role == 'ormawa') {
-            $anggaran = Ormawa::find(auth()->user()->id)->anggaran;
+            $anggaran = Ormawa::where('remember_token', auth()->user()->getRememberToken())->first()->anggaran;
         } elseif (auth()->user()->role == 'admin') {
             $anggaran = 0;
         }

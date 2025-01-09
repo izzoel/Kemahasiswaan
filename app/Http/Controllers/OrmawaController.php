@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Ormawa;
 use App\Models\Periode;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\password;
 
@@ -32,20 +33,22 @@ class OrmawaController extends Controller
      */
     public function store(Request $request)
     {
-        // $password = bcrypt($request->input('username'));
-        // dd($request->all(), $password);
+        $rememberToken = Str::random(10);
+
         Ormawa::create([
             'nama' => $request->input('nama'),
             'logo' => $request->file('logo')->storeAs('ormawa', '[LOGO] ' . $request->input('nama') . '.jpg'),
             'keterangan' => $request->input('keterangan'),
             'id_periode' => $request->input('id_periode'),
             'anggaran' => $request->input('anggaran'),
+            'remember_token' => $rememberToken,
         ]);
 
         User::create([
             'username' => $request->input('username'),
             'role' => 'ormawa',
             'password' => bcrypt($request->input('password')),
+            'remember_token' => $rememberToken,
         ]);
         return back();
     }

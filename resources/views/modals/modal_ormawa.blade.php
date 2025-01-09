@@ -194,8 +194,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-2 ">Username</label>
                                         <div class="col-sm-10 ">
-                                            <input class="form-control rounded" placeholder="..." id="username" name="usernameEdit" required
-                                                value="{{ \App\Models\User::find($ormawa->id)->username }}">
+                                            <input class="form-control rounded" placeholder="..." id="username" name="usernameEdit" required value="">
                                         </div>
                                     </div>
                                 </div>
