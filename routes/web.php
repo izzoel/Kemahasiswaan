@@ -91,6 +91,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('update-kegiatan');
     Route::get('/admin/kegiatan/destroy/{id}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
 
+    Route::get('/admin/mahasiswa/struktur', [MahasiswaController::class, 'struktur'])->name('struktur-mahasiswa');
     Route::get('/admin/mahasiswa/show', [MahasiswaController::class, 'show'])->name('show-mahasiswa');
     Route::post('/admin/mahasiswa/store', [MahasiswaController::class, 'store'])->name('store-mahasiswa');
     Route::post('/import/mahasiswa/import', [MahasiswaController::class, 'import'])->name('import-mahasiswa');

@@ -64,10 +64,26 @@ class DanaController extends Controller
      */
     public function show(Dana $dana)
     {
-        $danas = Dana::all();
-        $kegiatans = Kegiatan::all();
-        $id_ormawa = Ormawa::value('id');
-        return view('admin.main', compact('danas', 'kegiatans', 'id_ormawa'));
+        // if (auth()->user()->role == 'admin') {
+        //     $kegiatan = Kegiatan::all();
+        // } else {
+        //     $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+        //     $kegiatan = Kegiatan::where('id_ormawa', $id_ormawa)->get();
+        // }
+        // $kegiatans = $kegiatan;
+        // $status = TransaksiStatus::all();
+        // return view('admin.main', compact('kegiatans', 'status'));
+
+        if (auth()->user()->role == 'admin') {
+            $danas = Dana::all();
+            $kegiatans = Kegiatan::all();
+        } else {
+            $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+            $danas = Dana::where('id_ormawa', $id_ormawa)->get();
+            $kegiatans = Kegiatan::where('id_ormawa', $id_ormawa)->get();
+        }
+        // $id_ormawa = Ormawa::value('id');
+        return view('admin.main', compact('danas', 'kegiatans'));
     }
 
     /**
@@ -83,8 +99,6 @@ class DanaController extends Controller
      */
     public function update(Request $request, Dana $dana, $id)
     {
-
-
         if ($request->input('status') == 'Ditinjau') {
             $status = 'Ditinjau';
         } elseif ($request->input('status') == 'Disetujui') {
@@ -102,6 +116,7 @@ class DanaController extends Controller
         }
 
         if (auth()->user()->role == 'admin') {
+
             $data = [
                 'status' => $status,
             ];
@@ -111,23 +126,15 @@ class DanaController extends Controller
                 'keterangan' => $request->input('keterangan'),
             ]);
 
-            // TransaksiKegiatan::create([
-            //     'id_kegiatan' => $request->input('id_kegiatan'),
-            //     'status' => $status,
-            //     'keterangan' => $request->input('keterangan'),
-            // ]);
+            $id = $request->input('id_dana');
         } else {
             $data = [
-                'nama' => $request->input('namaEdit'),
-                'tanggal' => $request->input('tanggalEdit'),
+                'dana' => $request->input('danaEdit'),
                 'berkas' => $berkas,
                 'status' => 'Ditinjau',
             ];
         }
-
-
-        // dd($request->input('id_dana'));
-        Dana::find($request->input('id_dana'))->update($data);
+        Dana::find($id)->update($data);
         return back();
     }
 

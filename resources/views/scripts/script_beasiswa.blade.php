@@ -66,6 +66,58 @@
             }
         });
 
+        $('#struktur_ormawa').select2({
+            placeholder: "-- Pilih --",
+            allowClear: true,
+            dropdownParent: $('#tambahStrukturOrmawa'),
+            ajax: {
+                url: "{{ route('struktur-mahasiswa') }}", // Endpoint yang menyediakan data
+                type: 'GET',
+                dataType: 'json',
+                delay: 250, // Jeda untuk mengurangi permintaan server
+                data: function(params) {
+                    return {
+                        search: params.term // Mengirimkan parameter pencarian ke server
+                    };
+                },
+                processResults: function(data) {
+                    // Menghapus duplikat berdasarkan 'nim'
+                    const uniqueData = [];
+                    const seen = new Set();
+
+
+                    data.forEach(item => {
+                        if (!seen.has(item.nim)) {
+                            seen.add(item.nim);
+                            uniqueData.push(item);
+                        }
+                    });
+
+
+                    // Format data untuk Select2
+                    return {
+                        results: uniqueData.map(mahasiswa => ({
+                            id: mahasiswa.nim,
+                            text: mahasiswa.nama + ' (' + mahasiswa.nim + ')'
+                        }))
+                    };
+                },
+                cache: true // Mengaktifkan caching untuk respons AJAX
+            },
+            minimumInputLength: 1, // Aktifkan pencarian hanya setelah 1 karakter diketik
+            language: {
+                inputTooShort: function(args) {
+                    return "Ketik 1 karakter untuk mencari"; // Pesan khusus
+                },
+                noResults: function() {
+                    return "Tidak ada hasil yang ditemukan";
+                },
+                searching: function() {
+                    return "Sedang mencari...";
+                }
+            }
+        });
+
         moment.locale('id');
 
         $("#tahun").datepicker({

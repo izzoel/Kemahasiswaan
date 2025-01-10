@@ -29,13 +29,33 @@ class ProkerController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->anggaran, $request->input('anggaran'));
+        $anggaran_awal = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->anggaran;
+        $anggaran_input = $request->input('anggaran');
+
+        // Convert Rupiah strings to integers
+        $anggaran_awal_nominal = intval(str_replace(['Rp', '.', ' '], '', $anggaran_awal));
+        $anggaran_input_nominal = intval(str_replace(['Rp', '.', ' '], '', $anggaran_input));
+
+        // Subtract the input anggaran from the initial anggaran
+        $sisa_anggaran_nominal = $anggaran_awal_nominal - $anggaran_input_nominal;
+
+        // Convert the result back to Rupiah format
+        $sisa_anggaran = 'Rp ' . number_format($sisa_anggaran_nominal, 0, ',', '.');
+
+        $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
         Proker::create([
-            'id_ormawa' => $request->input('id_ormawa'),
-            'nama' => $request->input('nama'),
+            'id_ormawa' => $id_ormawa,
+            'nama' => $request->input('proker'),
             'tanggal' => $request->input('tanggal'),
             'anggaran' => $request->input('anggaran'),
             'keterangan' => $request->input('keterangan'),
         ]);
+
+        Ormawa::find($id_ormawa)->update([
+            'anggaran' => $sisa_anggaran,
+        ]);
+
 
         return back();
     }
@@ -47,7 +67,7 @@ class ProkerController extends Controller
     {
         $prokers = Proker::all();
         if (auth()->user()->role == 'ormawa') {
-            $anggaran = Ormawa::where('remember_token', auth()->user()->getRememberToken())->first()->anggaran;
+            $anggaran = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->anggaran;
         } elseif (auth()->user()->role == 'admin') {
             $anggaran = 0;
         }
@@ -69,7 +89,7 @@ class ProkerController extends Controller
     public function update(Request $request, Proker $proker, $id)
     {
         $data = [
-            'nama' => $request->input('namaEdit'),
+            'nama' => $request->input('prokerEdit'),
             'tanggal' => $request->input('tanggalEdit'),
             'anggaran' => $request->input('anggaranEdit'),
             'keterangan' => $request->input('keteranganEdit'),
@@ -84,6 +104,24 @@ class ProkerController extends Controller
      */
     public function destroy(Proker $proker, $id)
     {
+        $anggaran_awal = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->anggaran;
+        $anggaran_input = Proker::where('id', $id)->first()->anggaran;
+
+        // Convert Rupiah strings to integers
+        $anggaran_awal_nominal = intval(str_replace(['Rp', '.', ' '], '', $anggaran_awal));
+        $anggaran_input_nominal = intval(str_replace(['Rp', '.', ' '], '', $anggaran_input));
+
+        // Subtract the input anggaran from the initial anggaran
+        $sisa_anggaran_nominal = $anggaran_awal_nominal + $anggaran_input_nominal;
+
+        // Convert the result back to Rupiah format
+        $sisa_anggaran = 'Rp ' . number_format($sisa_anggaran_nominal, 0, ',', '.');
+        $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+
+        Ormawa::find($id_ormawa)->update([
+            'anggaran' => $sisa_anggaran,
+        ]);
+
         Proker::destroy($id);
         return back();
     }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ormawa;
 use App\Models\Struktur;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class StrukturController extends Controller
@@ -28,9 +30,12 @@ class StrukturController extends Controller
      */
     public function store(Request $request)
     {
+        $mahasiswa = Mahasiswa::where('nim', $request->input('mahasiswa'))->first()->nama;
+        $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+
         Struktur::create([
-            'id_ormawa' => $request->input('id_ormawa'),
-            'mahasiswa' => $request->input('mahasiswa'),
+            'id_ormawa' => $id_ormawa,
+            'mahasiswa' => $mahasiswa,
             'jabatan' => $request->input('jabatan'),
             'prodi' => $request->input('prodi'),
             'profil' => $request->file('profil')->storeAs('profil', $request->file('profil')->getClientOriginalName()),
@@ -44,7 +49,8 @@ class StrukturController extends Controller
      */
     public function show(Struktur $struktur)
     {
-        $strukturs = Struktur::where('id_ormawa', auth()->user()->id)->get();
+        $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+        $strukturs = Struktur::where('id_ormawa', $id_ormawa)->get();
         return view('admin.main', compact('strukturs'));
     }
 
@@ -67,8 +73,10 @@ class StrukturController extends Controller
             $profil = $request->input('profil');
         }
 
+        $mahasiswa = Mahasiswa::where('nim', $request->input('mahasiswaEdit'))->first()->nama;
+
         $data = [
-            'mahasiswa' => $request->input('mahasiswaEdit'),
+            'mahasiswa' => $mahasiswa,
             'jabatan' => $request->input('jabatanEdit'),
             'prodi' => $request->input('prodiEdit'),
             'kategori' => $request->input('kategoriEdit'),

@@ -87,6 +87,15 @@ class MahasiswaController extends Controller
         return response()->json($mahasiswa);
     }
 
+    public function struktur(Request $request)
+    {
+        $search = $request->input('search');
+        $data = Mahasiswa::where('nama', 'like', "%$search%")
+            ->orWhere('nim', 'like', "%$search%")
+            ->get();
+        return response()->json($data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

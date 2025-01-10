@@ -21,8 +21,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 ">Rentang Tanggal</label>
                                 <div class="col-md-10 col-sm-10 ">
-                                    <input type="text" class="form-control rounded" name="tanggal"
-                                        placeholder="..." />
+                                    <input type="text" class="form-control rounded" name="tanggal" placeholder="..." />
                                 </div>
                             </div>
                         </div>
@@ -42,8 +41,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 ">Anggaran</label>
                                 <div class="col-md-10 col-sm-10 ">
-                                    <input type="text" class="form-control rounded" name="anggaran" id="anggaran"
-                                        placeholder="...">
+                                    <input type="text" class="form-control rounded" name="anggaran" id="anggaran" placeholder="...">
                                 </div>
                             </div>
                         </div>
@@ -70,7 +68,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-                <input type="hidden" name="id_ormawa" value="{{ auth()->user()->id }}">
+                <input type="hidden" name="id_ormawa" value="{{ auth()->user()->remember_token }}">
                 <input type="hidden" name="status" id="status" value="verifikasi">
 
             </form>
@@ -79,8 +77,7 @@
 </div>
 
 @foreach ($kegiatans as $kegiatan)
-    <div class="modal fade" id="edit-kegiatan{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="edit-kegiatan{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -92,8 +89,7 @@
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('update-kegiatan', $kegiatan->id) }}"
-                    enctype="multipart/form-data">
+                <form method="POST" action="{{ route('update-kegiatan', $kegiatan->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
@@ -102,8 +98,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 ">Nama Kegiatan</label>
                                     <div class="col-md-10 col-sm-10 ">
-                                        <input class="form-control rounded" placeholder="..." name="namaEdit"
-                                            required value="{{ $kegiatan->nama }}">
+                                        <input class="form-control rounded" placeholder="..." name="namaEdit" required value="{{ $kegiatan->nama }}">
                                     </div>
                                 </div>
                             </div>
@@ -113,8 +108,18 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 ">Rentang Tanggal</label>
                                     <div class="col-md-10 col-sm-10 ">
-                                        <input type="text" class="form-control rounded" name="tanggalEdit"
-                                            value="{{ $kegiatan->tanggal }}" />
+                                        <input type="text" class="form-control rounded" name="tanggalEdit" value="{{ $kegiatan->tanggal }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col p-0">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 ">Anggaran</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input type="text" class="form-control rounded" name="anggaranEdit" id="anggaran" placeholder="..." required
+                                            value="{{ $kegiatan->anggaran }}">
                                     </div>
                                 </div>
                             </div>
@@ -124,13 +129,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 ">Proposal Kegiatan</label>
                                     <div class="input-group mb-3 col-md-10 col-sm-10 ">
-                                        <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
-                                                class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a>
+                                        <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i class="fa fa-file"></i> {{ substr($kegiatan->berkas, 9) }}</a>
                                         <div class="input-group">
 
                                             <div class="custom-file">
-                                                <input type="file" class="form-control-file" id="berkas"
-                                                    name="berkasEdit"
+                                                <input type="file" class="form-control-file" id="berkas" name="berkasEdit"
                                                     accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
                                             </div>
                                         </div>
@@ -155,8 +158,7 @@
 
 
 @foreach ($kegiatans as $kegiatan)
-    <div class="modal fade" id="status{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="status{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header pb-1">

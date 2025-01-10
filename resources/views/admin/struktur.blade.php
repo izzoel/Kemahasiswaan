@@ -8,8 +8,7 @@
 </div>
 <div class="x_content">
     <div class="row">
-        <table id="strukturOrmawa" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-            width="100%">
+        <table id="strukturOrmawa" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
@@ -28,19 +27,16 @@
                         <td>{{ $struktur->jabatan }}</td>
                         <td>{{ $struktur->prodi }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $struktur->profil) }}"
-                                class="img-responsive center-block d-block mx-auto"
-                                style="max-width: 150px; max-height: 150px;">
+                            <img src="{{ asset('storage/' . $struktur->profil) }}" class="img-responsive center-block d-block mx-auto" style="max-width: 150px; max-height: 150px;">
                         </td>
                         <td>
                             <div class="btn-group mr-2" role="group">
-                                <a href="{{ route('delete-ormawa', $struktur->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></a>
+                                <a href="{{ route('delete-ormawa', $struktur->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </div>
-                            <div class="btn-group mr-2" role="group">
+                            {{-- <div class="btn-group mr-2" role="group">
                                 <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
                                     data-target="#edit-ormawa{{ $struktur->id }}">Edit</button>
-                            </div>
+                            </div> --}}
                         </td>
                     </tr>
                 @endforeach

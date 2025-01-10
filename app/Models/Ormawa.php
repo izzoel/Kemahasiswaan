@@ -14,7 +14,7 @@ class Ormawa extends Model
         'logo',
         'keterangan',
         'anggaran',
-        'remember_token',
+        'kode_ormawa',
         'id_periode',
     ];
 

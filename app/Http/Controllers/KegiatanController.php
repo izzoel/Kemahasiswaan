@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ormawa;
 use App\Models\Kegiatan;
-use App\Models\TransaksiStatus;
 use Illuminate\Http\Request;
+use App\Models\TransaksiStatus;
 
 class KegiatanController extends Controller
 {
@@ -29,8 +30,9 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
+        $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
         Kegiatan::create([
-            'id_ormawa' => $request->input('id_ormawa'),
+            'id_ormawa' => $id_ormawa,
             'tanggal' => $request->input('tanggal'),
             'nama' => $request->input('nama'),
             'anggaran' => $request->input('anggaran'),
@@ -61,11 +63,11 @@ class KegiatanController extends Controller
      */
     public function show(Kegiatan $kegiatan)
     {
-
         if (auth()->user()->role == 'admin') {
             $kegiatan = Kegiatan::all();
         } else {
-            $kegiatan = Kegiatan::where('id_ormawa', auth()->user()->id)->get();
+            $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+            $kegiatan = Kegiatan::where('id_ormawa', $id_ormawa)->get();
         }
         $kegiatans = $kegiatan;
         $status = TransaksiStatus::all();
@@ -76,7 +78,8 @@ class KegiatanController extends Controller
         if (auth()->user()->role == 'admin') {
             $kegiatan = Kegiatan::all();
         } else {
-            $kegiatan = Kegiatan::where('id_ormawa', auth()->user()->id)->get();
+            $id_ormawa = Ormawa::where('kode_ormawa', auth()->user()->kode)->first()->id;
+            $kegiatan = Kegiatan::where('id_ormawa', $id_ormawa)->get();
         }
         $kegiatans = $kegiatan;
         // $kegiatans = Kegiatan::all();
@@ -122,22 +125,17 @@ class KegiatanController extends Controller
                 'keterangan' => $request->input('keterangan'),
             ]);
 
-            // TransaksiStatus::create([
-            //     'id_kegiatan' => $request->input('id_kegiatan'),
-            //     'status' => $status,
-            //     'keterangan' => $request->input('keterangan'),
-            // ]);
+            $id = $request->input('id_kegiatan');
         } else {
             $data = [
                 'nama' => $request->input('namaEdit'),
                 'tanggal' => $request->input('tanggalEdit'),
+                'anggaran' => $request->input('anggaranEdit'),
                 'berkas' => $berkas,
                 'status' => 'Ditinjau',
             ];
         }
-
-
-        Kegiatan::find($request->input('id_kegiatan'))->update($data);
+        Kegiatan::find($id)->update($data);
 
         return back();
     }

@@ -35,8 +35,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2">Rentang Tanggal</label>
                                 <div class="col-md-10 col-sm-10 ">
-                                    <input type="text" class="form-control rounded" name="tanggal_kegiatan"
-                                        id="tanggal_kegiatan" placeholder="..." disabled />
+                                    <input type="text" class="form-control rounded" name="tanggal_kegiatan" id="tanggal_kegiatan" placeholder="..." disabled />
                                 </div>
                             </div>
                         </div>
@@ -64,10 +63,8 @@
                                             file</label>
                                     </div>
                                     <small id="berkasHelp" class="form-text text-muted col-12">
-                                        Jadikan <a href="https://www.ilovepdf.com/merge_pdf" target="_blank"><span
-                                                class="text-primary"><b>satu file</b></span></a>
-                                        <span style="color:red">Surat Pengajuan Dana</span> dan <span
-                                            style="color:red">TOR</span> dan atau <span style="color:red">Lampiran
+                                        Jadikan <a href="https://www.ilovepdf.com/merge_pdf" target="_blank"><span class="text-primary"><b>satu file</b></span></a>
+                                        <span style="color:red">Surat Pengajuan Dana</span> dan <span style="color:red">TOR</span> dan atau <span style="color:red">Lampiran
                                             lainnya</span>
                                     </small>
                                 </div>
@@ -91,8 +88,7 @@
 </div>
 
 @foreach ($danas as $dana)
-    <div class="modal fade" id="edit-dana{{ $dana->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="edit-dana{{ $dana->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog" style="min-width: 95%">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -111,10 +107,10 @@
                         <div class="row mb-4">
                             <div class="col p-0">
                                 <div class="form-group">
-                                    <label class="control-label col-md-2 col-sm-2 ">Nama dana</label>
+                                    <label class="control-label col-md-2 col-sm-2 ">Nama Kegiatan
+                                    </label>
                                     <div class="col-md-10 col-sm-10 ">
-                                        <input class="form-control rounded" placeholder="..." name="namaEdit"
-                                            required value="{{ $dana->nama }}">
+                                        <input class="form-control rounded" value="{{ $dana->kegiatan->nama }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -124,8 +120,17 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 ">Rentang Tanggal</label>
                                     <div class="col-md-10 col-sm-10 ">
-                                        <input type="text" class="form-control rounded" name="tanggalEdit"
-                                            value="{{ $dana->tanggal }}" />
+                                        <input type="text" class="form-control rounded" name="tanggalEdit" value="{{ $dana->tanggal }}" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col p-0">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 ">Pengajuan Dana</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input class="form-control rounded" placeholder="..." id="danaEdit" name="danaEdit" required value="{{ $dana->dana }}">
                                     </div>
                                 </div>
                             </div>
@@ -135,13 +140,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 ">Proposal dana</label>
                                     <div class="input-group mb-3 col-md-10 col-sm-10 ">
-                                        <a href="{{ asset('storage/' . $dana->berkas) }}" target="_blank"><i
-                                                class="fa fa-file"></i> {{ substr($dana->berkas, 9) }}</a>
+                                        <a href="{{ asset('storage/' . $dana->berkas) }}" target="_blank"><i class="fa fa-file"></i> {{ substr($dana->berkas, 9) }}</a>
                                         <div class="input-group">
 
                                             <div class="custom-file">
-                                                <input type="file" class="form-control-file" id="berkas"
-                                                    name="berkasEdit"
+                                                <input type="file" class="form-control-file" id="berkas" name="berkasEdit"
                                                     accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf">
                                             </div>
                                         </div>
@@ -166,8 +169,7 @@
 
 
 @foreach ($danas as $dana)
-    <div class="modal fade" id="status{{ $dana->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="status{{ $dana->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header pb-1">

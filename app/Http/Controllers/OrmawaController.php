@@ -41,14 +41,14 @@ class OrmawaController extends Controller
             'keterangan' => $request->input('keterangan'),
             'id_periode' => $request->input('id_periode'),
             'anggaran' => $request->input('anggaran'),
-            'remember_token' => $rememberToken,
+            'kode_ormawa' => $rememberToken,
         ]);
 
         User::create([
             'username' => $request->input('username'),
             'role' => 'ormawa',
             'password' => bcrypt($request->input('password')),
-            'remember_token' => $rememberToken,
+            'kode' => $rememberToken,
         ]);
         return back();
     }

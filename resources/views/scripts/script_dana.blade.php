@@ -59,6 +59,11 @@
             return formatRupiah($(this).val(), 'Rp ');
         });
     });
+    $('input[name="danaEdit"]').on('keyup', function() {
+        $(this).val(function(index, value) {
+            return formatRupiah($(this).val(), 'Rp ');
+        });
+    });
 
     function formatRupiah(angka, prefix) {
         var number_string = angka.replace(/[^,\d]/g, '').toString(),

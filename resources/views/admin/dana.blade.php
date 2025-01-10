@@ -7,8 +7,7 @@
 </div>
 <div class="x_content">
     <div class="row">
-        <table id="dana" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-            width="100%">
+        <table id="dana" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
@@ -36,26 +35,20 @@
                                 lihat</a>
                         </td>
                         <td>
-                            <a type="button" data-toggle="modal"
-                                data-target="#{{ auth()->user()->role === 'admin' ? 'statusDana' . $dana->id : 'status' . $dana->id }}">
+                            <a type="button" data-toggle="modal" data-target="#{{ auth()->user()->role === 'admin' ? 'statusDana' . $dana->id : 'status' . $dana->id }}">
                                 <span
                                     class="badge badge-{{ $dana->status === 'Ditinjau' ? 'warning' : ($dana->status === 'Disetujui' ? 'success' : 'danger') }}">{{ $dana->status }}
                                 </span>
                             </a>
-                            {{-- <input type="checkbox" class="custom-control-input" id="approved{{ $dana->id }}"
-                                name="approved" {{ $dana->status === 'approved' ? 'checked' : '' }}> --}}
                         </td>
                         @if (auth()->user()->role != 'admin')
                             <td>
                                 <div class="btn-group mr-2" role="group">
-                                    <button href="{{ route('delete-kegiatan', $dana->id) }}"
-                                        class="btn btn-sm btn-danger"
-                                        {{ $dana->status === 'Disetujui' || $dana->status === 'Ditinjau' ? 'disabled' : '' }}><i
-                                            class="fa fa-trash"></i></button>
+                                    <button href="{{ route('delete-kegiatan', $dana->id) }}" class="btn btn-sm btn-danger"
+                                        {{ $dana->status === 'Disetujui' || $dana->status === 'Ditinjau' ? 'disabled' : '' }}><i class="fa fa-trash"></i></button>
                                 </div>
                                 <div class="btn-group mr-2" role="group">
-                                    <button class="btn btn-sm btn-warning text-dark"
-                                        {{ $dana->status === 'Disetujui' || $dana->status === 'Ditinjau' ? 'disabled' : '' }}
+                                    <button class="btn btn-sm btn-warning text-dark" {{ $dana->status === 'Disetujui' || $dana->status === 'Ditinjau' ? 'disabled' : '' }}
                                         data-toggle="modal" data-target="#edit-dana{{ $dana->id }}">Edit</button>
                                 </div>
                             </td>

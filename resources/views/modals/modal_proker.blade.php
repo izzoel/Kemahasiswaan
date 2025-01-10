@@ -19,8 +19,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Program Kerja</label>
                                 <div class="col-md-8">
-                                    <input class="form-control rounded" placeholder="..." id="nama" name="nama"
-                                        required>
+                                    <input class="form-control rounded" placeholder="..." id="proker" name="proker" required>
                                 </div>
                             </div>
                         </div>
@@ -30,8 +29,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Tanggal Pelaksanaan</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="tanggal"
-                                        placeholder="..." />
+                                    <input type="text" class="form-control rounded" name="tanggal" placeholder="..." />
                                 </div>
                             </div>
                         </div>
@@ -41,8 +39,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Anggaran</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control rounded" name="anggaran" id="anggaran"
-                                        placeholder="...">
+                                    <input type="text" class="form-control rounded" name="anggaran" id="anggaran" placeholder="...">
                                 </div>
                             </div>
                         </div>
@@ -69,8 +66,7 @@
 </div>
 
 @foreach ($prokers as $proker)
-    <div class="modal fade" id="edit-proker{{ $proker->id }}" data-backdrop="static" data-keyboard="false"
-        tabindex="-1">
+    <div class="modal fade" id="edit-proker{{ $proker->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header pb-1">
@@ -91,8 +87,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4 ">Program Kerja</label>
                                     <div class="col-md-8">
-                                        <input class="form-control rounded" placeholder="..." name="namaEdit" required
-                                            value="{{ $proker->nama }}">
+                                        <input class="form-control rounded" placeholder="..." name="prokerEdit" required value="{{ $proker->nama }}">
                                     </div>
                                 </div>
                             </div>
@@ -102,8 +97,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Tanggal Pelaksanaan</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control rounded" name="tanggalEdit"
-                                            value="{{ $proker->tanggal }}" />
+                                        <input type="text" class="form-control rounded" name="tanggalEdit" value="{{ $proker->tanggal }}" />
                                     </div>
                                 </div>
                             </div>
@@ -113,8 +107,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Anggaran</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control rounded" name="anggaranEdit"
-                                            placeholder="..." value="{{ $proker->anggaran }}" />
+                                        <input type="text" class="form-control rounded" name="anggaranEdit" placeholder="..." value="{{ $proker->anggaran }}" />
                                     </div>
                                 </div>
                             </div>
@@ -124,8 +117,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4 ">Keterangan</label>
                                     <div class="col-md-8 ">
-                                        <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keteranganEdit"
-                                            value="{{ $proker->keterangan }}"></textarea>
+                                        <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keteranganEdit" value="{{ $proker->keterangan }}"></textarea>
                                     </div>
                                 </div>
                             </div>

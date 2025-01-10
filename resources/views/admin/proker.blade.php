@@ -11,8 +11,7 @@
 </div>
 <div class="x_content">
     <div class="row">
-        <table id="proker" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-            width="100%">
+        <table id="proker" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
@@ -39,13 +38,13 @@
                         <td>{{ $proker->keterangan ?? '-' }}</td>
                         <td>
                             <div class="btn-group mr-2" role="group">
-                                <a href="{{ route('delete-proker', $proker->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></a>
+                                <a href="{{ route('delete-proker', $proker->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </div>
+                            {{--                             
                             <div class="btn-group mr-2" role="group">
                                 <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
                                     data-target="#edit-proker{{ $proker->id }}">Edit</button>
-                            </div>
+                            </div> --}}
                         </td>
                     </tr>
                 @endforeach
