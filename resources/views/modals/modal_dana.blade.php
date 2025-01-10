@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 ">Pengajuan Dana</label>
                                 <div class="col-md-10 col-sm-10 ">
-                                    <input class="form-control rounded" placeholder="..." name="dana" required>
+                                    <input class="form-control rounded" placeholder="..." name="dana" id="dana_kegiatan" required disabled>
                                 </div>
                             </div>
                         </div>
