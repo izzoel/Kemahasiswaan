@@ -80,7 +80,7 @@
 
                 <input type="hidden" name="id_ormawa" id="id_ormawa">
                 <input type="hidden" name="tanggal" id="tanggal">
-                <input type="hidden" name="dana" id="dana">
+                <input type="hidden" name="dana" id="d_dana">
                 <input type="hidden" name="status" id="status" value="Ditinjau">
 
             </form>
