@@ -37,6 +37,7 @@
                         $('#tanggal_kegiatan').val(selectedData.tanggal);
                         $('#dana_kegiatan').val(selectedData.anggaran);
                     }
+                    $('#dana').val(selectedData.anggaran);
                     $('#tanggal').val(selectedData.tanggal);
                 });
 
