@@ -7,8 +7,7 @@
 </div>
 <div class="x_content">
     <div class="row">
-        <table id="kegiatan" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-            width="100%">
+        <table id="kegiatan" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th class="col-auto">#</th>
@@ -32,8 +31,7 @@
                         <td>{{ $kegiatan->nama }}</td>
                         <td>{{ $kegiatan->anggaran }}</td>
                         <td>
-                            <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i
-                                    class="fa fa-file"></i> lihat </a>
+                            <a href="{{ asset('storage/' . $kegiatan->berkas) }}" target="_blank"><i class="fa fa-file"></i> lihat </a>
                         </td>
                         <td>
                             <a type="button" data-toggle="modal"
@@ -46,14 +44,11 @@
                         @if (auth()->user()->role != 'admin')
                             <td>
                                 <div class="btn-group mr-2" role="group">
-                                    <button href="{{ route('delete-kegiatan', $kegiatan->id) }}"
-                                        class="btn btn-sm btn-danger"
-                                        {{ $kegiatan->status === 'Disetujui' || $kegiatan->status === 'Ditinjau' ? 'disabled' : '' }}><i
-                                            class="fa fa-trash"></i></button>
+                                    <button href="{{ route('delete-kegiatan', $kegiatan->id) }}" class="btn btn-sm btn-danger"
+                                        {{ $kegiatan->status === 'Disetujui' || $kegiatan->status === 'Ditinjau' ? 'disabled' : '' }}><i class="fa fa-trash"></i></button>
                                 </div>
                                 <div class="btn-group mr-2" role="group">
-                                    <button class="btn btn-sm btn-warning text-dark" data-toggle="modal"
-                                        data-target="#edit-kegiatan{{ $kegiatan->id }}"
+                                    <button class="btn btn-sm btn-warning text-dark" data-toggle="modal" data-target="#edit-kegiatan{{ $kegiatan->id }}"
                                         {{ $kegiatan->status === 'Disetujui' || $kegiatan->status === 'Ditinjau' ? 'disabled' : '' }}>Edit</button>
                                 </div>
                             </td>
