@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-6 mx-auto text-center">
                     <p class="mb-0">
-                        <a href="#" data-toggle="modal" data-target="#loginModal">
+                        <a href="" id="login">
                             <d style="color: #1b36f7">Developed</d>
                         </a> by
                         <a rel="nofollow" href="https://izzoel.github.io/ " target="blank">

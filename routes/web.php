@@ -51,8 +51,9 @@ Route::post('/prestasi/store', [PrestasiController::class, 'store'])->name('stor
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeries');
 Route::get('/galeri/post', [GaleriController::class, 'post'])->name('post-galeri');
 
-Route::post('/login', [AdminController::class, 'login'])->name('login');
-Route::get('/login', [AdminController::class, 'login'])->name('login');
+// Route::post('/login', [AdminController::class, 'login'])->name('login');
+// Route::get('/login', [AdminController::class, 'login'])->name('login');
+Route::any('/login', [AdminController::class, 'login'])->name('login');
 
 
 

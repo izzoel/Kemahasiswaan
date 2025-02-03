@@ -26,8 +26,9 @@ CREATE TABLE IF NOT EXISTS `artikels` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.artikels: ~2 rows (approximately)
+DELETE FROM `artikels`;
 /*!40000 ALTER TABLE `artikels` DISABLE KEYS */;
-REPLACE INTO `artikels` (`id`, `judul`, `konten`, `excerpt`, `id_kategori`, `thumbnail`, `created_at`, `updated_at`) VALUES
+INSERT INTO `artikels` (`id`, `judul`, `konten`, `excerpt`, `id_kategori`, `thumbnail`, `created_at`, `updated_at`) VALUES
 	(1, 'Cek kesahatan gratis! menjelang bulan ramadhan', '<p>Cek kesahatan gratis! menjelang bulan ramadhan</p>', 'Cek kesahatan gratis! menjelang bulan ramadhan', 1, 'thumbnail/Story CFD 3 Maret 2023.png', '2024-06-26 14:58:23', '2024-06-26 14:58:23'),
 	(2, 'Pemenang Lomba Adzan Juara 3', '<p>Selamat kepada Muhammad Fuad dari D3 Farmasi Universitas Borneo Lestari atas prestasi Lomba Adzan dengan juara 3<br></p>', 'Selamat kepada Muhammad Fuad dari D3 Farmasi Universitas Borneo Lestari atas prestasi Lomba Adzan dengan juara 3', 2, 'thumbnail/367624268_7124170094277012_4389881351331560211_n.jpg', '2024-06-27 10:04:31', '2024-06-27 10:05:44');
 /*!40000 ALTER TABLE `artikels` ENABLE KEYS */;
@@ -58,8 +59,9 @@ CREATE TABLE IF NOT EXISTS `beasiswas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.beasiswas: ~0 rows (approximately)
+DELETE FROM `beasiswas`;
 /*!40000 ALTER TABLE `beasiswas` DISABLE KEYS */;
-REPLACE INTO `beasiswas` (`id`, `nim`, `nama`, `fakultas`, `prodi`, `jenis`, `semester`, `lomba`, `tahun`, `prestasi`, `ips`, `terbaik`, `tingkat`, `sertifikat`, `dokumentasi`, `surat`, `foto`, `created_at`, `updated_at`) VALUES
+INSERT INTO `beasiswas` (`id`, `nim`, `nama`, `fakultas`, `prodi`, `jenis`, `semester`, `lomba`, `tahun`, `prestasi`, `ips`, `terbaik`, `tingkat`, `sertifikat`, `dokumentasi`, `surat`, `foto`, `created_at`, `updated_at`) VALUES
 	(1, '1345301230039', 'ABDUL FAJERI', 'Ilmu Kesehatan Dan Sains Teknologi', 'D3 Analis Kesehatan', 'Non Akademik', NULL, 'Puisi', '2024', 'Juara 1', NULL, NULL, 'Nasional', 'prestasi/sertifikat/[SERTIFIKAT] ABDUL FAJERI Puisi.pdf', 'prestasi/dokumentasi/[DOKUMENTASI] ABDUL FAJERI Puisi.xlsx', NULL, 'prestasi/foto/[FOTO] ABDUL FAJERI Puisi.jpg', '2024-12-16 01:42:21', '2024-12-16 01:42:21');
 /*!40000 ALTER TABLE `beasiswas` ENABLE KEYS */;
 
@@ -80,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `danas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.danas: ~0 rows (approximately)
+DELETE FROM `danas`;
 /*!40000 ALTER TABLE `danas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `danas` ENABLE KEYS */;
 
@@ -98,8 +101,9 @@ CREATE TABLE IF NOT EXISTS `galeris` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.galeris: ~0 rows (approximately)
+DELETE FROM `galeris`;
 /*!40000 ALTER TABLE `galeris` DISABLE KEYS */;
-REPLACE INTO `galeris` (`id`, `gambar`, `deskripsi`, `id_kategori`, `konten`, `excerpt`, `created_at`, `updated_at`) VALUES
+INSERT INTO `galeris` (`id`, `gambar`, `deskripsi`, `id_kategori`, `konten`, `excerpt`, `created_at`, `updated_at`) VALUES
 	(1, 'thumbnail/357996763_918937272504194_2916664950185616046_n.jpg', 'Seleksi POMNAS', 2, '<p>Seleksi POMNAS&nbsp;<br></p>', 'Seleksi POMNAS', '2024-06-27 10:07:51', '2024-06-27 10:07:51');
 /*!40000 ALTER TABLE `galeris` ENABLE KEYS */;
 
@@ -113,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `informasis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.informasis: ~0 rows (approximately)
+DELETE FROM `informasis`;
 /*!40000 ALTER TABLE `informasis` DISABLE KEYS */;
 /*!40000 ALTER TABLE `informasis` ENABLE KEYS */;
 
@@ -127,8 +132,9 @@ CREATE TABLE IF NOT EXISTS `kategoris` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.kategoris: ~2 rows (approximately)
+DELETE FROM `kategoris`;
 /*!40000 ALTER TABLE `kategoris` DISABLE KEYS */;
-REPLACE INTO `kategoris` (`id`, `nama`, `created_at`, `updated_at`) VALUES
+INSERT INTO `kategoris` (`id`, `nama`, `created_at`, `updated_at`) VALUES
 	(1, 'PMB', '2024-06-26 14:57:07', '2024-06-26 14:57:07'),
 	(2, 'Prestasi', '2024-06-27 10:03:33', '2024-06-27 10:03:33');
 /*!40000 ALTER TABLE `kategoris` ENABLE KEYS */;
@@ -150,6 +156,7 @@ CREATE TABLE IF NOT EXISTS `kegiatans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.kegiatans: ~0 rows (approximately)
+DELETE FROM `kegiatans`;
 /*!40000 ALTER TABLE `kegiatans` DISABLE KEYS */;
 /*!40000 ALTER TABLE `kegiatans` ENABLE KEYS */;
 
@@ -167,8 +174,9 @@ CREATE TABLE IF NOT EXISTS `mahasiswas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1946 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.mahasiswas: ~1.945 rows (approximately)
+DELETE FROM `mahasiswas`;
 /*!40000 ALTER TABLE `mahasiswas` DISABLE KEYS */;
-REPLACE INTO `mahasiswas` (`id`, `nim`, `nama`, `fakultas`, `prodi`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mahasiswas` (`id`, `nim`, `nama`, `fakultas`, `prodi`, `created_at`, `updated_at`) VALUES
 	(1, '4820101230001', 'NURIL HUDA', 'Farmasi', 'S1 Farmasi', '2024-06-24 15:39:28', '2024-06-24 15:39:28'),
 	(2, '4820101230002', 'AMINAH', 'Farmasi', 'S1 Farmasi', '2024-06-24 15:39:28', '2024-06-24 15:39:28'),
 	(3, '4820101230003', 'HENY ADE PRATIWI', 'Farmasi', 'S1 Farmasi', '2024-06-24 15:39:28', '2024-06-24 15:39:28'),
@@ -2126,8 +2134,9 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.migrations: ~15 rows (approximately)
+DELETE FROM `migrations`;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(65, '2014_10_12_000000_create_users_table', 1),
 	(66, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 	(67, '2024_03_18_032716_create_kategoris_table', 1),
@@ -2163,6 +2172,7 @@ CREATE TABLE IF NOT EXISTS `ormawas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.ormawas: ~0 rows (approximately)
+DELETE FROM `ormawas`;
 /*!40000 ALTER TABLE `ormawas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ormawas` ENABLE KEYS */;
 
@@ -2177,8 +2187,9 @@ CREATE TABLE IF NOT EXISTS `periodes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.periodes: ~0 rows (approximately)
+DELETE FROM `periodes`;
 /*!40000 ALTER TABLE `periodes` DISABLE KEYS */;
-REPLACE INTO `periodes` (`id`, `periode`, `created_at`, `updated_at`) VALUES
+INSERT INTO `periodes` (`id`, `periode`, `created_at`, `updated_at`) VALUES
 	(1, '2025', NULL, NULL);
 /*!40000 ALTER TABLE `periodes` ENABLE KEYS */;
 
@@ -2201,6 +2212,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.personal_access_tokens: ~0 rows (approximately)
+DELETE FROM `personal_access_tokens`;
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 
@@ -2227,8 +2239,9 @@ CREATE TABLE IF NOT EXISTS `prestasis` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.prestasis: ~4 rows (approximately)
+DELETE FROM `prestasis`;
 /*!40000 ALTER TABLE `prestasis` DISABLE KEYS */;
-REPLACE INTO `prestasis` (`id`, `id_prestasi`, `nim`, `nama`, `fakultas`, `prodi`, `tahun`, `lomba`, `jenis`, `tingkat`, `prestasi`, `sertifikat`, `dokumentasi`, `foto`, `created_at`, `updated_at`) VALUES
+INSERT INTO `prestasis` (`id`, `id_prestasi`, `nim`, `nama`, `fakultas`, `prodi`, `tahun`, `lomba`, `jenis`, `tingkat`, `prestasi`, `sertifikat`, `dokumentasi`, `foto`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'SF21020', 'A.N. ARISKA NURJANNAH AMAN', 'Farmasi', 'S1 Farmasi', '2024', 'Digital', '', 'Lokal', 'Juara 1', 'prestasi/sertifikat/[SERTIFIKAT] A.N. ARISKA NURJANNAH AMAN Digital.pdf', 'prestasi/dokumentasi/[DOKUMENTASI] A.N. ARISKA NURJANNAH AMAN Digital.pdf', 'prestasi/foto/[FOTO] A.N. ARISKA NURJANNAH AMAN Digital.jpg', '2024-12-09 02:16:34', '2024-12-09 02:16:34'),
 	(2, 2, '1321101220036', 'A\'LLYA NUR MAHYA', 'Ilmu Kesehatan Dan Sains Teknologi', 'S1 Gizi', '2024', 'Puisi', 'Seni', 'Regional', 'Juara 1', 'prestasi/sertifikat/[SERTIFIKAT] A\'LLYA NUR MAHYA Puisi.pdf', 'prestasi/dokumentasi/[DOKUMENTASI] A\'LLYA NUR MAHYA Puisi.pptx', 'prestasi/foto/[FOTO] A\'LLYA NUR MAHYA Puisi.png', '2024-12-09 04:49:12', '2024-12-09 04:49:12'),
 	(3, 3, '1321101220036', 'A\'LLYA NUR MAHYA', 'Ilmu Kesehatan Dan Sains Teknologi', 'S1 Gizi', '2024', 'Puisi', 'Seni', 'Nasional', 'Juara 1', 'prestasi/sertifikat/[SERTIFIKAT] A\'LLYA NUR MAHYA Puisi.pdf', 'prestasi/dokumentasi/[DOKUMENTASI] A\'LLYA NUR MAHYA Puisi.xlsx', 'prestasi/foto/[FOTO] A\'LLYA NUR MAHYA Puisi.jpg', '2024-12-09 10:52:46', '2024-12-09 10:52:46'),
@@ -2250,6 +2263,7 @@ CREATE TABLE IF NOT EXISTS `prokers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.prokers: ~0 rows (approximately)
+DELETE FROM `prokers`;
 /*!40000 ALTER TABLE `prokers` DISABLE KEYS */;
 /*!40000 ALTER TABLE `prokers` ENABLE KEYS */;
 
@@ -2265,10 +2279,13 @@ CREATE TABLE IF NOT EXISTS `strukturs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.strukturs: ~0 rows (approximately)
+DELETE FROM `strukturs`;
 /*!40000 ALTER TABLE `strukturs` DISABLE KEYS */;
+INSERT INTO `strukturs` (`id`, `id_ormawa`, `mahasiswa`, `jabatan`, `prodi`, `profil`, `created_at`, `updated_at`) VALUES
+	(1, '1', 'MUHAMMAD AMIN MAULANA', 'Ketua', 'D3 Farmasi', 'profil/banner-img.png', '2025-01-10 06:59:32', '2025-01-10 06:59:32');
 /*!40000 ALTER TABLE `strukturs` ENABLE KEYS */;
 
 -- Dumping structure for table u549415590_kemahasiswaan.transaksi_kegiatans
@@ -2284,6 +2301,7 @@ CREATE TABLE IF NOT EXISTS `transaksi_kegiatans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.transaksi_kegiatans: ~0 rows (approximately)
+DELETE FROM `transaksi_kegiatans`;
 /*!40000 ALTER TABLE `transaksi_kegiatans` DISABLE KEYS */;
 /*!40000 ALTER TABLE `transaksi_kegiatans` ENABLE KEYS */;
 
@@ -2301,6 +2319,7 @@ CREATE TABLE IF NOT EXISTS `transaksi_statuses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table u549415590_kemahasiswaan.transaksi_statuses: ~0 rows (approximately)
+DELETE FROM `transaksi_statuses`;
 /*!40000 ALTER TABLE `transaksi_statuses` DISABLE KEYS */;
 /*!40000 ALTER TABLE `transaksi_statuses` ENABLE KEYS */;
 
@@ -2316,14 +2335,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table u549415590_kemahasiswaan.users: ~3 rows (approximately)
+-- Dumping data for table u549415590_kemahasiswaan.users: ~0 rows (approximately)
+DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-REPLACE INTO `users` (`id`, `username`, `role`, `password`, `remember_token`, `kode`, `created_at`, `updated_at`) VALUES
-	(1, 'admin', 'admin', '$2y$10$P5/r.KGtmPGTdRwvvPJeCuqhxVqyNNW6NFz8ABPM5oksHoTWfM5EO', NULL, NULL, NULL, NULL),
-	(2, 'bem', 'ormawa', '$2y$12$v4Ve7iFQqN.Yum1M5vhu5uX7jYxLvrCZ1icNVaNzO0bb211DqJMCm', NULL, 'ThhIeXZRLu', '2025-01-10 00:51:55', '2025-01-10 00:51:55'),
-	(3, 'dpm', 'ormawa', '$2y$12$CZQ4CI3wUwGM5/bXzUMxL.OjQDOUy4RJIJo6yE.qe4flxASAytJsu', NULL, 'rIJhGG76HV', '2025-01-10 02:35:44', '2025-01-10 02:35:44');
+INSERT INTO `users` (`id`, `username`, `role`, `password`, `remember_token`, `kode`, `created_at`, `updated_at`) VALUES
+	(1, 'admin', 'admin', '$2y$12$MNtinFYZqJC5uZnSxdH97us.rTcQU0nh2keBEXwXtON1Ymwj6gLFK', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -14,6 +14,7 @@
 <!-- Main Script -->
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/custom.min.js') }}"></script>
+<script src="{{ asset('js/sw-login-user.js') }}"></script>
 
 
 <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>

@@ -10,9 +10,12 @@
     <nav class="navbar navbar-expand-lg pl-0 pr-0">
         <div class="container-fluid d-flex flex-nowrap">
             <div class="d-none d-lg-block">
-                <a class="navbar-brand pr-0 mr-0" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <a class="navbar-brand pr-0 mr-0" href="" id="dev">
                     <i class="fas fa-users"></i>
                 </a>
+                {{-- <a class="navbar-brand pr-0 mr-0" href="" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fas fa-users"></i>
+                </a> --}}
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/site.png') }}" alt="" width="250" height="250" class="img-fluid">
                     <span class="text-white p-1 rounded" style="background-color: #09114d">.unbl</span>

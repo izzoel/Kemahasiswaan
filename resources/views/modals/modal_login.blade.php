@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1">
+{{-- <div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header pb-1">
@@ -31,7 +31,7 @@
 
         </div>
     </div>
-</div>
+</div> --}}
 {{-- <div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">

@@ -73,16 +73,23 @@ class AdminController extends Controller
 
     public function login(Request $request,)
     {
-        $credentials = $request->only('username', 'password');
-        if (auth()->attempt($credentials)) {
-            // dd($credentials);
-            // Jika otentikasi berhasil
-            return redirect()->intended('admin');
-        }
+        // $credentials = $request->only('username', 'password');
+        // if (auth()->attempt($credentials)) {
+        //     // dd($credentials);
+        //     // Jika otentikasi berhasil
+        //     return redirect()->intended('admin');
+        // }
 
-        // Jika otentikasi gagal
-        // dd($credentials);
-        return redirect()->route('landing')->with('error', 'Username atau password salah.');
+        // // Jika otentikasi gagal
+        // // dd($credentials);
+        // return redirect()->route('landing')->with('error', 'Username atau password salah.');
+
+        $credentials = $request->only('username', 'password');
+        if (Auth::attempt($credentials)) {
+            return response()->json(['success' => true, 'message' => 'Sukses']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Gagal']);
+        }
     }
 
     public function beasiswa(Request $request)
