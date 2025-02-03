@@ -1,8 +1,7 @@
 <!-- Modal Edit-->
 @if (Request::is('*/kegiatan/show'))
     @foreach ($kegiatans as $kegiatan)
-        <div class="modal fade" id="statusKegiatan{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false"
-            tabindex="-1">
+        <div class="modal fade" id="statusKegiatan{{ $kegiatan->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header pb-1">
@@ -23,8 +22,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Status</label>
                                         <div class="col-md-8 ">
-                                            <select id="status{{ $kegiatan->id }}" name="status"
-                                                class="form-control p-2"
+                                            <select id="status{{ $kegiatan->id }}" name="status" class="form-control p-2"
                                                 onchange="
                                                 if (this.value === 'Ditinjau') {
                                                     $('#rektor{{ $kegiatan->id }}').show('fast');
@@ -38,8 +36,7 @@
                                                 }
                                             ">
                                                 @foreach (['Ditinjau', 'Disetujui', 'Ditolak'] as $status)
-                                                    <option value="{{ $status }}"
-                                                        {{ $kegiatan->status == $status ? 'selected' : '' }}>
+                                                    <option value="{{ $status }}" {{ $kegiatan->status == $status ? 'selected' : '' }}>
                                                         {{ $status }}
                                                     </option>
                                                 @endforeach
@@ -53,7 +50,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Keterangan</label>
                                         <div class="col-md-8 ">
-                                            <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $kegiatan->stat->keterangan ?? '' }}</textarea>
+                                            {{-- <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $kegiatan->stat->keterangan ?? '' }}</textarea> --}}
+                                            <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $kegiatan->stat }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -74,8 +72,7 @@
     @endforeach
 @elseif(Request::is('*/dana/show'))
     @foreach ($danas as $dana)
-        <div class="modal fade" id="statusDana{{ $dana->id }}" data-backdrop="static" data-keyboard="false"
-            tabindex="-1">
+        <div class="modal fade" id="statusDana{{ $dana->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header pb-1">
@@ -87,7 +84,8 @@
                         </button>
                     </div>
 
-                    <form method="POST" action="{{ route('update-dana', $dana->stat->id) }}">
+                    {{-- <form method="POST" action="{{ route('update-dana', $dana->stat->id) }}"> --}}
+                    <form method="POST" action="">
                         @method('PUT')
                         @csrf
                         @csrf
@@ -97,8 +95,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 ">Status</label>
                                         <div class="col-md-8 ">
-                                            <select id="status{{ $dana->id }}" name="status"
-                                                class="form-control p-2"
+                                            <select id="status{{ $dana->id }}" name="status" class="form-control p-2"
                                                 onchange="
                                                 if (this.value === 'Ditinjau') {
                                                     $('#rektor{{ $dana->id }}').show('fast');
@@ -112,8 +109,7 @@
                                                 }
                                             ">
                                                 @foreach (['Ditinjau', 'Disetujui', 'Ditolak'] as $status)
-                                                    <option value="{{ $status }}"
-                                                        {{ $dana->status == $status ? 'selected' : '' }}>
+                                                    <option value="{{ $status }}" {{ $dana->status == $status ? 'selected' : '' }}>
                                                         {{ $status }}
                                                     </option>
                                                 @endforeach
@@ -128,6 +124,7 @@
                                         <label class="control-label col-md-4 ">Keterangan</label>
                                         <div class="col-md-8 ">
                                             <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $dana->stat->keterangan }}</textarea>
+                                            {{-- <textarea class="resizable_textarea form-control rounded" placeholder="..." name="keterangan">{{ $dana->stat }}</textarea> --}}
                                         </div>
                                     </div>
                                 </div>

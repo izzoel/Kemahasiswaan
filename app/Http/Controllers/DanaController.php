@@ -43,7 +43,6 @@ class DanaController extends Controller
         ]);
 
         $id_transaksi = Kegiatan::max('id');
-        // dd($id_kegiatan);
         TransaksiStatus::create([
             'pengajuan' => 'Dana',
             'id_transaksi' => $id_transaksi,
@@ -51,9 +50,11 @@ class DanaController extends Controller
             'keterangan' => 'Sedang ditinjau oleh Admin',
         ]);
 
+        // dd(TransaksiStatus::max('id'));
         Dana::find($id_transaksi)->update([
             'id_status' => TransaksiStatus::max('id'),
         ]);
+        // dd($dana);
 
         // dd($d);
         return back();
