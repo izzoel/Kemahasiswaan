@@ -41,7 +41,6 @@ class KegiatanController extends Controller
         ]);
 
         $id_transaksi = Kegiatan::max('id');
-        // dd($id_transaksi);
         TransaksiStatus::create([
             'pengajuan' => 'Kegiatan',
             'id_transaksi' => $id_transaksi,
