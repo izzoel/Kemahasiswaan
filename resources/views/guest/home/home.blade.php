@@ -98,9 +98,6 @@
                         <p class="card-text small">Penghargaan kepada mahasiswa UNBL yang menunjukkan kinerja luar biasa dalam bidang akademik,
                             olahraga, seni, dan kegiatan lainnya. Bertujuan untuk menginspirasi dan memotivasi dalam mencapai potensi tertinggi mereka.
                         </p>
-                        {{-- <a href="#" class="text-primary card-link mb-0 small">
-                            Selengkapnya<i class="fas fa-arrow-right ms-2"></i>
-                        </a> --}}
                         <a href="{{ route('prestasi') }}" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-1">
                             Lihat<span> &rarr;</span>
                         </a>
@@ -115,13 +112,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h3 class="h4 mb-3">Postingan Kemahasiswaan</h4>
-                    {{-- @foreach ($artikels as $artikel)
+                <h3 class="h4 mb-3">Postingan Kemahasiswaan</h3>
+                <div id="postingan-container">
+                    @foreach ($artikels as $artikel)
                         <div class="card mb-5 border-0 font-primary">
                             <div class="row g-0">
                                 <div class="col-md-5">
-                                    <img src=" {{ asset('storage/' . $artikel->thumbnail) }}"
-                                        class="img-fluid blog-card-img" alt="blog-img">
+                                    <img src="{{ asset('thumbnails/' . $artikel->thumbnail) }}" class="img-fluid" alt="{{ $artikel->slug }}">
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body mt-0 pt-0">
@@ -129,60 +126,54 @@
                                             {{ $artikel->kategori->nama }}
                                         </a>
                                         <h5 class="card-title mt-2 h5">{{ $artikel->judul }}</h5>
-                                        <p class="fs-6">{{ $artikel->excerpt }}..</p>
-                                        <a href="#"
-                                            class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-0">Selengkapnya..</a>
+                                        <p class="fs-6">{{ Str::limit(strip_tags($artikel->konten), 200, '..') }}</p>
+                                        <a href="{{ route('artikel', $artikel->slug) }}" class="text-capitalize btn btn-outline-primary px-4 py-2 rounded-0">Selengkapnya..</a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                    <div>{{ $artikels->links('pagination::bootstrap-4') }}</div> --}}
+
+                    {{-- Pagination --}}
+                    <div id="pagination-links">
+                        {{ $artikels->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-4 col-xl-3 offset-xl-1 d-none d-lg-block">
                 <div class="widget mb-5">
-                    <h3 class="h4 mb-3">Informasi Terbaru</h4>
+                    <h3 class="h4 mb-3">Informasi Terbaru</h3>
 
-                        {{-- @foreach ($informasi_terbaru as $info_baru)
-                            <div class="card mb-4 border-0">
-                                <div class="row g-0">
-                                    <div class="col-md-2 col-lg-4">
-                                        <img src="{{ asset('storage/' . $info_baru->thumbnail) }}" alt="blog"
-                                            class="img-fluid">
-                                    </div>
-                                    <div class="col-md-10 col-lg-8">
-                                        <h4 class="fs-6 ms-3"><a href="blog-single.html"
-                                                class="text-dark">{{ $info_baru->judul }}</a></h4>
-                                    </div>
+                    @foreach ($informasi_terbaru->take(2) as $info_baru)
+                        <div class="card mb-4 border-0">
+                            <div class="row g-0">
+                                <div class="col-md-2 col-lg-4">
+                                    <img src="{{ asset('thumbnails/' . $info_baru->thumbnail) }}" alt="{{ $info_baru->slug }}" class="img-fluid">
+                                </div>
+                                <div class="col-md-10 col-lg-8">
+                                    <h4 class="fs-6 ms-3"><a href="{{ '/artikel/' . $info_baru->slug }}" class="text-dark">{{ Str::limit($info_baru->judul, 40, '..') }}</a>
+                                    </h4>
                                 </div>
                             </div>
-                        @endforeach --}}
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="widget category-widget">
-                    <h3 class="h4 mb-3">Kategori</h4>
-                        <ul class="list-group mb-4">
-                            {{-- @foreach ($artikels->unique('id_kategori') as $artikel)
-                                <li class="border-bottom py-2">
-                                    <a href="#!"
-                                        class="d-flex justify-content-between align-items-center text-dark">
-                                        {{ $artikel->kategori->nama }}
-                                        <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">
-                                            {{ $artikel->where('id_kategori', $artikel->kategori->id)->get('id_kategori')->count() }}
-                                        </span>
-                                    </a>
-                                </li>
-                            @endforeach --}}
-                        </ul>
+                    <h3 class="h4 mb-3">Kategori</h3>
+                    <ul class="list-inline tag-list">
+                        @foreach ($kategoris->unique('id_kategori') as $kategori)
+                            <li class="list-inline-item m-1">
+                                <a href="{{ route('kategori', $kategori->kategori->kategori) }}">{{ $kategori->kategori->kategori }}
+                                    <small>
 
-                        <ul class="list-inline tag-list">
-                            {{-- @foreach ($artikels->unique('id_kategori') as $artikel)
-                                <li class="list-inline-item m-1"><a href="#">{{ $artikel->kategori->nama }}</a>
-                                </li>
-                            @endforeach --}}
-                        </ul>
+                                        ({{ $kategori->where('id_kategori', $kategori->kategori->id)->get('id_kategori')->count() }})
+                                    </small>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
 
             </div>

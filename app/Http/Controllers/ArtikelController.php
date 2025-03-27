@@ -35,6 +35,9 @@ class ArtikelController extends Controller
 
             return DataTables::query($artikel)
                 ->addIndexColumn()
+                ->addColumn('judul', function ($row) {
+                    return Str::limit($row->judul, 60, '...'); // Batasi judul hanya 200 karakter
+                })
                 ->addColumn('kategori', function ($row) {
                     return $row->kategori_nama ?? 'Tidak ada';
                 })
@@ -52,7 +55,7 @@ class ArtikelController extends Controller
                     <span class="tf-icons bx bxs-x-square"></span>
                 </a>';
                 })
-                ->rawColumns(['kategori', 'tanggal', 'aksi'])
+                ->rawColumns(['judul', 'kategori', 'tanggal', 'aksi'])
                 ->make(true);
         }
 

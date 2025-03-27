@@ -4358,11 +4358,11 @@ textarea.form-control-lg {
 
 .page-item:not(:first-child) .page-link {
   margin-left: -1px;
-  color: chocolate;
+  color: #1b36f7;
 }
 .page-item.active .page-link {
   z-index: 3;
-  color: chocolate;
+  color: #1b36f7;
   /* color: #fff; */
   /* background-color: #0d6efd;
   border-color: #0d6efd; */

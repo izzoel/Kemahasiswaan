@@ -8,11 +8,12 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\KategoriController;
 
-Route::get('/', function () {
-    return view('guest.template');
-});
-
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/artikel', [LandingController::class, 'index']);
+Route::get('/artikel/{slug}', [LandingController::class, 'artikel'])->name('artikel');
+
+Route::get('/kategori/{kategori}', [LandingController::class, 'kategori'])->name('kategori');
+
 Route::post('/login', [LandingController::class, 'login']);
 Route::get('/logout', [LandingController::class, 'logout'])->name('logout');
 Route::get('/beasiswa', [LandingController::class, 'beasiswa'])->name('beasiswa');

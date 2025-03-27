@@ -83,7 +83,7 @@
             </div>
         </nav>
     </header>
-
+    {{-- {{ Route::currentRouteName() }} --}}
     @yield(Route::currentRouteName() ? Str::replace('.', '-', Route::currentRouteName()) : 'content')
 
 
@@ -127,6 +127,20 @@
     <!-- Login Script -->
     <script src="{{ asset('scripts/sw-login.js') }}"></script>
 
+    <script>
+        $(document).on('click', '#pagination-links a', function(event) {
+            event.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+
+            $.ajax({
+                url: "/?page=" + page,
+                type: "GET",
+                success: function(data) {
+                    $("#postingan-container").html($(data).find("#postingan-container").html());
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
