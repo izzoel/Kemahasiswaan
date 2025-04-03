@@ -117,9 +117,11 @@
                     @foreach ($artikels as $artikel)
                         <div class="card mb-5 border-0 font-primary">
                             <div class="row g-0">
-                                <div class="col-md-5">
-                                    <img src="{{ asset('thumbnails/' . $artikel->thumbnail) }}" class="img-fluid" alt="{{ $artikel->slug }}">
-                                </div>
+                                @if (!empty($artikel->thumbnail))
+                                    <div class="col-md-5">
+                                        <img src="{{ asset('thumbnails/' . $artikel->thumbnail) }}" class="img-fluid" alt="{{ $artikel->slug }}">
+                                    </div>
+                                @endif
                                 <div class="col-md-7">
                                     <div class="card-body mt-0 pt-0">
                                         <a class="card-link text-primary" href="#">
@@ -148,9 +150,11 @@
                     @foreach ($informasi_terbaru->take(2) as $info_baru)
                         <div class="card mb-4 border-0">
                             <div class="row g-0">
-                                <div class="col-md-2 col-lg-4">
-                                    <img src="{{ asset('thumbnails/' . $info_baru->thumbnail) }}" alt="{{ $info_baru->slug }}" class="img-fluid">
-                                </div>
+                                @if (!empty($info_baru->thumbnail))
+                                    <div class="col-md-2 col-lg-4">
+                                        <img src="{{ asset('thumbnails/' . $info_baru->thumbnail) }}" alt="{{ $info_baru->slug }}" class="img-fluid">
+                                    </div>
+                                @endif
                                 <div class="col-md-10 col-lg-8">
                                     <h4 class="fs-6 ms-3"><a href="{{ '/artikel/' . $info_baru->slug }}" class="text-dark">{{ Str::limit($info_baru->judul, 40, '..') }}</a>
                                     </h4>

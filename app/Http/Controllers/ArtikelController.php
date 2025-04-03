@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Artikel;
-use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,33 +26,43 @@ class ArtikelController extends Controller
             $artikel = DB::table('artikels')
                 ->leftJoin('kategoris', 'artikels.id_kategori', '=', 'kategoris.id')
                 ->select([
-                    'artikels.*',
+                    'artikels.id',
+                    'artikels.judul',
                     'kategoris.kategori as kategori_nama',
-                    DB::raw("DATE_FORMAT(artikels.created_at, '%d %M %Y %H:%i') as tanggal_format")
+                    'artikels.created_at' // Gunakan format asli dari database untuk sorting
                 ]);
 
             return DataTables::query($artikel)
                 ->addIndexColumn()
                 ->addColumn('judul', function ($row) {
-                    return Str::limit($row->judul, 60, '...'); // Batasi judul hanya 200 karakter
+                    return Str::limit($row->judul, 60, '...');
                 })
                 ->addColumn('kategori', function ($row) {
-                    return $row->kategori_nama ?? 'Tidak ada';
+                    return $row->kategori_nama ?? '-- pilih --';
                 })
                 ->addColumn('tanggal', function ($row) {
-                    return $row->tanggal_format;
+                    return \Carbon\Carbon::parse($row->created_at)->translatedFormat('d F Y H:i');
                 })
                 ->addColumn('aksi', function ($row) {
                     return '<a type="button" class="U_B_artikel text-info" data-id="#M_U_artikel-' . $row->id . '">
-                    <span class="tf-icons bx bx-edit"></span> Edit
-                </a>
-
-                <span class="mx-1">|</span>
-
-                <a type="button" class="D_B_artikel text-danger" data-id="' . $row->id . '">
-                    <span class="tf-icons bx bxs-x-square"></span>
-                </a>';
+                            <span class="tf-icons bx bx-edit"></span> Edit
+                        </a>
+                        <span class="mx-1">|</span>
+                        <a type="button" class="D_B_artikel text-danger" data-id="' . $row->id . '">
+                            <span class="tf-icons bx bxs-x-square"></span>
+                        </a>';
                 })
+                ->filterColumn('judul', function ($query, $keyword) {
+                    $query->where('artikels.judul', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('kategori', function ($query, $keyword) {
+                    $query->where('kategoris.kategori', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('tanggal', function ($query, $keyword) {
+                    $query->whereRaw("DATE_FORMAT(artikels.created_at, '%Y-%m-%d %H:%i') like ?", ["%{$keyword}%"]);
+                })
+                ->orderColumn('kategori', 'kategoris.kategori $1')
+                ->orderColumn('tanggal', 'artikels.created_at $1')
                 ->rawColumns(['judul', 'kategori', 'tanggal', 'aksi'])
                 ->make(true);
         }
@@ -67,15 +75,19 @@ class ArtikelController extends Controller
         try {
             $slug = $request->slug ?? Str::slug($request->judul);
 
-            $file = $request->file('thumbnail');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('thumbnails'), $filename);
+            if ($request->hasFile('thumbnail')) {
+                $file = $request->file('thumbnail');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('thumbnails'), $filename);
+            } else {
+                $filename = null;
+            }
 
             Artikel::create([
                 'judul' => $request->judul,
                 'konten' => $request->konten,
                 'slug' => $slug,
-                'id_kategori' => $request->kategori,
+                'id_kategori' => $request->filled('kategori') ? $request->kategori : '1',
                 'thumbnail' => $filename
             ]);
 
@@ -124,6 +136,18 @@ class ArtikelController extends Controller
         } catch (\Exception $e) {
             Log::error($e);
             return back()->with('fail', 'Artikel gagal diperbarui!');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $artikel = Artikel::where('id', $id)->first();
+        try {
+            $artikel->delete();
+            return redirect()->back()->with('success', "Artikel {$artikel->judul} berhasil dihapus!");
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->with('fail', "Artikel {$artikel->judul} gagal dihapus!");
         }
     }
 }

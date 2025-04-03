@@ -33,7 +33,7 @@ class MenuMiddleware
 
         $menuData = [
             'menu' => strtoupper($request->segment(1)),
-            'logo' => Auth::user()->name ?? '',
+            'logo' => Auth::user()->name ?? 'admin',
             'version' => $version,
             'about' => $about,
             'periode_lulus' => '2024/2025 Ganjil',

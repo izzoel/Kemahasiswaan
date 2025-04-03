@@ -30,7 +30,7 @@ $(document).ready(function() {
               title: 'Berhasil!',
               icon: 'success'
             }).then(() => {
-              window.location.href = '/admin'; // Redirect to the dashboard or another page
+              window.location.href = '/admin/dashboard'; // Redirect to the dashboard or another page
             });
           } else {
             console.log(response.message);

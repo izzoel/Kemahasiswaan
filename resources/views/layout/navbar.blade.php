@@ -6,26 +6,35 @@
     </div>
     <div class="navbar-nav-left d-flex align-items-center" id="navbar-collapse-left">
         <ul class="navbar-nav flex-row align-items-center">
-            {{-- Segmen pertama selalu "KEMAHASISWAAN" dan memiliki href="#" --}}
             <li>
-                <a class="nav-link" href="#">KEMAHASISWAAN</a>
+                <a class="nav-link" href="{{ url('/admin/dashboard') }}">KEMAHASISWAAN</a>
             </li>
-
+            <div class="text-muted fw-semibold px-2 fs-5"> / </div>
             @php
                 $segments = request()->segments();
+                $url = url('/');
             @endphp
 
             @foreach ($segments as $key => $segment)
                 @if ($key > 0)
-                    {{-- Hanya untuk segmen setelah "KEMAHASISWAAN" --}}
                     <div class="text-muted fw-semibold px-2 fs-5"> / </div>
-                    <li>
-                        <a class="nav-link" href="{{ url(implode('/', array_slice($segments, 0, $key + 1))) }}">
+                @endif
+
+                @php
+                    $url .= '/' . $segment;
+                @endphp
+
+                <li>
+                    @if ($key < 2)
+                        <span class="nav-link text-muted">{{ ucwords(str_replace('-', ' ', $segment)) }}</span>
+                    @else
+                        <a class="nav-link" href="{{ $url }}">
                             {{ ucwords(str_replace('-', ' ', $segment)) }}
                         </a>
-                    </li>
-                @endif
+                    @endif
+                </li>
             @endforeach
+
         </ul>
     </div>
 
@@ -48,21 +57,60 @@
                     </button>
                 @endif --}}
             </li>
+
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        @php
-                            $adminFoto = rand(0, 11);
-                        @endphp
                         @if (auth()->check())
-                            <img src="{{ asset('img/avatars/kemahasiswaan.png') }}" alt="admin" class="w-px-40 h-auto" />
-                            {{-- @elseif (auth('mahasiswa')->check())
-                            <img src="{{ asset('img/avatars/' . auth('mahasiswa')->user()->foto) . '.png' }}" alt="{{ auth('mahasiswa')->user()->nama }}"
-                                class="w-px-40 h-auto rounded-circle" /> --}}
+                            <img src="{{ asset('logo/' . auth()->user()->logo) }}" alt="admin" class="w-px-40 h-auto" />
+                        @elseif (auth('organisasi')->check())
+                            <img src="{{ asset('logo/' . auth('organisasi')->user()->logo) }}" alt="{{ auth('organisasi')->user()->nama }}" class="w-px-40 h-auto rounded-circle" />
                         @endif
                     </div>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
+                <ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
+                    <li>
+                        <a class="dropdown-item" href="{{ url('/admin/profile') }}">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar avatar-online">
+                                        @if (auth()->check())
+                                            <img src="{{ asset('logo/' . auth()->user()->logo) }}" alt="admin" class="w-px-40 h-auto" />
+                                        @elseif (auth('organisasi')->check())
+                                            <img src="{{ asset('logo/' . auth('organisasi')->user()->logo) }}" alt="admin" class="w-px-40 h-auto" />
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <span class="fw-semibold d-block">
+                                        @if (auth()->check())
+                                            {{ auth()->user()->name }}
+                                        @elseif (auth('organisasi')->check())
+                                            {{ auth('organisasi')->user()->name }}
+                                        @endif
+                                    </span>
+                                    <small class="text-muted">{{ 'Kemahasiswaan' }}</small>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="U_B_profil dropdown-item" href="{{ url('/admin/profile') }}" data-id="1">
+                            <i class="bx bx-user me-2"></i>
+                            <span class="align-middle">My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}">
+                            <i class="bx bx-power-off me-2"></i>
+                            <span class="align-middle">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+                {{-- <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                         <a class="dropdown-item" href="#">
                             <div class="d-flex">
@@ -71,16 +119,12 @@
 
                                         @if (auth()->check())
                                             <img src="{{ asset('img/avatars/kemahasiswaan.png') }}" alt="admin" class="w-px-40 h-auto" />
-                                            {{-- @elseif (auth('mahasiswa')->check())
-                                            <img src="{{ asset('img/avatars/' . auth('mahasiswa')->user()->foto) . '.png' }}" alt="{{ auth('mahasiswa')->user()->nama }}"
-                                                class="w-px-40 h-auto rounded-circle" /> --}}
                                         @endif
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block">
                                         {{ auth()->user()->name }}
-                                        {{-- {{ auth()->check() ? auth()->user()->name : auth('mahasiswa')->user()->nama }} --}}
                                     </span>
                                     <small class="text-muted">{{ 'Kemahasiswaan' }}</small>
                                 </div>
@@ -96,7 +140,7 @@
                             <span class="align-middle">Log Out</span>
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
             </li>
         </ul>
     </div>

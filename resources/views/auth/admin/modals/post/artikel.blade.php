@@ -1,6 +1,7 @@
 <div class="modal fade" id="M_S_artikel" data-bs-backdrop="static" tabindex="-1" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="min-width: 95%">
-        <form action="{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/store') }}" method="POST" enctype="multipart/form-data" class="modal-content">
+        <form action="{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/' . request()->segment(3) . '/store') }}" method="POST" enctype="multipart/form-data"
+            class="modal-content">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title">
@@ -47,33 +48,6 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
-    </div>
-</div>
-
-<div class="modal fade" id="M_S_kategori" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form id="formKategori">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        Kategori <span class="badge bg-primary text-white">Baru</span>
-                    </h5>
-                    <button type="button" class="modalKategori btn-close" data-bs-target="#M_S_artikel" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" class="form-control" name="S_kategori" id="S_kategori" required />
-                    <div class="form-text">Tambahkan kategori baru.</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="modalKategori btn btn-outline-secondary" data-bs-target="#M_S_artikel" data-bs-toggle="modal" data-bs-dismiss="modal">
-                        Batal
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 
@@ -139,6 +113,34 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal modalDelete fade" id="M_D_artikel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete_artikel">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <h4 class="text-center">
+                        Yakin ingin <span class="text-danger">menghapus</span> data?
+                    </h4>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-evenly">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Batal
+                </button>
+                <form id="D_route" action="" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

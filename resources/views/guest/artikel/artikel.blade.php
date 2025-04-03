@@ -11,7 +11,9 @@
 
                 </div>
                 <div class="content">
-                    <img src="{{ asset('thumbnails/' . $artikels['thumbnail']) }}" alt="{{ $artikels['thumbnail'] }}" style="width: 1280px;">
+                    @if (!empty($artikels['thumbnail']))
+                        <img src="{{ asset('thumbnails/' . $artikels['thumbnail']) }}" alt="{{ $artikels['thumbnail'] }}" style="width: 1280px;">
+                    @endif
                     {!! $artikels['konten'] !!}
                 </div>
 

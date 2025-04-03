@@ -1,10 +1,19 @@
 @extends('layout.template')
 
-{{-- @php
-    $sectionName = is_null(Auth::user()) ? request()->segment(1) . '_submit' : request()->segment(1) . '_' . request()->segment(2);
-    $viewName = is_null(Auth::user()) ? 'auth.' . request()->segment(1) . '.pages.submit' : 'auth.' . request()->segment(1) . '.pages.' . request()->segment(2);
-@endphp --}}
+@php
+    $segment1 = request()->segment(1);
+    $segment2 = request()->segment(2);
+    $segment3 = request()->segment(3);
 
-@section(request()->segment(1) . '_' . request()->segment(2))
-    @include('auth.' . request()->segment(1) . '.pages.' . request()->segment(2))
+    // Cek jumlah segmen dalam URL
+    if ($segment3) {
+        $sectionName = "{$segment1}.{$segment3}";
+        $viewName = "auth.{$segment1}.pages.{$segment2}.{$segment3}";
+    } else {
+        $sectionName = "{$segment1}.{$segment2}";
+        $viewName = "auth.{$segment1}.pages.{$segment2}";
+    }
+@endphp
+@section($sectionName)
+    @includeIf($viewName)
 @endsection

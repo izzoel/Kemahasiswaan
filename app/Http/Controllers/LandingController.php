@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 
 class LandingController extends Controller
 {
@@ -14,7 +15,7 @@ class LandingController extends Controller
     {
         $artikels = Artikel::paginate(2);
         $kategoris = Artikel::all();
-        $informasi_terbaru = Artikel::orderBy('updated_at', 'desc')->get();
+        $informasi_terbaru = Artikel::orderBy('created_at', 'desc')->get();
 
         if ($request->ajax()) {
             return view('guest.section.section', compact('artikels', 'informasi_terbaru', 'kategoris'))->render();
@@ -38,12 +39,14 @@ class LandingController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::attempt(['name' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['name' => $request->username, 'password' => $request->password]) || Auth::guard('organisasi')->attempt(['name' => $request->username, 'password' => $request->password])) {
             Session::put('username', $request->username);
             Session::put('password', $request->password);
+            if (Auth::guard('organisasi')->check()) {
+                Session::put('id', Auth::guard('organisasi')->id());
+            }
             return response()->json(['success' => true, 'message' => 'Sukses']);
         } else {
-            // return response()->json(['success' => false, 'message' => Auth::attempt(['name' => $request->username, 'password' => $request->password]) . 'Gagal :' . $request->username . ' ' . $request->password]);
             return response()->json(['success' => false, 'message' => 'Gagal']);
         }
     }

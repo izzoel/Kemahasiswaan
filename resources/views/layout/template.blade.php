@@ -34,7 +34,12 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/sneat/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
+    <!-- Apex-Charts CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/sneat/libs/apex-charts/apex-charts.css') }}" />
+
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
 
     <!-- Datatables CSS -->
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/r-3.0.3/datatables.min.css" rel="stylesheet">
@@ -98,9 +103,10 @@
             <div class="layout-page">
                 @include('layout.navbar')
                 <!-- Content wrapper -->
+                {{-- {{ Route::currentRouteName() }} --}}
                 <div class="content-wrapper">
-                    {{-- {{ Route::currentRouteName() }} --}}
-                    @yield(Route::currentRouteName() ? Str::replace('.', '-', Route::currentRouteName()) : 'content')
+                    {{-- {{ dd(request()->segments()) }} --}}
+                    @yield(Route::currentRouteName())
                 </div>
                 <!-- / Content -->
 
@@ -137,6 +143,9 @@
     <!-- SweetAlert2 JS -->
     <script src="{{ asset('vendor/sweetalert2/js/sweetalert2.js') }}"></script>
 
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <!-- Datatable JS -->
     <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/r-3.0.3/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
@@ -151,9 +160,65 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 
+    <script>
+        $('#picture').change(function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#uploadedAvatar').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $('.account-image-reset').click(function() {
+            let defaultLogo = $('#uploadedAvatar').data('default');
+            $('#uploadedAvatar').attr('src', defaultLogo);
+            $('#picture').val('');
+        });
+
+        function showToast(type, message) {
+            let bgClass = type === 'success' ? 'bg-success' : 'bg-danger';
+            let toastHtml = `
+            <div class="bs-toast toast toast-placement-ex m-2 ${bgClass} top-0 start-0 fade show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-header">
+                    <i class='bx ${type === 'success' ? 'bx-check-circle' : 'bx-x-circle'} bx-burst me-2'></i>
+                    <div class="me-auto fw-semibold">${type === 'success' ? 'Sukses!' : 'Gagal!'}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">${message}</div>
+            </div>`;
+
+            $("body").append(toastHtml);
+            setTimeout(() => {
+                $(".bs-toast").remove();
+            }, 3500);
+        }
+
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
+        }
+    </script>
     {{-- @include('auth.scripts.datatables') --}}
     @if (count(request()->segments()) > 1)
-        @include('auth.scripts.' . request()->segment(2))
+        @if (request()->segment(2) == 'dashboard' || request()->segment(2) == 'profile')
+            @include('auth.scripts.' . request()->segment(2))
+        @else
+            @include('auth.scripts.' . request()->segment(2) . '.' . request()->segment(3))
+        @endif
     @endif
 
     @include('auth.scripts.toasts')

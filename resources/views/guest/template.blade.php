@@ -96,9 +96,7 @@
                 <div class="row">
                     <div class="col-lg-6 mx-auto text-center">
                         <p class="mb-0">
-                            <a href="" class="login">
-                                <span style="color: #1b36f7">Developed</span>
-                            </a> by
+                            developed by
                             <a rel="nofollow" href="https://izzoel.github.io/ " target="blank">
                                 <span style="color: #1b36f7">zetware.id</span>
                             </a>

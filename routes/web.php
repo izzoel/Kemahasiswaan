@@ -1,12 +1,22 @@
 <?php
 
 use App\Models\Artikel;
+use App\Models\Prestasi;
+use App\Models\Struktur;
+use App\Models\Mahasiswa;
+use App\Models\Organisasi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\MenuMiddleware;
+use App\Http\Controllers\DanaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\StrukturController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\OrganisasiController;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/artikel', [LandingController::class, 'index']);
@@ -27,15 +37,86 @@ Route::middleware([MenuMiddleware::class])->group(function () {
         Route::get('/', [AdminController::class, 'index']);
         Route::get('/dashboard', [AdminController::class, 'dashboard']);
 
-        Route::prefix('artikel')->group(function () {
-            Route::get('/', [ArtikelController::class, 'index'])->name('admin_artikel');
-            Route::get('/table', [ArtikelController::class, 'table']);
-            Route::post('/store', [ArtikelController::class, 'store']);
-            Route::get('/show/{id}', [ArtikelController::class, 'show']);
-            Route::put('/update/{id}', [ArtikelController::class, 'update']);
 
-            Route::post('/kategori', [KategoriController::class, 'kategori']);
-            Route::get('/kategori/show', [KategoriController::class, 'show']);
+        Route::prefix('post')->group(function () {
+            Route::prefix('artikel')->group(function () {
+                Route::get('/', [ArtikelController::class, 'index'])->name('admin.artikel');
+                Route::get('/table', [ArtikelController::class, 'table']);
+                Route::post('/store', [ArtikelController::class, 'store']);
+                Route::get('/show/{id}', [ArtikelController::class, 'show']);
+                Route::put('/update/{id}', [ArtikelController::class, 'update']);
+                Route::delete('/destroy/{id}', [ArtikelController::class, 'destroy']);
+            });
+
+            Route::prefix('kategori')->group(function () {
+                Route::get('/', [KategoriController::class, 'index'])->name('admin.kategori');
+                Route::get('/table', [KategoriController::class, 'table']);
+                Route::post('/store', [KategoriController::class, 'store']);
+                Route::get('/show/{id?}', [KategoriController::class, 'show']);
+                Route::put('/update/{id}', [KategoriController::class, 'update']);
+                Route::delete('/destroy/{id}', [KategoriController::class, 'destroy']);
+            });
+        });
+
+        Route::prefix('data')->group(function () {
+            Route::prefix('struktur')->group(function () {
+                Route::get('/', [StrukturController::class, 'index'])->name('admin.struktur');
+                Route::get('/table/{id?}', [StrukturController::class, 'table']);
+                Route::post('/store', [StrukturController::class, 'store']);
+                Route::get('/show/{id?}', [StrukturController::class, 'show']);
+                Route::put('/update/{id}', [StrukturController::class, 'update']);
+                Route::delete('/destroy/{id}', [StrukturController::class, 'destroy']);
+            });
+            Route::prefix('organisasi')->group(function () {
+                Route::get('/', [OrganisasiController::class, 'index'])->name('admin.organisasi');
+                Route::get('/table', [OrganisasiController::class, 'table']);
+                Route::post('/store', [OrganisasiController::class, 'store']);
+                Route::get('/show/{id?}', [OrganisasiController::class, 'show']);
+                Route::get('/periode', [OrganisasiController::class, 'periode']);
+                Route::put('/update/{id}', [OrganisasiController::class, 'update']);
+                Route::delete('/destroy/{id}', [OrganisasiController::class, 'destroy']);
+            });
+            Route::prefix('mahasiswa')->group(function () {
+                Route::get('/', [MahasiswaController::class, 'index'])->name('admin.mahasiswa');
+                Route::get('/table', [MahasiswaController::class, 'table']);
+                Route::post('/store', [MahasiswaController::class, 'store']);
+                Route::post('/import', [MahasiswaController::class, 'import']);
+                Route::get('/show/{id?}', [MahasiswaController::class, 'show']);
+                Route::get('/select', [MahasiswaController::class, 'select']);
+                Route::put('/update/{id}', [MahasiswaController::class, 'update']);
+                Route::delete('/destroy/{id}', [MahasiswaController::class, 'destroy']);
+            });
+            Route::prefix('prestasi')->group(function () {
+                Route::get('/', [PrestasiController::class, 'index'])->name('admin.prestasi');
+                Route::get('/table', [PrestasiController::class, 'table']);
+                Route::post('/store', [PrestasiController::class, 'store']);
+                Route::get('/show/{id?}', [PrestasiController::class, 'show']);
+                Route::put('/update/{id}', [PrestasiController::class, 'update']);
+                Route::delete('/destroy/{id}', [PrestasiController::class, 'destroy']);
+            });
+        });
+        Route::prefix('layanan')->group(function () {
+            Route::prefix('dana')->group(function () {
+                Route::get('/', [DanaController::class, 'index'])->name('admin.dana');
+                Route::get('/table', [DanaController::class, 'table']);
+                Route::post('/store', [DanaController::class, 'store']);
+                Route::get('/show/{id?}', [DanaController::class, 'show']);
+                Route::put('/update/{id}', [DanaController::class, 'update']);
+                Route::delete('/destroy/{id}', [DanaController::class, 'destroy']);
+            });
+            Route::prefix('kegiatan')->group(function () {
+                Route::get('/', [KegiatanController::class, 'index'])->name('admin.kegiatan');
+                Route::get('/table', [KegiatanController::class, 'table']);
+                Route::post('/store', [KegiatanController::class, 'store']);
+                Route::get('/show/{id?}', [KegiatanController::class, 'show']);
+                Route::put('/update/{id}', [KegiatanController::class, 'update']);
+                Route::delete('/destroy/{id}', [KegiatanController::class, 'destroy']);
+            });
+        });
+        Route::prefix('profile')->group(function () {
+            Route::get('/', [AdminController::class, 'profile'])->name('admin.profile');
+            Route::put('/picture/{id}', [AdminController::class, 'picture']);
+            Route::put('/password/{id}', [AdminController::class, 'password']);
         });
     });
 });
