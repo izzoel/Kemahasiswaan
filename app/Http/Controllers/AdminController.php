@@ -87,31 +87,38 @@ class AdminController extends Controller
         $data = [
             'title' => env('APP_NAME') . ' | ' . strtoupper(request()->segment(1)),
             'menuData' => $request->get('menuData'),
-            'tahun_beasiswa_sekarang' => $tahunBeasiswaTerbaru,
-            'tahun_prestasi_sekarang' => $tahunPrestasiTerbaru,
-            'tahun_konseling_sekarang' => $tahunKonselingTerbaru,
-            'olahraga' => $olahraga,
-            'sains' => $sains,
-            'seni' => $seni,
-            'lainnya' => $lainnya,
-            'konseling_baru' => $konseling_baru->tanggal,
-            'konseling_selesai' => $konseling_selesai->tanggal,
-            'nama_mahasiswa_akademik' => $mahasiswaAkademik?->mahasiswa?->nama . " -- " . Carbon::parse($mahasiswaAkademik->mahasiswa->updated_at)->translatedFormat('d F Y H:i') ?? '-',
-            'nama_mahasiswa_nonakademik' => $mahasiswaNonAkademik?->mahasiswa?->nama . " -- " . Carbon::parse($mahasiswaNonAkademik->mahasiswa->updated_at)->translatedFormat('d F Y H:i')  ?? '-',
-            'organisasi' => Organisasi::where('periode', Organisasi::max('periode'))->get(),
-            'struktur' => $struktur,
-            'total_beasiswa' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru)->count(),
-            'total_beasiswa_akademik' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru)->where('beasiswa', 'akademik')->count(),
-            'total_beasiswa_nonakademik' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru)->where('beasiswa', 'nonakademik')->count(),
-            'total_prestasi' => Prestasi::where('tahun', Prestasi::max('tahun'))->count(),
-            'total_prestasi_olahraga' => Prestasi::where('tahun', $tahunPrestasiTerbaru)->where('jenis', 'olahraga')->count(),
-            'total_prestasi_sains' => Prestasi::where('tahun', $tahunPrestasiTerbaru)->where('jenis', 'sains')->count(),
-            'total_prestasi_seni' => Prestasi::where('tahun', $tahunPrestasiTerbaru)->where('jenis', 'seni')->count(),
-            'total_prestasi_lainnya' => Prestasi::where('tahun', $tahunPrestasiTerbaru)->where('jenis', 'lainnya')->count(),
-            'total_konseling' => Konseling::whereYear('created_at', $tahunKonselingTerbaru)->count(),
-            'total_konseling_baru' => Konseling::where('status', 'baru')->whereYear('created_at', $tahunKonselingTerbaru)->count(),
-            'total_konseling_selesai' => Konseling::where('status', 'selesai')->whereYear('created_at', $tahunKonselingTerbaru)->count(),
+            'tahun_beasiswa_sekarang' => $tahunBeasiswaTerbaru ?? '-',
+            'tahun_prestasi_sekarang' => $tahunPrestasiTerbaru ?? '-',
+            'tahun_konseling_sekarang' => $tahunKonselingTerbaru ?? '-',
+            'olahraga' => $olahraga ?? [],
+            'sains' => $sains ?? [],
+            'seni' => $seni ?? [],
+            'lainnya' => $lainnya ?? [],
+            'konseling_baru' => optional($konseling_baru)->tanggal ?? '-',
+            'konseling_selesai' => optional($konseling_selesai)->tanggal ?? '-',
+            'nama_mahasiswa_akademik' => optional($mahasiswaAkademik?->mahasiswa)->nama
+                ? optional($mahasiswaAkademik?->mahasiswa)->nama . " -- " .
+                Carbon::parse(optional($mahasiswaAkademik?->mahasiswa)->updated_at)->translatedFormat('d F Y H:i')
+                : '-',
+            'nama_mahasiswa_nonakademik' => optional($mahasiswaNonAkademik?->mahasiswa)->nama
+                ? optional($mahasiswaNonAkademik?->mahasiswa)->nama . " -- " .
+                Carbon::parse(optional($mahasiswaNonAkademik?->mahasiswa)->updated_at)->translatedFormat('d F Y H:i')
+                : '-',
+            'organisasi' => Organisasi::where('periode', Organisasi::max('periode'))->get() ?? [],
+            'struktur' => $struktur ?? [],
+            'total_beasiswa' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru ?? now()->year)->count(),
+            'total_beasiswa_akademik' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru ?? now()->year)->where('beasiswa', 'akademik')->count(),
+            'total_beasiswa_nonakademik' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru ?? now()->year)->where('beasiswa', 'nonakademik')->count(),
+            'total_prestasi' => Prestasi::where('tahun', Prestasi::max('tahun') ?? now()->year)->count(),
+            'total_prestasi_olahraga' => Prestasi::where('tahun', $tahunPrestasiTerbaru ?? now()->year)->where('jenis', 'olahraga')->count(),
+            'total_prestasi_sains' => Prestasi::where('tahun', $tahunPrestasiTerbaru ?? now()->year)->where('jenis', 'sains')->count(),
+            'total_prestasi_seni' => Prestasi::where('tahun', $tahunPrestasiTerbaru ?? now()->year)->where('jenis', 'seni')->count(),
+            'total_prestasi_lainnya' => Prestasi::where('tahun', $tahunPrestasiTerbaru ?? now()->year)->where('jenis', 'lainnya')->count(),
+            'total_konseling' => Konseling::whereYear('created_at', $tahunKonselingTerbaru ?? now()->year)->count(),
+            'total_konseling_baru' => Konseling::where('status', 'baru')->whereYear('created_at', $tahunKonselingTerbaru ?? now()->year)->count(),
+            'total_konseling_selesai' => Konseling::where('status', 'selesai')->whereYear('created_at', $tahunKonselingTerbaru ?? now()->year)->count()
         ];
+
         return view('auth.' . request()->segment(1) . '.pages.section', compact('data'));
     }
 
@@ -175,24 +182,25 @@ class AdminController extends Controller
         }
 
         $statistik = [
-            'update_kegiatan_tanggal' => $updateKegiatan->pluck('tanggal'),
-            'update_kegiatan' => $updateKegiatan->pluck('jumlah'),
-            'update_dana_tanggal' => $updateDana->pluck('tanggal'),
-            'update_dana' => $updateDana->pluck('jumlah'),
-            'tahun_beasiswa_sekarang' => $tahunBeasiswaTerbaru,
-            'tahun_prestasi_sekarang' => $tahunPrestasiTerbaru,
-            'tahun_konseling_sekarang' => $tahunKonselingTerbaru,
-            'jenis_beasiswa' => $jenisBeasiswa,
-            'jumlah_beasiswa' => $jumlahBeasiswa,
-            'jenis_prestasi' => $jenisPrestasi,
-            'jumlah_prestasi' => $jumlahPrestasi,
-            'status_konseling' => $statusKonseling,
-            'jumlah_konseling' => $jumlahKonseling,
-            'total_organisasi' => $totalOrganisasi,
-            'total_konseling' => Konseling::whereYear('created_at', $tahunKonselingTerbaru)->count(),
-            'total_beasiswa' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru)->count(),
-            'total_prestasi' => Prestasi::where('tahun', $tahunPrestasiTerbaru)->count(),
+            'update_kegiatan_tanggal' => $updateKegiatan?->pluck('tanggal') ?? collect(),
+            'update_kegiatan' => $updateKegiatan?->pluck('jumlah') ?? collect(),
+            'update_dana_tanggal' => $updateDana?->pluck('tanggal') ?? collect(),
+            'update_dana' => $updateDana?->pluck('jumlah') ?? collect(),
+            'tahun_beasiswa_sekarang' => $tahunBeasiswaTerbaru ?? '-',
+            'tahun_prestasi_sekarang' => $tahunPrestasiTerbaru ?? '-',
+            'tahun_konseling_sekarang' => $tahunKonselingTerbaru ?? '-',
+            'jenis_beasiswa' => $jenisBeasiswa ?? [],
+            'jumlah_beasiswa' => $jumlahBeasiswa ?? [],
+            'jenis_prestasi' => $jenisPrestasi ?? [],
+            'jumlah_prestasi' => $jumlahPrestasi ?? [],
+            'status_konseling' => $statusKonseling ?? [],
+            'jumlah_konseling' => $jumlahKonseling ?? [],
+            'total_organisasi' => $totalOrganisasi ?? 0,
+            'total_konseling' => Konseling::whereYear('created_at', $tahunKonselingTerbaru ?? now()->year)->count(),
+            'total_beasiswa' => Beasiswa::whereYear('created_at', $tahunBeasiswaTerbaru ?? now()->year)->count(),
+            'total_prestasi' => Prestasi::where('tahun', $tahunPrestasiTerbaru ?? now()->year)->count(),
         ];
+
 
         return response()->json($statistik);
     }
