@@ -17,8 +17,7 @@
             },
             {
                 data: 'nama',
-                name: 'nama',
-                className: 'text-center'
+                name: 'nama'
             },
             {
                 data: 'logo',
@@ -74,7 +73,6 @@
         ],
     });
 
-    // Ketika dropdown periode berubah, refresh DataTable
     $('#filter_periode').on('change', function() {
         table.ajax.reload();
     });
