@@ -243,6 +243,21 @@
         }, 2000); // refresh tiap 15 detik
     </script>
 
+    <script>
+        let idleTime = 0;
+        const logoutAfter = 120; // menit
+
+        const idleInterval = setInterval(() => {
+            idleTime++;
+            if (idleTime >= logoutAfter) {
+                window.location.href = "{{ route('logout') }}";
+            }
+        }, 60000); // 1 menit = 60000ms
+
+        document.onmousemove = document.onkeypress = () => {
+            idleTime = 0;
+        };
+    </script>
 
     {{-- @include('auth.scripts.datatables') --}}
     @if (count(request()->segments()) > 1)

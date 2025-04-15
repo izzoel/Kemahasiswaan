@@ -1,10 +1,5 @@
 <?php
 
-use App\Models\Artikel;
-use App\Models\Prestasi;
-use App\Models\Struktur;
-use App\Models\Mahasiswa;
-use App\Models\Organisasi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\MenuMiddleware;
 use App\Http\Controllers\DanaController;
@@ -21,6 +16,7 @@ use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Middleware\CekAuthMiddleware;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/artikel', [LandingController::class, 'index']);
@@ -56,7 +52,7 @@ Route::get('/notif/realtime', function () {
     ]);
 });
 
-Route::middleware([MenuMiddleware::class])->group(function () {
+Route::middleware([MenuMiddleware::class, CekAuthMiddleware::class])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index']);
 
