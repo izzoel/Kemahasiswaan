@@ -5,15 +5,24 @@
   @endphp
 
   <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-      <div class="card h-80">
-          <img class="card-img-top mb-2" src="{{ asset('img/logo/' . $data['menuData']['logo'] . '.svg') }}" alt="{{ $data['menuData']['logo'] }}">
+      <div class="app-brand d-flex flex-column align-items-center text-center">
+          <div class=" mt-4 h-80">
+              @if (auth()->check())
+                  <img class="card-img-top rounded" src="{{ asset('img/logo/' . $data['menuData']['logo'] . '.svg') }}" alt="{{ $data['menuData']['logo'] }}">
+              @elseif (auth('organisasi')->check())
+                  <img class="card-img-top rounded" src="{{ asset('logo/' . auth('organisasi')->user()->logo) }}" alt="{{ auth('organisasi')->user()->nama }}">
+              @endif
+
+          </div>
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large text-white ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+          </a>
       </div>
-      {{-- <div class="menu-inner-shadow"></div> --}}
 
       @if (auth()->check())
           <ul class="menu-inner py-1 pt-4">
               <!-- Dashboard -->
-              <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/dashboard') ? 'active' : '' }} ">
+              <li class="menu-item {{ $menu == $open ? 'open' : '' }}">
                   <a href="{{ url('/' . request()->segment(1) . '/dashboard') }}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-home-circle"></i>
                       <div>Dashboard</div>
@@ -37,6 +46,11 @@
                               <div>Kategori</div>
                           </a>
                       </li>
+                      <li class="menu-item {{ $url == $menu . '/pedoman' ? 'active' : '' }}">
+                          <a href="{{ url('/' . request()->segment(1) . '/post/pedoman') }}" class="menu-link">
+                              <div>Pedoman</div>
+                          </a>
+                      </li>
                   </ul>
               </li>
 
@@ -48,6 +62,11 @@
                   </a>
 
                   <ul class="menu-sub">
+                      <li class="menu-item {{ $url == $menu . '/beasiswa' ? 'active' : '' }}">
+                          <a href="{{ url('/' . request()->segment(1) . '/data/beasiswa') }}" class="menu-link">
+                              <div>Beasiswa</div>
+                          </a>
+                      </li>
                       <li class="menu-item {{ $url == $menu . '/organisasi' ? 'active' : '' }}">
                           <a href="{{ url('/' . request()->segment(1) . '/data/organisasi') }}" class="menu-link">
                               <div>Organisasi Mahasiswa</div>
@@ -74,43 +93,23 @@
                   </a>
 
                   <ul class="menu-sub">
-                      <li class="menu-item {{ $url == $menu . '/kegiatan' ? 'active' : '' }}">
-                          <a href="{{ url('/' . request()->segment(1) . '/layanan/kegiatan') }}" class="menu-link">
-                              <div>Kegiatan</div>
-                          </a>
-                      </li>
-
                       <li class="menu-item {{ $url == $menu . '/dana' ? 'active' : '' }}">
                           <a href="{{ url('/' . request()->segment(1) . '/layanan/dana') }}" class="menu-link">
                               <div>Dana</div>
                           </a>
                       </li>
+                      <li class="menu-item {{ $url == $menu . '/kegiatan' ? 'active' : '' }}">
+                          <a href="{{ url('/' . request()->segment(1) . '/layanan/kegiatan') }}" class="menu-link">
+                              <div>Kegiatan</div>
+                          </a>
+                      </li>
+                      <li class="menu-item {{ $url == $menu . '/konseling' ? 'active' : '' }}">
+                          <a href="{{ url('/' . request()->segment(1) . '/layanan/konseling') }}" class="menu-link">
+                              <div>Konseling</div>
+                          </a>
+                      </li>
                   </ul>
               </li>
-
-              <!-- Mahasiswa -->
-              {{-- <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/mahasiswa') ? 'active' : '' }} ">
-                  <a href="{{ route(request()->segment(1) . '_mahasiswa') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-user"></i>
-                      <div data-i18n="Mahasiswa">Mahasiswa</div>
-                  </a>
-              </li>
-
-              <!-- Laporan -->
-              <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/lapor') ? 'active' : '' }} ">
-                  <a href="{{ route(request()->segment(1) . '_lapor') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-comment-dots"></i>
-                      <div data-i18n="Laporan">Laporan</div>
-                  </a>
-              </li>
-
-              <!-- Setting -->
-              <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/setting') ? 'active' : '' }} ">
-                  <a href="{{ route(request()->segment(1) . '_setting') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-cog"></i>
-                      <div data-i18n="Setting">Setting</div>
-                  </a>
-              </li> --}}
 
               <li class="menu-item">
                   <a href="{{ route('logout') }}" class="menu-link">
@@ -131,7 +130,6 @@
                   </a>
               </li>
 
-
               <!-- Data -->
               <li class="menu-item {{ $menu == $open . '/data' ? 'open' : '' }}">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -145,8 +143,8 @@
                               <div>Struktur Organisasi</div>
                           </a>
                       </li>
-                      <li class="menu-item {{ $url == $menu . '/organisasi' ? 'active' : '' }}">
-                          <a href="{{ url('/' . request()->segment(1) . '/data/organisasi') }}" class="menu-link">
+                      <li class="menu-item {{ $url == $menu . '/program' ? 'active' : '' }}">
+                          <a href="{{ url('/' . request()->segment(1) . '/data/program') }}" class="menu-link">
                               <div>Program Kerja</div>
                           </a>
                       </li>
@@ -174,30 +172,6 @@
                       </li>
                   </ul>
               </li>
-
-              <!-- Mahasiswa -->
-              {{-- <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/mahasiswa') ? 'active' : '' }} ">
-                  <a href="{{ route(request()->segment(1) . '_mahasiswa') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-user"></i>
-                      <div data-i18n="Mahasiswa">Mahasiswa</div>
-                  </a>
-              </li>
-
-              <!-- Laporan -->
-              <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/lapor') ? 'active' : '' }} ">
-                  <a href="{{ route(request()->segment(1) . '_lapor') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-comment-dots"></i>
-                      <div data-i18n="Laporan">Laporan</div>
-                  </a>
-              </li>
-
-              <!-- Setting -->
-              <li class="menu-item {{ request()->url() == url('/' . request()->segment(1) . '/setting') ? 'active' : '' }} ">
-                  <a href="{{ route(request()->segment(1) . '_setting') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-cog"></i>
-                      <div data-i18n="Setting">Setting</div>
-                  </a>
-              </li> --}}
 
               <li class="menu-item">
                   <a href="{{ route('logout') }}" class="menu-link">

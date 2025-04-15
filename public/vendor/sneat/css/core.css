@@ -15642,7 +15642,6 @@ html:not(.layout-footer-fixed) .content-wrapper {
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;
-  overflow: hidden;
   line-height: 1;
   min-height: 1px;
   align-items: center;

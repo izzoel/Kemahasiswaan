@@ -8,8 +8,8 @@ class Kegiatan extends Model
 {
     protected $fillable = [
         'id_organisasi',
-        'rentang_tanggal',
         'kegiatan',
+        'pelaksanaan',
         'anggaran',
         'proposal',
         'status'

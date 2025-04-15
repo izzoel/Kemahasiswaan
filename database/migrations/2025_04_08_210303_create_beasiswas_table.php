@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('strukturs', function (Blueprint $table) {
+        Schema::create('beasiswas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_organisasi')->constrained('organisasis')->onDelete('cascade');
-            $table->foreignId('nim')->constrained('mahasiswas')->onDelete('cascade');
-            $table->string('jabatan');
-            $table->string('profil');
+            $table->string('nim');
+            $table->foreign('nim')->references('nim')->on('mahasiswas')->onDelete('cascade');
+            $table->foreignId('id_prestasi')->constrained('prestasis')->onDelete('cascade');
+            $table->string('beasiswa');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('strukturs');
+        Schema::dropIfExists('beasiswas');
     }
 };

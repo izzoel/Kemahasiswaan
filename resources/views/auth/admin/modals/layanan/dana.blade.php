@@ -1,30 +1,26 @@
-<div class="modal fade" id="M_S_organisasi" tabindex="-1">
+<div class="modal fade" id="M_S_dana" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form action="{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/' . request()->segment(3) . '/store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        Ormawa <span class="badge bg-primary text-white">Baru</span>
+                        Dana <span class="badge bg-primary text-white">Baru</span>
                     </h5>
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label" for="nama">Nama<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nama" name="nama" required />
+                        <label for="kegiatan" class="form-label">Kegiatan</label>
+                        <select class="form-select" id="kegiatan" name="kegiatan"></select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="logo">Logo<span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" id="logo" name="logo" required />
+                        <label class="form-label" for="dana">Keperluan Dana<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="dana" name="dana" required />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="anggaran">Anggaran<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="anggaran" name="anggaran" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="periode">Periode<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="periode" name="periode" placeholder="Pilih Tahun" required style="cursor: default;">
+                        <label class="form-label" for="berkas">Berkas<span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" id="berkas" name="berkas" required />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -40,10 +36,10 @@
     </div>
 </div>
 
-<div class="modal modalUpdate fade" id="M_U_organisasi" tabindex="-1" aria-hidden="true">
+<div class="modal modalUpdate fade" id="M_U_dana" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="M_F_organisasi" action="{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/' . request()->segment(3) . '/update') }}" method="POST">
+            <form id="M_F_dana" action="{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/' . request()->segment(3) . '/update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -53,29 +49,44 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    @if (auth()->check())
+                        @php
+                            $disabled = 'disabled';
+                            $margin = 'mt-0';
+                        @endphp
+                    @elseif (auth('organisasi')->check())
+                        @php
+                            $disabled = '';
+                            $margin = 'mt-2';
+                        @endphp
+                    @endif
                     <div class="mb-3">
-                        <label class="form-label" for="U_nama">Nama<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="U_nama" name="nama" required />
+                        <label for="U_kegiatan" class="form-label">Kegiatan</label>
+                        <select class="form-select" id="U_kegiatan" name="kegiatan" {{ $disabled }}></select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="U_logo">Logo<span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" id="U_logo" name="logo" />
-                        <div class="mt-2">
-                            <img id="preview_logo" src="" alt="logo" class="img-thumbnail" width="100">
+                        <label class="form-label" for="U_dana">Keperluan Dana</label>
+                        <input type="text" class="form-control" id="U_dana" name="dana" {{ $disabled }} />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="U_berkas">Berkas</label>
+                        @if (auth('organisasi')->check())
+                            <input type="file" class="form-control" id="U_berkas" name="berkas" />
+                        @endif
+                        <div id="U_berkas_link" class="{{ $margin }}"></div>
+                    </div>
+                    @if (auth()->check())
+                        <div class="divider mt-4 mb-0">
+                            <div class="divider-text">Status</div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="U_anggaran">Anggaran<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="U_anggaran" name="anggaran" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="U_periode">Periode<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="U_periode" name="periode" placeholder="Pilih Tahun" required style="cursor: default;">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="keterangan">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="..." />
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="U_status">Status</label>
+                            <select class="form-select" name="status">
+                                <option value="Disetujui">Disetujui</option>
+                                <option value="Ditolak">Ditolak</option>
+                            </select>
+                        </div>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -90,11 +101,11 @@
     </div>
 </div>
 
-<div class="modal modalDelete fade" id="M_D_organisasi" tabindex="-1" aria-hidden="true">
+<div class="modal modalDelete fade" id="M_D_dana" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="delete_organisasi">Konfirmasi Hapus</h5>
+                <h5 class="modal-title" id="delete_dana">Konfirmasi Hapus</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

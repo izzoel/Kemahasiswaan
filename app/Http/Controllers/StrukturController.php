@@ -71,7 +71,6 @@ class StrukturController extends Controller
         return view('auth.' . request()->segment(1) . '.pages.section');
     }
 
-
     public function store(Request $request)
     {
         $struktur = Struktur::where('nim', $request->nim)->first();
@@ -125,7 +124,7 @@ class StrukturController extends Controller
             'jabatan' => $struktur->jabatan,
             'profil' => $struktur->profil,
             'nama_mahasiswa' => $struktur->mahasiswa ? preg_replace('/[^A-Za-z0-9_-]/', ' ', $struktur->mahasiswa->nama) : null,
-            'nama_organisasi' => $struktur->organisasi ? preg_replace('/[^A-Za-z0-9_-]/', '_', $struktur->organisasi->nama) : null,
+            'nama_organisasi' => $struktur->organisasi ? preg_replace('/[^A-Za-z0-9_-]/', ' ', $struktur->organisasi->nama) : null,
         ]);
     }
 

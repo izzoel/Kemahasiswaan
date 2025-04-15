@@ -7,9 +7,12 @@
     <div class="navbar-nav-left d-flex align-items-center" id="navbar-collapse-left">
         <ul class="navbar-nav flex-row align-items-center">
             <li>
-                <a class="nav-link" href="{{ url('/admin/dashboard') }}">KEMAHASISWAAN</a>
+                <a class="nav-link d-flex align-items-center" href="{{ url('/admin/dashboard') }}">
+                    <span class="d-none d-md-inline">KEMAHASISWAAN</span>
+                </a>
             </li>
-            <div class="text-muted fw-semibold px-2 fs-5"> / </div>
+            <div class="text-muted fw-semibold px-2 fs-5 d-none d-md-inline"> / </div>
+
             @php
                 $segments = request()->segments();
                 $url = url('/');
@@ -17,7 +20,7 @@
 
             @foreach ($segments as $key => $segment)
                 @if ($key > 0)
-                    <div class="text-muted fw-semibold px-2 fs-5"> / </div>
+                    <div class="text-muted fw-semibold px-2 fs-5 d-none d-md-inline"> / </div>
                 @endif
 
                 @php
@@ -26,45 +29,98 @@
 
                 <li>
                     @if ($key < 2)
-                        <span class="nav-link text-muted">{{ ucwords(str_replace('-', ' ', $segment)) }}</span>
+                        <span class="nav-link text-muted d-none d-md-inline">
+                            {{ ucwords(str_replace('-', ' ', $segment)) }}
+                        </span>
                     @else
-                        <a class="nav-link" href="{{ $url }}">
+                        <a class="nav-link d-none d-md-inline" href="{{ $url }}">
                             {{ ucwords(str_replace('-', ' ', $segment)) }}
                         </a>
                     @endif
                 </li>
             @endforeach
+        </ul>
 
+        <!-- Ini untuk elemen tambahan di layar kecil -->
+        <ul class="navbar-nav flex-row align-items-center d-block d-md-none">
         </ul>
     </div>
 
 
+
     <div class="navbar-nav-right d-flex align-items-center ms-auto" id="navbar-collapse-right">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <li class="nav-item me-3">
-                {{-- @if (auth()->check())
-                    <a href="{{ route(strtolower($data['menuData']['menu']) . '_lapor') }}" class="btn btn-sm btn-outline-danger">
-                        Lapor
-                        @if ($data['menuData']['notif'] > 0)
-                            <span class="badge">{{ $data['menuData']['notif'] }}</span>
-                        @endif
-                    </a>
-                @elseif (auth('mahasiswa')->check())
-                    <button type="button" class="laporNavbar btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                        data-bs-target="#lapor_{{ strtolower($data['menuData']['menu']) }}"
-                        {{ strtolower($data['menuData']['menu']) == 'dversi' && session('sudah_mengisi') ? 'disabled' : '' }}>
-                        Lapor !
-                    </button>
-                @endif --}}
-            </li>
 
+            @php
+                use App\Models\Beasiswa;
+                use App\Models\Konseling;
+                use App\Models\Dana;
+                use App\Models\Kegiatan;
+
+                $pendingBeasiswa = Beasiswa::where('status', 'pending')->get();
+                $baruKonseling = Konseling::where('status', 'baru')->get();
+                $baruDana = Dana::where('status', 'Ditinjau')->get();
+                $baruKegiatan = Kegiatan::where('status', 'Ditinjau')->get();
+                $jumlahNotif = $pendingBeasiswa->count() + $baruKonseling->count() + $baruDana->count() + $baruKegiatan->count();
+            @endphp
+            @if (auth()->check())
+                @if ($jumlahNotif > 0)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle hide-arrow" href="#" data-bs-toggle="dropdown">
+                            <i class='bx bx-bell' style='color:#ff3e1d; font-size: 1.8rem'></i>
+                            <span class="translate-middle badge rounded-pill bg-danger">
+                                {{ $jumlahNotif }}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" id="dropdown-notifikasi">
+                            @foreach ($pendingBeasiswa as $beasiswa)
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ url('/admin/data/beasiswa') }}">
+                                        <div style="font-size: 0.85rem">
+                                            Beasiswa <strong>{{ $beasiswa->beasiswa }}</strong>
+                                            <span class="badge bg-danger">{{ $beasiswa->mahasiswa->nama }}</span> menunggu
+                                            <span class="badge bg-danger">verifikasi</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                            @foreach ($baruKonseling as $konseling)
+                                <li>
+                                    <a class="dropdown-item" style="font-size: 0.8rem" href="{{ url('/admin/layanan/konseling') }}">
+                                        Konseling <strong>baru</strong>
+                                        <span class="badge bg-danger">{{ $konseling->mahasiswa->nama }}</span> terjadwal
+                                        <span class="badge bg-danger">{{ $konseling->tanggal }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                            @foreach ($baruDana as $dana)
+                                <li>
+                                    <a class="dropdown-item" style="font-size: 0.8rem" href="{{ url('/admin/layanan/dana') }}">
+                                        <span class="badge bg-warning">{{ $dana->organisasi->nama }}</span> Pengajuan Dana <strong>baru</strong> menunggu
+                                        <span class="badge bg-warning">verifikasi</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                            @foreach ($baruKegiatan as $kegiatan)
+                                <li>
+                                    <a class="dropdown-item" style="font-size: 0.8rem" href="{{ url('/admin/layanan/kegiatan') }}">
+                                        <span class="badge bg-info">{{ $kegiatan->organisasi->nama }}</span> Pengajuan Kegiatan <strong>baru</strong> menunggu
+                                        <span class="badge bg-info">verifikasi</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+            @endif
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         @if (auth()->check())
                             <img src="{{ asset('logo/' . auth()->user()->logo) }}" alt="admin" class="w-px-40 h-auto" />
                         @elseif (auth('organisasi')->check())
-                            <img src="{{ asset('logo/' . auth('organisasi')->user()->logo) }}" alt="{{ auth('organisasi')->user()->nama }}" class="w-px-40 h-auto rounded-circle" />
+                            <img src="{{ asset('logo/' . auth('organisasi')->user()->logo) }}" alt="{{ auth('organisasi')->user()->nama }}"
+                                class="w-px-40 h-auto rounded-circle" />
                         @endif
                     </div>
                 </a>
@@ -110,37 +166,6 @@
                         </a>
                     </li>
                 </ul>
-                {{-- <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar avatar-online">
-
-                                        @if (auth()->check())
-                                            <img src="{{ asset('img/avatars/kemahasiswaan.png') }}" alt="admin" class="w-px-40 h-auto" />
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">
-                                        {{ auth()->user()->name }}
-                                    </span>
-                                    <small class="text-muted">{{ 'Kemahasiswaan' }}</small>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}">
-                            <i class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                    </li>
-                </ul> --}}
             </li>
         </ul>
     </div>

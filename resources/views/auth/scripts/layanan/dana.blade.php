@@ -1,47 +1,51 @@
 <script>
+    let columns = [{
+        data: 'DT_RowIndex',
+        name: 'DT_RowIndex',
+        className: 'text-center',
+        orderable: false,
+        searchable: false
+    }];
+
+    let isOrganisasi = {{ Auth::guard('organisasi')->check() ? 'true' : 'false' }};
+
+    if (!isOrganisasi) {
+        columns.push({
+            data: 'organisasi',
+            name: 'organisasi.nama',
+            className: 'text-center',
+            orderable: true,
+            searchable: true
+        });
+    }
+
+    columns.push({
+        data: 'kegiatan',
+        name: 'kegiatan.kegiatan'
+    }, {
+        data: 'pelaksanaan',
+        name: 'pelaksanaan'
+    }, {
+        data: 'dana',
+        name: 'dana',
+        className: 'text-center'
+    }, {
+        data: 'status',
+        name: 'status',
+        className: 'text-center'
+    }, {
+        data: 'aksi',
+        name: 'aksi',
+        className: 'text-center'
+    });
+
     $('#table_' + '{{ request()->segment(3) }}').DataTable({
         serverSide: true,
         processing: true,
         ajax: {
             url: "{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/' . request()->segment(3) . '/table') }}"
         },
-        columns: [{
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-                className: 'text-center',
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: 'organisasi',
-                name: 'organisasi'
-            },
-            {
-                data: 'kegiatan',
-                name: 'kegiatan',
-            },
-            {
-                data: 'rentang_tanggal',
-                name: 'rentang_tanggal',
-            },
-            {
-                data: 'anggaran',
-                name: 'anggaran',
-            },
-            {
-                data: 'berkas',
-                name: 'berkas',
-            },
-            {
-                data: 'status',
-                name: 'status',
-            },
-            {
-                data: 'aksi',
-                name: 'aksi',
-                className: 'text-center'
-            }
-        ],
+        columns: columns,
         dom: '<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6 d-flex flex-row-reverse"p>>',
         language: {
             "lengthMenu": "Tampilkan _MENU_ baris",
@@ -55,114 +59,115 @@
             [10, 25, 50, 100, "Semua"]
         ],
         columnDefs: [{
+            responsivePriority: 2,
+            targets: 5
+        }, {
             responsivePriority: 1,
             targets: -1
         }]
     });
 
-    $("#M_S_mahasiswa").on('show.bs.modal', function(e) {
-        ["#S_nim", "#S_nama", "#S_tempat_lahir", "#S_alamat"].forEach(function(selector) {
-            $(selector).on('keyup', function() {
-                this.value = this.value.toUpperCase();
-            });
-        });
-    })
-
-    $(document).on('click', '.U_B_mahasiswa', function() {
-        let nim = $(this).data("id").split('-').pop();
-
-        $(".modalUpdate").attr("id", "M_U_mahasiswa-" + nim);
-        $("#M_U_mahasiswa-" + nim).modal('show');
-        $("#U_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/update/" + nim);
-
-        $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/show/" + nim, function(data) {
-            if (data.kelamin == "L") {
-                var kelamin = "#U_l";
-            } else {
-                var kelamin = "#U_p";
-            }
-            $("#U_nim").val(data.nim);
-            $("#U_nama").val(data.nama);
-            $("#U_tempat_lahir").val(data.tempat_lahir);
-            $("#U_tanggal_lahir").val(data.tanggal_lahir);
-            $(kelamin).val(data.kelamin).prop('checked', true);
-            $("#U_prodi").val(data.prodi).prop('selected', true);
-            $("#U_hp").val(data.no_hp);
-            $("#U_alamat").val(data.alamat);
-        });
-
-        ["#U_nim", "#U_nama", "#U_tempat_lahir", "#U_alamat"].forEach(function(selector) {
-            $(selector).on('keyup', function() {
-                this.value = this.value.toUpperCase();
-            });
+    $('input[name="dana"]').on('keyup', function() {
+        $(this).val(function(index, value) {
+            return formatRupiah($(this).val(), 'Rp ');
         });
     });
 
-    $(document).on("click", ".D_B_mahasiswa", function() {
-        let nim = $(this).data("id");
+    $("#M_S_dana").on('show.bs.modal', function() {
+        let idOrganisasi = @json(auth('organisasi')->check() ? auth('organisasi')->user()->id : null);
 
-        $(".modalDelete").attr("id", "M_D_mahasiswa-" + nim);
-        $("#M_D_mahasiswa-" + nim).modal('show');
-        $("#D_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/destroy/" + nim);
+        if (idOrganisasi) {
+            $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/kegiatan/select/" + idOrganisasi, function(data) {
+                $("#kegiatan").empty().append('<option selected disabled value="">-- Pilih --</option>');
+                data.forEach(function(item) {
+                    $("#kegiatan").append(`<option value="${item.id}">${item.kegiatan}</option>`);
+                });
+            });
+        }
+    });
+
+    $(document).on('click', '.U_B_dana', function() {
+        let id = $(this).data("id").split('-').pop();
+
+        let modalId = "M_U_dana-" + id;
+        $(".modalUpdate").attr("id", modalId);
+        $("#" + modalId).modal('show');
+        $("#U_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/update/" + id);
+
+        $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/show/" + id, function(data) {
+            $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/kegiatan/select/" + data.id_organisasi, function(dataKegiatan) {
+                let select = $("#U_kegiatan");
+                select.empty().append('<option selected disabled value="">-- Pilih --</option>');
+
+                dataKegiatan.forEach(function(item) {
+                    let selected = item.id == data.id_kegiatan ? "selected" : "";
+                    select.append(`<option value="${item.id}" ${selected}>${item.kegiatan}</option>`);
+                });
+            });
+            $("#U_dana").val(formatRupiah(String(data.dana), 'Rp '));
+
+            // Kosongkan input file, karena tidak bisa set value
+            $("#U_berkas").val('');
+
+            // Tampilkan link file berkas
+            if (data.berkas) {
+                $("#U_berkas_link").html(
+                    `Lihat Berkas Proposal : <a href="/dana/berkas/${data.nama_organisasi}/${data.berkas}" target="_blank" class="text-primary">${data.berkas}</a>`
+                );
+            } else {
+                $("#U_berkas_link").html('');
+            }
+        });
+    });
+
+    $(document).on("click", ".D_B_dana", function() {
+        let id = $(this).data("id");
+
+        $(".modalDelete").attr("id", "M_D_dana-" + id);
+        $("#M_D_dana-" + id).modal('show');
+        $("#D_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/destroy/" + id);
     });
 
     $(document).ready(function() {
-        $(".importForm").on("submit", function(event) {
-            event.preventDefault();
+        $("#M_S_dana form").on("submit", function(e) {
+            e.preventDefault();
 
-            let form = $(this);
-            let formData = new FormData(this);
+            let btn = $(this).find("button[type='submit']");
+            let originalText = btn.html();
+            let formData = new FormData(this); // Ambil data form, termasuk file
 
-            // Tampilkan loading SweetAlert2
-            Swal.fire({
-                title: 'Ngupload data...',
-                html: 'Bentaran yaa...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
+            btn.html("<i class='bx bx-loader-circle bx-spin'></i>").prop("disabled", true);
 
-            // Kirim form dengan AJAX
             $.ajax({
-                url: form.attr("action"),
-                type: form.attr("method"),
+                url: $(this).attr("action"),
+                type: "POST",
                 data: formData,
-                processData: false,
-                contentType: false,
+                contentType: false, // Wajib agar bisa upload file
+                processData: false, // Wajib agar FormData dikirim apa adanya
                 success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil!',
-                        text: 'Data berhasil diimport!',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload(); // Reload halaman setelah sukses
-                    });
+                    if (response.status === "success") {
+                        showToast("success", response.message);
+                        $("#M_S_dana").modal("hide").find("form")[0].reset();
+                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload();
+                    } else {
+                        showToast("error", "Gagal menyimpan data.");
+                    }
                 },
                 error: function(xhr) {
-                    let errorMessage = "Terjadi kesalahan saat mengirim data.";
-
-                    // Jika server mengembalikan response JSON dengan message error
-                    if (xhr.responseJSON && xhr.responseJSON.message) {
-                        errorMessage = xhr.responseJSON.message;
-                    }
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal!',
-                        text: 'Terjadi kesalahan saat mengirim data.',
-                        footer: 'Error: ' + xhr.status + ' ' + xhr.statusText
-                    });
+                    let message = xhr.responseJSON?.message || "Terjadi kesalahan!";
+                    showToast("error", message);
+                },
+                complete: function() {
+                    btn.html(originalText).prop("disabled", false);
                 }
             });
         });
 
-        $("#M_U_mahasiswa form").on("submit", function(e) {
+        $("#M_U_dana form").on("submit", function(e) {
             e.preventDefault();
 
             let btn = $(this).find("button[type='submit']");
-            let id = $(".modalUpdate").attr("id").replace("M_U_mahasiswa-", "");
+            let id = $(".modalUpdate").attr("id").replace("M_U_dana-", "");
             let originalText = btn.html();
             let formData = new FormData(this);
 
@@ -171,7 +176,7 @@
             btn.html("<i class='bx bx-loader-circle bx-spin'></i>").prop("disabled", true);
 
             $.ajax({
-                url: $("#M_F_mahasiswa").attr("action") + "/" + id,
+                url: $("#M_F_dana").attr("action") + "/" + id,
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -180,8 +185,8 @@
                     if (response.status === "success") {
 
                         showToast("success", response.message);
-                        $("#M_U_mahasiswa-" + id).modal("hide");
-                        $("#table_mahasiswa").DataTable().ajax.reload(null, false);
+                        $("#M_U_dana-" + id).modal("hide");
+                        $("#table_dana").DataTable().ajax.reload(null, false);
                     } else {
                         showToast("error", "Gagal memperbarui data.");
                     }
@@ -189,7 +194,7 @@
                 error: function(xhr) {
                     let message = xhr.responseJSON?.message || "Terjadi kesalahan!";
                     showToast("error", message);
-                    console.log($("#M_F_mahasiswa").attr("action") + "/" + $(".modalUpdate").attr("id").replace("M_U_mahasiswa-", ""));
+                    console.log($("#M_F_dana").attr("action") + "/" + $(".modalUpdate").attr("id").replace("M_U_dana-", ""));
 
 
                 },

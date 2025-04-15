@@ -1,202 +1,344 @@
 <script>
-    $('#table_' + '{{ request()->segment(3) }}').DataTable({
-        serverSide: true,
-        processing: true,
-        ajax: {
-            url: "{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/' . request()->segment(3) . '/table') }}"
-        },
-        columns: [{
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-                className: 'text-center',
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: 'organisasi',
-                name: 'organisasi'
-            },
-            {
-                data: 'kegiatan',
-                name: 'kegiatan',
-            },
-            {
-                data: 'rentang_tanggal',
-                name: 'rentang_tanggal',
-            },
-            {
-                data: 'anggaran',
-                name: 'anggaran',
-            },
-            {
-                data: 'berkas',
-                name: 'berkas',
-            },
-            {
-                data: 'status',
-                name: 'status',
-            },
-            {
-                data: 'aksi',
-                name: 'aksi',
-                className: 'text-center'
-            }
-        ],
-        dom: '<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6 d-flex flex-row-reverse"p>>',
-        language: {
-            "lengthMenu": "Tampilkan _MENU_ baris",
-            "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
-            "search": "Cari:",
-            "emptyTable": "Tidak ada data yang tersedia",
-            "zeroRecords": "Tidak ada data yang ditemukan"
-        },
-        lengthMenu: [
-            [10, 25, 50, 100, -1],
-            [10, 25, 50, 100, "Semua"]
-        ],
-        columnDefs: [{
-            responsivePriority: 1,
-            targets: -1
-        }]
-    });
+    (function() {
+        let cardColor, headingColor, axisColor, shadeColor, borderColor;
 
-    $("#M_S_mahasiswa").on('show.bs.modal', function(e) {
-        ["#S_nim", "#S_nama", "#S_tempat_lahir", "#S_alamat"].forEach(function(selector) {
-            $(selector).on('keyup', function() {
-                this.value = this.value.toUpperCase();
-            });
-        });
-    })
+        cardColor = config.colors.white;
+        headingColor = config.colors.headingColor;
+        axisColor = config.colors.axisColor;
+        borderColor = config.colors.borderColor;
 
-    $(document).on('click', '.U_B_mahasiswa', function() {
-        let nim = $(this).data("id").split('-').pop();
+        const chartPrestasiStatistik = document.querySelector('#prestasiChart');
+        const chartBeasiswaStatistik = document.querySelector('#beasiswaChart');
+        const chartKonselingStatistik = document.querySelector('#konselingChart');
+        const chartLogbook = document.querySelector('#chartLogbook');
+        const chartGaugeTransaksi = document.querySelector('#gaugeTransaksi');
 
-        $(".modalUpdate").attr("id", "M_U_mahasiswa-" + nim);
-        $("#M_U_mahasiswa-" + nim).modal('show');
-        $("#U_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/update/" + nim);
+        fetch('/{{ request()->segment(1) }}/{{ request()->segment(2) }}/chart')
+            .then(response => response.json())
+            .then(data => {
+                // Configuration for the donut chart
+                const colorMap = {
+                    'olahraga': '#FFAB00',
+                    'sains': '#71dd37',
+                    'seni': '#696CFF'
+                };
 
-        $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/show/" + nim, function(data) {
-            if (data.kelamin == "L") {
-                var kelamin = "#U_l";
-            } else {
-                var kelamin = "#U_p";
-            }
-            $("#U_nim").val(data.nim);
-            $("#U_nama").val(data.nama);
-            $("#U_tempat_lahir").val(data.tempat_lahir);
-            $("#U_tanggal_lahir").val(data.tanggal_lahir);
-            $(kelamin).val(data.kelamin).prop('checked', true);
-            $("#U_prodi").val(data.prodi).prop('selected', true);
-            $("#U_hp").val(data.no_hp);
-            $("#U_alamat").val(data.alamat);
-        });
+                const defaultColor = '#00CFE8'; // warna untuk "lainnya" / yang tidak dikenali
+                const colors = data.jenis_prestasi.map(label => colorMap[label.toLowerCase()] || defaultColor);
 
-        ["#U_nim", "#U_nama", "#U_tempat_lahir", "#U_alamat"].forEach(function(selector) {
-            $(selector).on('keyup', function() {
-                this.value = this.value.toUpperCase();
-            });
-        });
-    });
-
-    $(document).on("click", ".D_B_mahasiswa", function() {
-        let nim = $(this).data("id");
-
-        $(".modalDelete").attr("id", "M_D_mahasiswa-" + nim);
-        $("#M_D_mahasiswa-" + nim).modal('show');
-        $("#D_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/destroy/" + nim);
-    });
-
-    $(document).ready(function() {
-        $(".importForm").on("submit", function(event) {
-            event.preventDefault();
-
-            let form = $(this);
-            let formData = new FormData(this);
-
-            // Tampilkan loading SweetAlert2
-            Swal.fire({
-                title: 'Ngupload data...',
-                html: 'Bentaran yaa...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
-            // Kirim form dengan AJAX
-            $.ajax({
-                url: form.attr("action"),
-                type: form.attr("method"),
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil!',
-                        text: 'Data berhasil diimport!',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload(); // Reload halaman setelah sukses
-                    });
-                },
-                error: function(xhr) {
-                    let errorMessage = "Terjadi kesalahan saat mengirim data.";
-
-                    // Jika server mengembalikan response JSON dengan message error
-                    if (xhr.responseJSON && xhr.responseJSON.message) {
-                        errorMessage = xhr.responseJSON.message;
+                const prestasiChartConfig = {
+                    chart: {
+                        height: 165,
+                        width: 130,
+                        type: 'donut'
+                    },
+                    labels: data.jenis_prestasi,
+                    series: data.jumlah_prestasi,
+                    colors: colors,
+                    stroke: {
+                        width: 5,
+                        colors: cardColor
+                    },
+                    dataLabels: {
+                        enabled: false,
+                        formatter: function(val, opt) {
+                            return parseInt(val);
+                        }
+                    },
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            right: 15
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '75%',
+                                labels: {
+                                    show: true,
+                                    value: {
+                                        fontSize: '1.5rem',
+                                        fontFamily: 'Public Sans',
+                                        color: headingColor,
+                                        offsetY: -15,
+                                        formatter: function(val) {
+                                            return parseInt(val);
+                                        }
+                                    },
+                                    name: {
+                                        offsetY: 20,
+                                        fontFamily: 'Public Sans'
+                                    },
+                                    total: {
+                                        show: true,
+                                        fontSize: '0.8125rem',
+                                        color: axisColor,
+                                        label: 'Prestasi',
+                                        formatter: function(w) {
+                                            return parseInt(data.total_prestasi);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal!',
-                        text: 'Terjadi kesalahan saat mengirim data.',
-                        footer: 'Error: ' + xhr.status + ' ' + xhr.statusText
-                    });
-                }
-            });
-        });
+                };
 
-        $("#M_U_mahasiswa form").on("submit", function(e) {
-            e.preventDefault();
-
-            let btn = $(this).find("button[type='submit']");
-            let id = $(".modalUpdate").attr("id").replace("M_U_mahasiswa-", "");
-            let originalText = btn.html();
-            let formData = new FormData(this);
-
-            formData.append("_method", "PUT");
-
-            btn.html("<i class='bx bx-loader-circle bx-spin'></i>").prop("disabled", true);
-
-            $.ajax({
-                url: $("#M_F_mahasiswa").attr("action") + "/" + id,
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response.status === "success") {
-
-                        showToast("success", response.message);
-                        $("#M_U_mahasiswa-" + id).modal("hide");
-                        $("#table_mahasiswa").DataTable().ajax.reload(null, false);
-                    } else {
-                        showToast("error", "Gagal memperbarui data.");
+                const beasiswaChartConfig = {
+                    chart: {
+                        height: 165,
+                        width: 130,
+                        type: 'donut'
+                    },
+                    labels: data.jenis_beasiswa,
+                    series: data.jumlah_beasiswa,
+                    colors: ['#696CFF', '#71dd37', ],
+                    stroke: {
+                        width: 5,
+                        colors: cardColor
+                    },
+                    dataLabels: {
+                        enabled: false,
+                        formatter: function(val, opt) {
+                            return parseInt(val);
+                        }
+                    },
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            right: 15
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '75%',
+                                labels: {
+                                    show: true,
+                                    value: {
+                                        fontSize: '1.5rem',
+                                        fontFamily: 'Public Sans',
+                                        color: headingColor,
+                                        offsetY: -15,
+                                        formatter: function(val) {
+                                            return parseInt(val);
+                                        }
+                                    },
+                                    name: {
+                                        offsetY: 20,
+                                        fontFamily: 'Public Sans'
+                                    },
+                                    total: {
+                                        show: true,
+                                        fontSize: '0.8125rem',
+                                        color: axisColor,
+                                        label: 'Beasiswa',
+                                        formatter: function(w) {
+                                            return parseInt(data.total_beasiswa);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                },
-                error: function(xhr) {
-                    let message = xhr.responseJSON?.message || "Terjadi kesalahan!";
-                    showToast("error", message);
-                    console.log($("#M_F_mahasiswa").attr("action") + "/" + $(".modalUpdate").attr("id").replace("M_U_mahasiswa-", ""));
+                };
 
+                const konselingChartConfig = {
+                    chart: {
+                        height: 165,
+                        width: 130,
+                        type: 'donut'
+                    },
+                    labels: data.status_konseling,
+                    series: data.jumlah_konseling,
+                    colors: ['#FF3E01', '#696CFF'],
+                    stroke: {
+                        width: 5,
+                        colors: cardColor
+                    },
+                    dataLabels: {
+                        enabled: false,
+                        formatter: function(val, opt) {
+                            return parseInt(val);
+                        }
+                    },
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            right: 15
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '75%',
+                                labels: {
+                                    show: true,
+                                    value: {
+                                        fontSize: '1.5rem',
+                                        fontFamily: 'Public Sans',
+                                        color: headingColor,
+                                        offsetY: -15,
+                                        formatter: function(val) {
+                                            return parseInt(val);
+                                        }
+                                    },
+                                    name: {
+                                        offsetY: 20,
+                                        fontFamily: 'Public Sans'
+                                    },
+                                    total: {
+                                        show: true,
+                                        fontSize: '0.8125rem',
+                                        color: axisColor,
+                                        label: 'Mahasiswa',
+                                        formatter: function(w) {
+                                            return parseInt(data.total_konseling);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
 
-                },
-                complete: function() {
-                    btn.html(originalText).prop("disabled", false);
+                const updateKegiatanSeries = data.update_kegiatan.map((jumlah, index) => ({
+                    x: data.update_kegiatan_tanggal[index],
+                    y: jumlah
+                }));
+
+                const updateDanaSeries = data.update_dana.map((jumlah, index) => ({
+                    x: data.update_dana_tanggal[index],
+                    y: jumlah
+                }));
+
+                console.log(updateKegiatanSeries);
+
+                const logbookChartConfig = {
+                    series: [{
+                        name: 'Pengajuan Kegiatan',
+                        data: updateKegiatanSeries, // Format yang benar
+                        color: '#ff3e1d'
+                    }, {
+                        name: 'Pengajuan Dana',
+                        data: updateDanaSeries, // Format yang benar
+                        color: '#696cff'
+                    }],
+                    chart: {
+                        height: 350,
+                        type: 'area',
+                        toolbar: {
+                            show: true,
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth'
+                    },
+                    xaxis: {
+                        type: 'datetime',
+                        labels: {
+                            format: "yyyy-MM-dd"
+                        }
+                    },
+                    tooltip: {
+                        x: {
+                            format: 'dd/MM/yyyy'
+                        },
+                        y: {
+                            formatter: function(val) {
+                                return Math.round(val); // Menghapus desimal .0
+                            }
+                        }
+                    },
+                };
+
+                const gaugeTransaksiConfig = {
+
+                    series: [data.total_organisasi],
+                    chart: {
+                        height: 200,
+                        type: 'radialBar',
+                        offsetY: -10
+                    },
+                    plotOptions: {
+                        radialBar: {
+                            startAngle: -135,
+                            endAngle: 135,
+                            dataLabels: {
+                                name: {
+                                    fontSize: '16px',
+                                    color: undefined,
+                                    offsetY: 120
+                                },
+                                value: {
+                                    offsetY: 76,
+                                    fontSize: '22px',
+                                    color: undefined,
+                                    formatter: function(val) {
+                                        return val;
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            shade: 'dark',
+                            shadeIntensity: 0.15,
+                            inverseColors: false,
+                            opacityFrom: 1,
+                            opacityTo: 1,
+                            stops: [0, 50, 65, 91]
+                        },
+                    },
+                    stroke: {
+                        dashArray: 4
+                    },
+                    labels: ['Organisasi Mahasiswa'],
+
+                };
+
+                if (typeof chartPrestasiStatistik !== undefined && chartPrestasiStatistik !== null) {
+                    const prestasiStatistik = new ApexCharts(chartPrestasiStatistik, prestasiChartConfig);
+                    prestasiStatistik.render();
                 }
-            });
-        });
-    });
+                if (typeof chartBeasiswaStatistik !== undefined && chartBeasiswaStatistik !== null) {
+                    const beasiswaStatistik = new ApexCharts(chartBeasiswaStatistik, beasiswaChartConfig);
+                    beasiswaStatistik.render();
+                }
+                if (typeof chartKonselingStatistik !== undefined && chartKonselingStatistik !== null) {
+                    const konselingStatistik = new ApexCharts(chartKonselingStatistik, konselingChartConfig);
+                    konselingStatistik.render();
+                }
+
+                if (typeof chartLogbook !== undefined && chartLogbook !== null) {
+                    const logbookChart = new ApexCharts(chartLogbook, logbookChartConfig);
+                    logbookChart.render();
+                }
+
+                if (typeof chartGaugeTransaksi !== undefined && chartGaugeTransaksi !== null) {
+                    const gaugeTransaksi = new ApexCharts(chartGaugeTransaksi, gaugeTransaksiConfig);
+                    gaugeTransaksi.render();
+                }
+
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    })();
 </script>

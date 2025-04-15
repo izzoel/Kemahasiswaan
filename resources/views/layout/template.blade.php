@@ -44,6 +44,7 @@
     <!-- Datatables CSS -->
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/r-3.0.3/datatables.min.css" rel="stylesheet">
 
+    <!-- Air Datepicker CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css">
 
 
@@ -151,6 +152,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 
+    <!-- AirDatepicker JS -->
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
 
     <!-- Summernote JS -->
@@ -211,7 +213,37 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
         }
+
+        const dropdown = document.getElementById('notifDropdown');
+
+        dropdown.addEventListener('mouseenter', () => {
+            const menu = dropdown.querySelector('.dropdown-menu');
+            dropdown.classList.add('show');
+            menu.classList.add('show');
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            const menu = dropdown.querySelector('.dropdown-menu');
+            dropdown.classList.remove('show');
+            menu.classList.remove('show');
+        });
     </script>
+
+    <script>
+        setInterval(() => {
+            fetch('{{ url('/notif/realtime') }}')
+                .then(res => res.json())
+                .then(data => {
+                    const badge = document.querySelector('.bx-bell + .badge');
+                    if (badge) {
+                        badge.textContent = data.jumlah > 0 ? data.jumlah : '';
+                        badge.classList.toggle('d-none', data.jumlah === 0);
+                    }
+                });
+        }, 2000); // refresh tiap 15 detik
+    </script>
+
+
     {{-- @include('auth.scripts.datatables') --}}
     @if (count(request()->segments()) > 1)
         @if (request()->segment(2) == 'dashboard' || request()->segment(2) == 'profile')

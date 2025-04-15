@@ -139,7 +139,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="table_view_{{ request()->segment(3) }}" class="table table-striped tableView table-bordered dt-responsive nowrap" style="width:100%">
+                <table id="table_program_{{ request()->segment(3) }}" class="table table-striped tableView table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -148,6 +148,40 @@
                             <th>Prodi</th>
                             <th>Jabatan</th>
                             <th>Profil</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Batal
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modalView fade" id="M_P_organisasi" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="min-width: 95%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Program <span class="badge bg-primary text-white">Kerja</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="table_view_{{ request()->segment(3) }}" class="table table-striped tableView table-bordered dt-responsive nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Program Kerja</th>
+                            <th>Pelaksanaan</th>
+                            <th>Anggaran</th>
+                            <th>Keterangan</th>
                         </tr>
                     </thead>
                 </table>

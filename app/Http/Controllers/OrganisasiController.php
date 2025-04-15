@@ -37,7 +37,11 @@ class OrganisasiController extends Controller
                     return 'Rp ' . number_format($organisasi->anggaran, 0, ',', '.');
                 })
                 ->addColumn('aksi', function ($organisasi) {
-                    return '<button class="V_B_organisasi btn btn-xs btn-primary" data-id="#M_V_organisasi-' . $organisasi->id . '">
+                    return '<button class="P_B_organisasi btn btn-xs btn-primary" data-id="#M_P_organisasi-' . $organisasi->id . '">
+                        <i class="bx bx-notepad"></i>
+                    </button>
+                   
+                   <button class="V_B_organisasi btn btn-xs btn-primary" data-id="#M_V_organisasi-' . $organisasi->id . '">
                         <i class="bx bxs-user-detail"></i>
                     </button>
 
@@ -125,12 +129,28 @@ class OrganisasiController extends Controller
         try {
             $organisasi = Organisasi::findOrFail($id);
 
+            // Cek apakah nama & periode sudah ada untuk organisasi lain
+            $cekOrganisasi = Organisasi::where('nama', $request->nama)
+                ->where('periode', $request->periode)
+                ->where('id', '!=', $id) // Pastikan bukan dirinya sendiri
+                ->exists();
 
-            if ($organisasi) {
-                if (Organisasi::where('nama', $request->nama)->where('periode', $request->periode)->exists()) {
+            if ($cekOrganisasi) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => "Organisasi {$request->nama} periode {$request->periode} sudah ada!"
+                ], 400);
+            }
+
+            if ($request->name) {
+                $cekUsername = Organisasi::where('name', $request->name)
+                    ->where('id', '!=', $id) // Pastikan bukan dirinya sendiri
+                    ->exists();
+
+                if ($cekUsername) {
                     return response()->json([
                         'status' => 'error',
-                        'message' => "Organisasi {$request->nama} periode {$request->periode} sudah ada!"
+                        'message' => "Username {$request->name} sudah digunakan!"
                     ], 400);
                 }
             }
@@ -140,8 +160,8 @@ class OrganisasiController extends Controller
                 'anggaran' => (int) str_replace(['Rp', '.', ','], '', $request->anggaran),
                 'periode' => $request->periode,
                 'keterangan' => $request->keterangan,
-                'name' => $request->name,
-                'password' =>  Hash::make($request->password)
+                'name' => $request->name ?? $organisasi->name,
+                'password' => optional($request->password) ? Hash::make($request->password) : $organisasi->password
             ];
 
             if ($request->hasFile('logo')) {
@@ -156,17 +176,17 @@ class OrganisasiController extends Controller
                 $updateData['logo'] = $filename;
             }
 
-            Organisasi::where('id', $id)->update($updateData);
+            $organisasi->update($updateData);
 
             return response()->json([
                 'status' => 'success',
-                'message' => "{$request->nama} berhasil diperbarui!",
+                'message' => "{$request->nama} berhasil diperbarui!"
             ]);
         } catch (\Exception $e) {
-            Log::error($e);
+            Log::error($e->getMessage());
             return response()->json([
                 'status' => 'error',
-                'message' => "{$request->nama} gagal diperbarui!"
+                'message' => "{$request->nama} gagal diperbarui! Error: " . $e->getMessage()
             ], 500);
         }
     }

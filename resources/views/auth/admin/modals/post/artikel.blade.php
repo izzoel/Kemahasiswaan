@@ -24,7 +24,6 @@
                             <button type="button" class="btn btn-xs btn-primary" data-bs-target="#M_S_kategori" data-bs-toggle="modal" data-bs-dismiss="modal">
                                 &#10010;
                             </button>
-
                         </label>
                         <div class="col-md-11 col-sm-11 ">
                             <select class="form-select" id="kategori" name="kategori"></select>

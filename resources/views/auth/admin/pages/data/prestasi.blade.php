@@ -3,24 +3,21 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#M_S_prestasi">
+                    <button type="button" class="btn btn-primary mb-3">
                         &#9776; PRESTASI
                     </button>
-
                     @include('auth.' . request()->segment(1) . '.modals.' . request()->segment(2) . '.' . request()->segment(3))
-
                     <div class="card-text">
                         <table id="table_{{ request()->segment(3) }}" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
-                                    <th>Lomba</th>
-                                    <th>Tahun</th>
                                     <th>Prestasi</th>
-                                    <th>Sertifikat</th>
-                                    <th>Dokumentasi</th>
-                                    <th>logo</th>
+                                    <th>Tahun</th>
+                                    <th>Jenis</th>
+                                    <th>Raihan</th>
+                                    <th>Tingkat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -30,4 +27,5 @@
             </div>
         </div>
     </div>
+
 </div>

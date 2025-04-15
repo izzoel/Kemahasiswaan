@@ -8,7 +8,6 @@ class Dana extends Model
 {
     protected $fillable = [
         'id_organisasi',
-        'rentang_tanggal',
         'id_kegiatan',
         'dana',
         'berkas',

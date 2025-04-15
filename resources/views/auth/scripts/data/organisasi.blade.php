@@ -80,7 +80,6 @@
     });
 
     document.addEventListener("DOMContentLoaded", function() {
-
         new AirDatepicker('#periode', {
             view: 'years',
             minView: 'years',
@@ -88,8 +87,6 @@
             autoClose: true,
             container: '#M_S_organisasi',
         });
-
-
     });
 
     $('input[name="anggaran"]').on('keyup', function() {
@@ -219,6 +216,85 @@
                     responsivePriority: 3,
                     targets: -1
                 }
+            ]
+        });
+    });
+    $(document).on('click', '.P_B_organisasi', function() {
+        let id = $(this).data("id").split('-').pop();
+        let modalId = "M_P_organisasi-" + id;
+        let tableId = "table_program_{{ request()->segment(3) }}" + "-" + id;
+
+        if ($("#" + modalId).length === 0) {
+            let newModal = $("#M_P_organisasi").clone().attr("id", modalId);
+            newModal.find(".tableView").attr("id", tableId);
+            newModal.appendTo("body");
+        }
+
+        $("#" + modalId).modal('show');
+
+        if ($.fn.DataTable.isDataTable("#" + tableId)) {
+            $("#" + tableId).DataTable().destroy();
+        }
+
+        let columns = [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                className: 'text-center',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'program',
+                name: 'program',
+                className: 'text-center'
+            },
+            {
+                data: 'pelaksanaan',
+                name: 'pelaksanaan',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'anggaran',
+                name: 'anggaran',
+                className: 'text-center'
+            },
+            {
+                data: 'keterangan',
+                name: 'keterangan'
+            }
+        ];
+
+        let isOrganisasi = {{ Auth::guard('organisasi')->check() ? 'true' : 'false' }}; // Cek apakah user adalah organisasi
+
+        if (isOrganisasi) {
+            columns.push({
+                data: 'aksi',
+                name: 'aksi',
+                className: 'text-center',
+                orderable: false,
+                searchable: false
+            });
+        }
+
+        $("#" + tableId).DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: "{{ url('/' . request()->segment(1) . '/' . request()->segment(2) . '/program/table') }}" + '/' + id
+            },
+            columns: columns,
+            dom: '<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6 d-flex flex-row-reverse"p>>',
+            language: {
+                "lengthMenu": "Tampilkan _MENU_ baris",
+                "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
+                "search": "Cari:",
+                "emptyTable": "Tidak ada data yang tersedia",
+                "zeroRecords": "Tidak ada data yang ditemukan"
+            },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "Semua"]
             ]
         });
     });

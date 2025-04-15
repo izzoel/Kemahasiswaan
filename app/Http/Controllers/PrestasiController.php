@@ -24,9 +24,12 @@ class PrestasiController extends Controller
 
             return DataTables::eloquent($prestasi)
                 ->addIndexColumn()
+                ->editColumn('nama', function ($prestasi) {
+                    return $prestasi->mahasiswa ? $prestasi->mahasiswa->nama : '-';
+                })
                 ->addColumn('aksi', function ($prestasi) {
                     return '<a type="button" class="U_B_prestasi text-info" data-id="#M_U_prestasi-' . $prestasi->id . '">
-                        <span class="tf-icons bx bx-edit"></span> Edit
+                        <span class="tf-icons bx bx-show"></span> Lihat
                     </a>
 
                     <span class="mx-1">|</span>
@@ -44,7 +47,7 @@ class PrestasiController extends Controller
 
     public function show($id)
     {
-        $prestasi = Prestasi::where('id', $id)->first();
+        $prestasi = Prestasi::with('mahasiswa')->findOrFail($id);
         return response()->json($prestasi);
     }
 }

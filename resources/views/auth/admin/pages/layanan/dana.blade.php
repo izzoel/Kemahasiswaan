@@ -3,10 +3,15 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#M_S_organisasi">
-                        &#9776; Dana
-                    </button>
-
+                    @if (auth()->check())
+                        <button type="button" class="btn btn-primary mb-3">
+                            &#9776; DANA
+                        </button>
+                    @elseif (auth('organisasi')->check())
+                        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#M_S_dana">
+                            &#10010; DANA
+                        </button>
+                    @endif
                     @include('auth.' . request()->segment(1) . '.modals.' . request()->segment(2) . '.' . request()->segment(3))
 
                     <div class="card-text">
@@ -14,11 +19,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Ormawa</th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Rentang Tanggal</th>
-                                    <th>Anggaran</th>
-                                    <th>Berkas</th>
+                                    @if (auth()->check())
+                                        <th>Ormawa</th>
+                                    @endif
+                                    <th>Kegiatan</th>
+                                    <th>Pelaksanaan</th>
+                                    <th>Keperluan Dana</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>

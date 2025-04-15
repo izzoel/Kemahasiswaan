@@ -77,20 +77,6 @@
         ]
     });
 
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-        new AirDatepicker('#periode', {
-            view: 'years',
-            minView: 'years',
-            dateFormat: 'yyyy',
-            autoClose: true,
-            container: '#M_S_struktur',
-        });
-
-
-    });
-
     $('#select_' + '{{ request()->segment(3) }}').select2({
         theme: 'bootstrap-5',
         placeholder: "-- Pilih --",

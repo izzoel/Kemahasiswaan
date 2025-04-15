@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Prestasi extends Model
 {
     protected $fillable = [
-        'nama',
-        'lomba',
+        'nim',
         'tahun',
         'prestasi',
+        'jenis',
+        'tingkat',
+        'raihan',
         'sertifikat',
         'dokumentasi',
         'foto',
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'nim');
+    }
 }

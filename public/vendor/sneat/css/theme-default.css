@@ -771,9 +771,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
   background-color: #696cff;
   border: 7px solid #f5f5f9;
 }
-.app-brand .layout-menu-toggle i {
-  color: #fff;
-}
+
 .app-brand .layout-menu-toggle .menu-inner > .menu-header::before {
   background-color: #b4bdc6;
 }

@@ -8,12 +8,6 @@
                             &#10010; ORMAWA
                         </button>
                         <select id="filter_periode" class="form-select w-auto"></select>
-                        {{-- <select id="filter_periode" class="form-select w-auto">
-                            <option value="">Semua Periode</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                            <option value="2025">2025</option>
-                        </select> --}}
                     </div>
 
 

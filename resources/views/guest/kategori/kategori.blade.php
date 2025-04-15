@@ -30,7 +30,7 @@
                 @endforeach
             </div>
             <div class="col-lg-4 col-xl-3 offset-xl-1">
-                <div class="widget mb-5">
+                {{-- <div class="widget mb-5">
                     <h3 class="h4 mb-3">Newsletter</h3>
                     <form>
                         <input type="text" class="form-control mb-3 rounded-0" placeholder="Enter email" aria-label="Enter email">
@@ -39,10 +39,10 @@
                         </div>
                     </form>
                     <p class="form-text">Get special offers on the latest developments from Front.</p>
-                </div>
-
+                </div> --}}
+                {{-- 
                 <div class="widget mb-5">
-                    <h3 class="h4 mb-3">Most Read</h3>
+                    <h3 class="h4 mb-3">Terbaru</h3>
                     <div class="card mb-4 border-0">
                         <div class="row g-0">
                             <div class="col-md-2 col-lg-4">
@@ -53,45 +53,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- card-end -->
-                    <div class="card mb-4 border-0">
-                        <div class="row g-0">
-                            <div class="col-md-2 col-lg-4">
-                                <img src="images/blog/blog-2.jpg" alt="blog" class="img-fluid">
-                            </div>
-                            <div class="col-md-10 col-lg-8">
-                                <h4 class="fs-6 ms-3"><a href="blog-single.html" class="text-dark">Ask HN: Does Anybody Still Use JQuery?</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- card-end -->
-                    <div class="card mb-4 border-0">
-                        <div class="row g-0">
-                            <div class="col-md-2 col-lg-4">
-                                <img src="images/blog/blog-3.jpg" alt="blog" class="img-fluid">
-                            </div>
-                            <div class="col-md-10 col-lg-8">
-                                <h4 class="fs-6 ms-3"><a href="blog-single.html" class="text-dark">Website Design Mockup Into Code Automatically</a>
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- card-end -->
-                    <div class="card mb-4 border-0">
-                        <div class="row g-0">
-                            <div class="col-md-2 col-lg-4">
-                                <img src="images/blog/blog-4.jpg" alt="blog" class="img-fluid">
-                            </div>
-                            <div class="col-md-10 col-lg-8">
-                                <h4 class="fs-6 ms-3"><a href="blog-single.html" class="text-dark">Introducing JavaScript objects</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- card-end -->
-                </div>
+                </div> --}}
 
                 <div class="widget category-widget">
-                    <h3 class="h4 mb-3">Categoriees</h3>
+                    {{-- <h3 class="h4 mb-3">Kategori</h3>
                     <ul class="list-group mb-4">
                         <li class="border-bottom py-2">
                             <a href="#!" class="d-flex justify-content-between align-items-center text-dark">
@@ -99,31 +64,24 @@
                                 <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">14</span>
                             </a>
                         </li>
-                        <li class="border-bottom py-2">
-                            <a href="#!" class="d-flex justify-content-between align-items-center text-dark">
-                                JavaScript
-                                <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">14</span>
-                            </a>
-                        </li>
-                        <li class="border-bottom py-2">
-                            <a href="#!" class="d-flex justify-content-between align-items-center text-dark">
-                                JQuery
-                                <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">14</span>
-                            </a>
-                        </li>
-                        <li class="border-bottom py-2">
-                            <a href="#!" class="d-flex justify-content-between align-items-center text-dark">
-                                Web Design
-                                <span class="badge bg-primary py-1 px-2 rounded-pill fs-6">14</span>
-                            </a>
-                        </li>
+                    </ul> --}}
+
+                    <h3 class="h4 mb-3">Kategori</h3>
+                    <ul class="list-inline tag-list">
+                        @foreach ($kategoris_all->unique('id_kategori') as $kategori)
+                            <li class="list-inline-item m-1">
+                                <a href="{{ route('kategori', $kategori->kategori->kategori) }}">{{ $kategori->kategori->kategori }}
+                                    <small>
+
+                                        ({{ $kategori->where('id_kategori', $kategori->kategori->id)->get('id_kategori')->count() }})
+                                    </small>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
 
                     <ul class="list-inline tag-list">
                         <li class="list-inline-item m-1"><a href="#">Css</a></li>
-                        <li class="list-inline-item m-1"><a href="#">JavaScript</a></li>
-                        <li class="list-inline-item m-1"><a href="#">jQuery</a></li>
-                        <li class="list-inline-item m-1"><a href="#">Web design</a></li>
                     </ul>
                 </div>
 

@@ -17,28 +17,24 @@
                 name: 'nama'
             },
             {
-                data: 'lomba',
-                name: 'lomba',
+                data: 'prestasi',
+                name: 'prestasi',
             },
             {
                 data: 'tahun',
                 name: 'tahun',
             },
             {
-                data: 'prestasi',
-                name: 'prestasi',
+                data: 'jenis',
+                name: 'jenis',
             },
             {
-                data: 'sertifikat',
-                name: 'sertifikat',
+                data: 'raihan',
+                name: 'raihan',
             },
             {
-                data: 'dokumentasi',
-                name: 'dokumentasi',
-            },
-            {
-                data: 'foto',
-                name: 'foto',
+                data: 'tingkat',
+                name: 'tingkat',
             },
             {
                 data: 'aksi',
@@ -64,49 +60,52 @@
         }]
     });
 
-    $("#M_S_mahasiswa").on('show.bs.modal', function(e) {
-        ["#S_nim", "#S_nama", "#S_tempat_lahir", "#S_alamat"].forEach(function(selector) {
-            $(selector).on('keyup', function() {
-                this.value = this.value.toUpperCase();
-            });
-        });
-    })
+    $(document).on('click', '.U_B_prestasi', function() {
+        let id = $(this).data("id").split('-').pop();
 
-    $(document).on('click', '.U_B_mahasiswa', function() {
-        let nim = $(this).data("id").split('-').pop();
+        $(".modalUpdate").attr("id", "M_U_prestasi-" + id);
+        $("#M_U_prestasi-" + id).modal('show');
+        $("#U_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/update/" + id);
 
-        $(".modalUpdate").attr("id", "M_U_mahasiswa-" + nim);
-        $("#M_U_mahasiswa-" + nim).modal('show');
-        $("#U_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/update/" + nim);
+        $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/show/" + id, function(data) {
+            $("#U_nama").val(data.mahasiswa.nama);
+            $("#U_prestasi").val(data.prestasi);
+            $("#U_tahun").val(data.tahun);
+            $("#U_jenis").val(data.jenis);
+            $("#U_raihan").val(data.raihan);
+            $("#U_tingkat").val(data.tingkat);
 
-        $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/show/" + nim, function(data) {
-            if (data.kelamin == "L") {
-                var kelamin = "#U_l";
+            if (data.sertifikat) {
+                $("#U_sertifikat_link").html(
+                    `<a href="/prestasi/${data.prestasi}/sertifikat/${data.sertifikat}" target="_blank" class="text-primary">${data.sertifikat}</a>`
+                );
             } else {
-                var kelamin = "#U_p";
+                $("#U_sertifikat_link").html('');
             }
-            $("#U_nim").val(data.nim);
-            $("#U_nama").val(data.nama);
-            $("#U_tempat_lahir").val(data.tempat_lahir);
-            $("#U_tanggal_lahir").val(data.tanggal_lahir);
-            $(kelamin).val(data.kelamin).prop('checked', true);
-            $("#U_prodi").val(data.prodi).prop('selected', true);
-            $("#U_hp").val(data.no_hp);
-            $("#U_alamat").val(data.alamat);
-        });
 
-        ["#U_nim", "#U_nama", "#U_tempat_lahir", "#U_alamat"].forEach(function(selector) {
-            $(selector).on('keyup', function() {
-                this.value = this.value.toUpperCase();
-            });
+            if (data.dokumentasi) {
+                $("#U_dokumentasi_link").html(
+                    `<a href="/prestasi/${data.prestasi}/dokumentasi/${data.dokumentasi}" target="_blank" class="text-primary">${data.dokumentasi}</a>`
+                );
+            } else {
+                $("#U_dokumentasi_link").html('');
+            }
+
+            if (data.foto) {
+                $("#U_foto_link").html(
+                    `<a href="/prestasi/${data.prestasi}/foto/${data.foto}" target="_blank" class="text-primary">${data.foto}</a>`
+                );
+            } else {
+                $("#U_foto_link").html('');
+            }
         });
     });
 
-    $(document).on("click", ".D_B_mahasiswa", function() {
+    $(document).on("click", ".D_B_prestasi", function() {
         let nim = $(this).data("id");
 
-        $(".modalDelete").attr("id", "M_D_mahasiswa-" + nim);
-        $("#M_D_mahasiswa-" + nim).modal('show');
+        $(".modalDelete").attr("id", "M_D_prestasi-" + nim);
+        $("#M_D_prestasi-" + nim).modal('show');
         $("#D_route").attr('action', "/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/destroy/" + nim);
     });
 
@@ -162,7 +161,7 @@
             });
         });
 
-        $("#M_U_mahasiswa form").on("submit", function(e) {
+        $("#M_U_prestasi form").on("submit", function(e) {
             e.preventDefault();
 
             let btn = $(this).find("button[type='submit']");
