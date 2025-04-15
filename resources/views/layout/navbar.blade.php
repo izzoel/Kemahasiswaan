@@ -145,7 +145,11 @@
                                             {{ auth('organisasi')->user()->nama }}
                                         @endif
                                     </span>
-                                    <small class="text-muted">{{ 'Kemahasiswaan' }}</small>
+                                    @if (auth()->check())
+                                        <small class="text-muted">Kemahasiswaan<small>
+                                            @elseif (auth('organisasi')->check())
+                                                <small class="text-muted">Organisasi Mahasiswa</small>
+                                    @endif
                                 </div>
                             </div>
                         </a>
