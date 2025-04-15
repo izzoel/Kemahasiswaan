@@ -142,7 +142,7 @@
                                         @if (auth()->check())
                                             {{ auth()->user()->name }}
                                         @elseif (auth('organisasi')->check())
-                                            {{ auth('organisasi')->user()->name }}
+                                            {{ auth('organisasi')->user()->nama }}
                                         @endif
                                     </span>
                                     <small class="text-muted">{{ 'Kemahasiswaan' }}</small>
