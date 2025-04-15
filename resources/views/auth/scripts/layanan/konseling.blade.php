@@ -112,56 +112,6 @@
     });
 
     $(document).ready(function() {
-        $(".importForm").on("submit", function(event) {
-            event.preventDefault();
-
-            let form = $(this);
-            let formData = new FormData(this);
-
-            // Tampilkan loading SweetAlert2
-            Swal.fire({
-                title: 'Ngupload data...',
-                html: 'Bentaran yaa...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
-            // Kirim form dengan AJAX
-            $.ajax({
-                url: form.attr("action"),
-                type: form.attr("method"),
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil!',
-                        text: 'Data berhasil diimport!',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload(); // Reload halaman setelah sukses
-                    });
-                },
-                error: function(xhr) {
-                    let errorMessage = "Terjadi kesalahan saat mengirim data.";
-
-                    // Jika server mengembalikan response JSON dengan message error
-                    if (xhr.responseJSON && xhr.responseJSON.message) {
-                        errorMessage = xhr.responseJSON.message;
-                    }
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal!',
-                        text: 'Terjadi kesalahan saat mengirim data.',
-                        footer: 'Error: ' + xhr.status + ' ' + xhr.statusText
-                    });
-                }
-            });
-        });
 
         $("#M_U_konseling form").on("submit", function(e) {
             e.preventDefault();

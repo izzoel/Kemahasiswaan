@@ -111,7 +111,7 @@
                                 </button>
                             </div>
                             <div class="card-text">
-                                <form id="pictureForm" action="{{ $id ? url(request()->segment(1) . '/' . request()->segment(2) . '/picture/' . $id) : '#' }}" method="POST"
+                                <form id="pictureForm" action="{{ $id ? url(request()->segment(1) . '/' . request()->segment(2) . '/picture/' . $id) : '#' }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -124,7 +124,7 @@
                                             <label for="picture" class="btn btn-primary me-2 mb-4" tabindex="0">
                                                 <span class="d-none d-sm-block">Upload new picture</span>
                                                 <i class="bx bx-upload d-block d-sm-none"></i>
-                                                <input type="file" id="picture" name="foto" class="account-file-input" hidden accept="image/png, image/jpeg">
+                                                <input type="file" id="picture" name="logo" class="account-file-input" hidden accept="image/png, image/jpeg">
                                             </label>
                                             <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
                                                 <i class="bx bx-reset d-block d-sm-none"></i>

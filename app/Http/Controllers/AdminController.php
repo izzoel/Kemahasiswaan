@@ -216,10 +216,14 @@ class AdminController extends Controller
 
     public function picture(Request $request, $id)
     {
-        try {
+        if (Auth::check()) {
             $user = User::findOrFail($id);
+        } elseif (Auth::guard('organisasi')->check()) {
+            $user = Organisasi::findOrFail(Auth::guard('organisasi')->user()->id);
+        }
+        try {
 
-            if ($request->hasFile('foto')) {
+            if ($request->hasFile('logo')) {
                 if ($user->logo && File::exists(public_path("logo/{$user->logo}"))) {
                     File::delete(public_path("logo/{$user->logo}"));
                 }
@@ -228,7 +232,7 @@ class AdminController extends Controller
                 $request->logo->move(public_path('logo'), $fileName);
 
                 $user->update([
-                    'foto' => $fileName
+                    'logo' => $fileName
                 ]);
 
                 return response()->json([
@@ -242,7 +246,7 @@ class AdminController extends Controller
                 ], 400);
             }
         } catch (\Exception $e) {
-            Log::error($e);
+            Log::error($e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => "Foto gagal diperbarui!"

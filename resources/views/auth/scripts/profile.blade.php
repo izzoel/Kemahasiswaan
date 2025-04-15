@@ -1,24 +1,20 @@
 <script>
     $(document).ready(function() {
-
         $("#pictureForm").on("submit", function(e) {
             e.preventDefault();
 
             let btn = $(this).find("button[type='submit']");
-            let url = $(this).attr("action");
             let originalText = btn.html();
-            let formData = new FormData(this);
-
-            formData.append("_method", "PUT");
+            let formData = new FormData(this); // Ambil data form, termasuk file
 
             btn.html("<i class='bx bx-loader-circle bx-spin'></i>").prop("disabled", true);
 
             $.ajax({
-                url: url,
+                url: $(this).attr("action"),
                 type: "POST",
                 data: formData,
-                contentType: false,
-                processData: false,
+                contentType: false, // Wajib agar bisa upload file
+                processData: false, // Wajib agar FormData dikirim apa adanya
                 success: function(response) {
                     if (response.status === "success") {
                         showToast("success", response.message);
@@ -36,6 +32,7 @@
                 }
             });
         });
+
         $("#passwordForm").on("submit", function(e) {
             e.preventDefault();
 
