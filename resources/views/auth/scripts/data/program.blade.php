@@ -57,7 +57,7 @@
             },
             {
                 responsivePriority: 2,
-                targets: 2
+                targets: 1
             },
             {
                 responsivePriority: 3,
@@ -99,8 +99,6 @@
         });
     });
 
-
-
     $(document).on('click', '.U_B_program', function() {
         let id = $(this).data("id").split('-').pop();
 
@@ -139,7 +137,6 @@
             $("#U_keterangan").val(data.keterangan);
         });
     });
-
 
     $(document).on("click", ".D_B_program", function() {
         let id = $(this).data("id");
