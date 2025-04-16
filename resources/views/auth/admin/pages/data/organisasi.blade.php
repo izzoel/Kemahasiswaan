@@ -14,7 +14,7 @@
                     @include('auth.' . request()->segment(1) . '.modals.' . request()->segment(2) . '.' . request()->segment(3))
 
                     <div class="card-text">
-                        <table id="table_{{ request()->segment(3) }}" class="table table-striped table-bordered dt-responsive" style="width:100%">
+                        <table id="table_{{ request()->segment(3) }}" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Nama</th>

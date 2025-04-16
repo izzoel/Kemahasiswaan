@@ -57,7 +57,7 @@
         ],
         columnDefs: [{
                 responsivePriority: 1,
-                targets: 1
+                targets: 0
             },
             {
                 responsivePriority: 2,
