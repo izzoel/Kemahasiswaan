@@ -29,7 +29,6 @@ class OrganisasiController extends Controller
             }
 
             return DataTables::eloquent($organisasi)
-                ->addIndexColumn()
                 ->addColumn('logo', function ($organisasi) {
                     return '<img src="' . asset('logo/' . $organisasi->logo) . '" alt="' . $organisasi->nama . '" class="img-fluid" width="100px" height="100px">';
                 })

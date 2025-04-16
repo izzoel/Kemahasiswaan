@@ -9,13 +9,6 @@
             }
         },
         columns: [{
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-                className: 'text-center',
-                orderable: false,
-                searchable: false
-            },
-            {
                 data: 'nama',
                 name: 'nama'
             },

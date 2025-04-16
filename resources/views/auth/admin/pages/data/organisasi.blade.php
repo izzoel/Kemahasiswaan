@@ -17,7 +17,6 @@
                         <table id="table_{{ request()->segment(3) }}" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Nama</th>
                                     <th>Logo</th>
                                     <th>Anggaran</th>
