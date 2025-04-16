@@ -8,13 +8,13 @@
         columns: [{
                 data: 'DT_RowIndex',
                 name: 'DT_RowIndex',
+                className: 'text-center',
                 orderable: false,
                 searchable: false
             },
             {
                 data: 'program',
                 name: 'program',
-                className: 'text-center'
             },
             {
                 data: 'pelaksanaan',
