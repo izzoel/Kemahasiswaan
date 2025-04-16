@@ -99,6 +99,8 @@
         });
     });
 
+
+
     $(document).on('click', '.U_B_program', function() {
         let id = $(this).data("id").split('-').pop();
 
@@ -109,10 +111,35 @@
         $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/show/" + id, function(data) {
             $("#U_program").val(data.program);
             $("#U_pelaksanaan").val(data.pelaksanaan);
+
+            $(document).on('shown.bs.modal', '#M_U_program-' + id, function() {
+                new AirDatepicker('#U_pelaksanaan', {
+                    range: true,
+                    dateFormat: 'dd MMMM yyyy',
+                    multipleDatesSeparator: " - ",
+                    autoClose: true,
+                    locale: {
+                        days: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+                        daysShort: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+                        daysMin: ['Mg', 'Sn', 'Sl', 'Rb', 'Km', 'Jm', 'Sb'],
+                        months: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November',
+                            'Desember'
+                        ],
+                        monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+                        today: 'Hari Ini',
+                        clear: 'Hapus',
+                        firstDay: 1
+                    },
+                    container: '#M_U_program-' + id,
+                });
+            });
+
+
             $("#U_anggaran").val(formatRupiah(String(data.anggaran), 'Rp '));
             $("#U_keterangan").val(data.keterangan);
         });
     });
+
 
     $(document).on("click", ".D_B_program", function() {
         let id = $(this).data("id");

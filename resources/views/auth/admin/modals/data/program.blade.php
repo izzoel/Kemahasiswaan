@@ -48,7 +48,7 @@
                 @method('PUT')
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        program <span class="badge bg-primary text-white">Edit</span>
+                        Program <span class="badge bg-primary text-white">Edit</span>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
