@@ -167,7 +167,7 @@
                         showToast("success", response.message);
                         updateAnggaran();
                         $("#M_S_program").modal("hide").find("form")[0].reset();
-                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload();
+                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload(null, false);
                     } else {
                         showToast("error", "Gagal menyimpan data.");
                     }

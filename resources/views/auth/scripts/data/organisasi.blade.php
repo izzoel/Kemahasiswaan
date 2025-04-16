@@ -330,7 +330,7 @@
                     if (response.status === "success") {
                         showToast("success", response.message);
                         $("#M_S_organisasi").modal("hide").find("form")[0].reset();
-                        $("#table_organisasi").DataTable().ajax.reload();
+                        $("#table_organisasi").DataTable().ajax.reload(null, false);
                     } else {
                         showToast("error", "Gagal menyimpan data.");
                     }

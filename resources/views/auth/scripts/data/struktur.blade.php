@@ -220,7 +220,7 @@
                     if (response.status === "success") {
                         showToast("success", response.message);
                         $("#M_S_struktur").modal("hide").find("form")[0].reset();
-                        $("#table_struktur").DataTable().ajax.reload();
+                        $("#table_struktur").DataTable().ajax.reload(null, false);
                     } else {
                         showToast("error", "Gagal menyimpan data.");
                     }

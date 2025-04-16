@@ -148,7 +148,7 @@
                     if (response.status === "success") {
                         showToast("success", response.message);
                         $("#M_S_kegiatan").modal("hide").find("form")[0].reset();
-                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload();
+                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload(null, false);
                     } else {
                         showToast("error", "Gagal menyimpan data.");
                     }

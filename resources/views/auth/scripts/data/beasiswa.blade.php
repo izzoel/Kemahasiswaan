@@ -101,7 +101,7 @@
                         let formEl = modal.find("form").get(0);
                         if (formEl) formEl.reset();
 
-                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload();
+                        $('#table_' + '{{ request()->segment(3) }}').DataTable().ajax.reload(null, false);
                     } else {
                         console.log(response);
                         showToast("error", "Gagal menyimpan data.");
