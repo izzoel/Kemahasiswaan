@@ -244,6 +244,7 @@
             {
                 data: 'program',
                 name: 'program',
+                className: 'text-wrap'
             },
             {
                 data: 'pelaksanaan',
@@ -255,7 +256,8 @@
             },
             {
                 data: 'keterangan',
-                name: 'keterangan'
+                name: 'keterangan',
+                className: 'text-wrap'
             }
         ];
 
