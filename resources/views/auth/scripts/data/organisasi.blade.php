@@ -232,7 +232,7 @@
                 name: 'DT_RowIndex',
                 className: 'text-center',
                 orderable: false,
-                searchable: false
+                searchable: false,
             },
             {
                 data: 'program',
@@ -242,10 +242,12 @@
             {
                 data: 'pelaksanaan',
                 name: 'pelaksanaan',
+                className: 'text-wrap'
             },
             {
                 data: 'anggaran',
                 name: 'anggaran',
+                className: 'text-wrap'
             },
             {
                 data: 'keterangan',
