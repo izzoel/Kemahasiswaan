@@ -244,18 +244,14 @@
             {
                 data: 'program',
                 name: 'program',
-                className: 'text-center'
             },
             {
                 data: 'pelaksanaan',
                 name: 'pelaksanaan',
-                orderable: false,
-                searchable: false
             },
             {
                 data: 'anggaran',
                 name: 'anggaran',
-                className: 'text-center'
             },
             {
                 data: 'keterangan',
@@ -293,6 +289,15 @@
             lengthMenu: [
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "Semua"]
+            ],
+            columnDefs: [{
+                    responsivePriority: 1,
+                    targets: 1
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -1
+                }
             ]
         });
     });
