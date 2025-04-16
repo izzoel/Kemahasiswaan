@@ -1,3 +1,13 @@
+@if (auth()->check())
+    @php
+        $labelGauge = 'Organisasi Mahasiswa';
+    @endphp
+@elseif (auth('organisasi')->check())
+    @php
+        $labelGauge = 'Program Kerja';
+    @endphp
+@endif
+
 <script>
     (function() {
         let cardColor, headingColor, axisColor, shadeColor, borderColor;
@@ -311,7 +321,7 @@
                     stroke: {
                         dashArray: 4
                     },
-                    labels: ['Organisasi Mahasiswa'],
+                    labels: ["{{ $labelGauge }}"],
 
                 };
 
