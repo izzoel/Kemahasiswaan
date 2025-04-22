@@ -78,9 +78,14 @@ class ProgramController extends Controller
                 'keterangan' => $request->keterangan
             ]);
 
+            // $organisasi->update([
+            //     'anggaran' => (int) str_replace(['Rp', '.', ','], '', $organisasi->anggaran) - (int) str_replace(['Rp', '.', ','], '', $request->anggaran)
+            // ]);
+
             $organisasi->update([
-                'anggaran' => (int) str_replace(['Rp', '.', ','], '', $organisasi->anggaran) - (int) str_replace(['Rp', '.', ','], '', $request->anggaran)
+                'sisa_anggaran' => $organisasi->sisa_anggaran - (int) str_replace(['Rp', '.', ','], '', $request->anggaran)
             ]);
+
 
             return response()->json([
                 'status' => 'success',

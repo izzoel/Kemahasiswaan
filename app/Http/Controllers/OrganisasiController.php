@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
 use App\Models\Organisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -23,7 +24,6 @@ class OrganisasiController extends Controller
     {
         if (request()->ajax()) {
             $organisasi = Organisasi::query();
-
             if (request()->filled('periode')) {
                 $organisasi->where('periode', request('periode'));
             }
@@ -33,8 +33,9 @@ class OrganisasiController extends Controller
                     return '<img src="' . asset('logo/' . $organisasi->logo) . '" alt="' . $organisasi->nama . '" class="img-fluid" width="100px" height="100px">';
                 })
                 ->addColumn('anggaran', function ($organisasi) {
-                    return 'Rp ' . number_format($organisasi->anggaran, 0, ',', '.');
+                    return 'Rp ' . number_format($organisasi->anggaran, 0, ',', '.') . ' (terpakai: Rp ' . number_format($organisasi->anggaran - $organisasi->sisa_anggaran, 0, ',', '.') . ')';
                 })
+
                 ->addColumn('aksi', function ($organisasi) {
                     return '<button class="P_B_organisasi btn btn-xs btn-primary" data-id="#M_P_organisasi-' . $organisasi->id . '">
                         <i class="bx bx-notepad"></i>
@@ -94,6 +95,7 @@ class OrganisasiController extends Controller
                 'nama' => $request->nama,
                 'logo' => $filename,
                 'anggaran' => (int) str_replace(['Rp', '.', ','], '', $request->anggaran),
+                'sisa_anggaran' => (int) str_replace(['Rp', '.', ','], '', $request->anggaran),
                 'periode' => $request->periode,
                 'keterangan' => $request->keterangan
             ]);

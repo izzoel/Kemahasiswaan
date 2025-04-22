@@ -12,6 +12,7 @@ class Organisasi extends Authenticatable
         'nama',
         'logo',
         'anggaran',
+        'sisa_anggaran',
         'periode',
         'keterangan',
         'name',
