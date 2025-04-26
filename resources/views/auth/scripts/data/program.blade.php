@@ -74,8 +74,13 @@
 
     function updateAnggaran() {
         $.get("/{{ request()->segment(1) }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}/anggaran", function(response) {
-            let formatted = formatRupiah(String(response.anggaran), 'Rp ');
-            $(".btnAnggaran").html(`<span class="text-dark">Anggaran :</span> ` + formatted);
+            let formattedAnggaran = formatRupiah(String(response.anggaran), 'Rp ');
+            let formattedTerpakai = formatRupiah(String(response.terpakai), 'Rp ');
+
+            $(".btnAnggaran").html(`
+            <span class="text-dark">Anggaran :</span> ${formattedAnggaran} | 
+            <span class="text-dark">Terpakai :</span> ${formattedTerpakai}
+        `);
         });
     }
 
@@ -220,7 +225,7 @@
             });
         });
 
-        $(".btnAnggaran").append(" {{ 'Rp ' . number_format(auth('organisasi')->user()->anggaran ?? 0, 0, ',', '.') }}");
+        updateAnggaran();
 
     });
 </script>

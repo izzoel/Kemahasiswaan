@@ -61,8 +61,12 @@ class ProgramController extends Controller
 
     public function anggaran()
     {
+        $organisasi = auth('organisasi')->user();
+        $terpakai = $organisasi->anggaran - $organisasi->sisa_anggaran;
+
         return response()->json([
-            'anggaran' => auth('organisasi')->user()->anggaran ?? 0
+            'anggaran' => $organisasi->anggaran ?? 0,
+            'terpakai' => $terpakai ?? 0,
         ]);
     }
 
