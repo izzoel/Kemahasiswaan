@@ -112,32 +112,29 @@ class ProgramController extends Controller
 
     public function update(Request $request, $id)
     {
+        $program = Program::findOrFail($id);
+
+        // Cari organisasi berdasarkan user login
         $organisasi = Organisasi::findOrFail(Auth::guard('organisasi')->id());
 
         try {
-            $program = Program::findOrFail($id);
-
-            // Ambil anggaran lama sebelum diupdate
-            $oldAnggaran = (int) $program->anggaran;
-
-            // Anggaran baru dari request
-            $newAnggaran = (int) str_replace(['Rp', '.', ','], '', $request->anggaran);
-
-            // Update data program
+            // Update program
             $program->update([
                 'program' => $request->program,
                 'pelaksanaan' => $request->pelaksanaan,
-                'anggaran' => $newAnggaran,
+                'anggaran' => (int) str_replace(['Rp', '.', ','], '', $request->anggaran),
                 'keterangan' => $request->keterangan,
             ]);
 
-            // Update anggaran organisasi
-            $currentAnggaran = (int) str_replace(['Rp', '.', ','], '', $organisasi->anggaran);
-            $updatedAnggaran = $currentAnggaran + $oldAnggaran - $newAnggaran;
+            // Hitung ulang total anggaran terpakai
+            $totalTerpakai = Program::where('id_organisasi', $organisasi->id)->sum('anggaran');
 
+            // Update sisa anggaran
             $organisasi->update([
-                'anggaran' => $updatedAnggaran
+                'sisa_anggaran' => $organisasi->anggaran - $totalTerpakai
             ]);
+
+            Log::info($organisasi->sisa_anggaran);
 
             return response()->json([
                 'status' => 'success',
@@ -151,6 +148,7 @@ class ProgramController extends Controller
             ], 500);
         }
     }
+
 
     public function destroy($id)
     {
