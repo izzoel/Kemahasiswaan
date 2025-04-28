@@ -49,7 +49,7 @@ class StrukturController extends Controller
                     return $struktur->mahasiswa ? $struktur->mahasiswa->prodi : '-';
                 })
                 ->addColumn('profil', function ($struktur) {
-                    $profilPath = $struktur->profil ? asset('profil/' . ($struktur->organisasi->nama ?? 'default') . '/' . $struktur->profil) : asset('images/default-profile.png');
+                    $profilPath = $struktur->profil ? asset('profil/' . ($struktur->organisasi->nama ?? 'default') . '/' . $struktur->profil) : asset('img/default-profile.png');
                     return '<img src="' . $profilPath . '" alt="' . ($struktur->mahasiswa->nama ?? 'Profile') . '" class="img-fluid" width="100px" height="100px">';
                 })
                 ->addColumn('aksi', function ($struktur) {
