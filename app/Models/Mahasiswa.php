@@ -18,13 +18,7 @@ class Mahasiswa extends Model
         'gelar',
         'no_hp',
         'status',
-        'skpi',
-        'ijazah',
         'alamat',
-        'nik',
-        'pisn',
-        'periode_lulus',
-        'tanggal_yudisium',
         'foto'
     ];
 

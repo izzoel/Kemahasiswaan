@@ -96,9 +96,9 @@ class MahasiswaController extends Controller
     {
         try {
             Excel::import(new MahasiswaImport, $request->file('file'));
-
             return back()->with('success', 'Data berhasil diimport!');
         } catch (\Exception $e) {
+            Log::error($e->getMessage());
             return back()->with('fail', 'Import Gagal!');
         }
     }
