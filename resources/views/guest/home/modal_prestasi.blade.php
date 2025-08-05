@@ -68,19 +68,19 @@
 
                                         <div>
                                             <label class="form-label" for="P_sertifikat">Sertifikat<span class="text-danger">*</span></label>
-                                            <input type="file" class="form-control mb-1" id="P_sertifikat" name="sertifikat" required>
+                                            <input type="file" class="form-control mb-1" id="P_sertifikat" name="sertifikat" required accept=".png,.jpg,.jpeg,.pdf">
                                             <div id="P_sertifikat_link"></div>
                                         </div>
 
                                         <div>
                                             <label class="form-label" for="P_dokumentasi">Dokumentasi<span class="text-danger">*</span></label>
-                                            <input type="file" class="form-control mb-1" id="P_dokumentasi" name="dokumentasi" required>
+                                            <input type="file" class="form-control mb-1" id="P_dokumentasi" name="dokumentasi" required accept=".png,.jpg,.jpeg,.pdf">
                                             <div id="P_dokumentasi_link"></div>
                                         </div>
 
                                         <div>
                                             <label class="form-label" for="P_foto">Foto<span class="text-danger">*</span></label>
-                                            <input type="file" class="form-control" id="P_foto" name="foto" required>
+                                            <input type="file" class="form-control" id="P_foto" name="foto" required accept=".png,.jpg,.jpeg,.pdf">
                                             <div id="P_foto_link"></div>
                                         </div>
 

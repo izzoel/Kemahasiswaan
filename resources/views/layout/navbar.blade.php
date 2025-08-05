@@ -78,7 +78,7 @@
                                     <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ url('/admin/data/beasiswa') }}">
                                         <div style="font-size: 0.85rem">
                                             Beasiswa <strong>{{ $beasiswa->beasiswa }}</strong>
-                                            <span class="badge bg-danger">{{ $beasiswa->mahasiswa->nama }}</span> menunggu
+                                            <span class="badge bg-danger">{{ $beasiswa->mahasiswa->nama ?? '' }}</span> menunggu
                                             <span class="badge bg-danger">verifikasi</span>
                                         </div>
                                     </a>
@@ -88,7 +88,7 @@
                                 <li>
                                     <a class="dropdown-item" style="font-size: 0.8rem" href="{{ url('/admin/layanan/konseling') }}">
                                         Konseling <strong>baru</strong>
-                                        <span class="badge bg-danger">{{ $konseling->mahasiswa->nama }}</span> terjadwal
+                                        <span class="badge bg-danger">{{ $konseling->mahasiswa->nama ?? '' }}</span> terjadwal
                                         <span class="badge bg-danger">{{ $konseling->tanggal }}</span>
                                     </a>
                                 </li>

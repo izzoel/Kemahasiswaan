@@ -45,8 +45,9 @@
                                                     <input type="text" class="form-control  mb-1" id="B_A_ips" name="ips" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="B_A_surat">Surat Pengajuan Beasiswa Akademik<span class="text-danger">*</span></label>
-                                                    <input type="file" class="form-control" id="B_A_surat" name="surat" required />
+                                                    <label class="form-label" for="B_A_surat">Surat Pengajuan Beasiswa Akademik (docx/doc/pdf)<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="file" class="form-control" id="B_A_surat" name="surat" required accept=".docx,.doc,.pdf" />
                                                 </div>
                                                 <div class="text-end">
                                                     <button type="submit" class="btn btn-primary mt-3 px-4 py-0 rounded-1">

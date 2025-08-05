@@ -12,7 +12,7 @@ class PrestasiController extends Controller
     {
         $data = [
             'title' => env('APP_NAME') . ' | ' . strtoupper(request()->segment(1)),
-            'menuData' => $request->get('menuData')
+            'menuData' => $request->get('menuData'),
         ];
         return view('auth.' . request()->segment(1) . '.pages.section', compact('data'));
     }
@@ -28,13 +28,17 @@ class PrestasiController extends Controller
                     return $prestasi->mahasiswa ? $prestasi->mahasiswa->nama : '-';
                 })
                 ->addColumn('aksi', function ($prestasi) {
-                    return '<a type="button" class="U_B_prestasi text-info" data-id="#M_U_prestasi-' . $prestasi->id . '">
+                    return '<a type="button" class="U_B_prestasi text-info" data-id="#M_U_prestasi-' .
+                        $prestasi->id .
+                        '">
                         <span class="tf-icons bx bx-show"></span> Lihat
                     </a>
 
                     <span class="mx-1">|</span>
 
-                    <a type="button" class="D_B_prestasi text-danger" data-id="' . $prestasi->id . '">
+                    <a type="button" class="D_B_prestasi text-danger" data-id="' .
+                        $prestasi->id .
+                        '">
                         <span class="tf-icons bx bxs-x-square"></span>
                     </a>';
                 })
@@ -49,5 +53,17 @@ class PrestasiController extends Controller
     {
         $prestasi = Prestasi::with('mahasiswa')->findOrFail($id);
         return response()->json($prestasi);
+    }
+
+    public function destroy($id)
+    {
+        $prestasi = Prestasi::where('id', $id)->first();
+        try {
+            $prestasi->delete();
+            return redirect()->back()->with('success', 'Data prestasi berhasil dihapus!');
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->with('fail', 'Data prestasi gagal dihapus!');
+        }
     }
 }

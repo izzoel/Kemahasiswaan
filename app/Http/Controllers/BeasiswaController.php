@@ -13,7 +13,7 @@ class BeasiswaController extends Controller
     {
         $data = [
             'title' => env('APP_NAME') . ' | ' . strtoupper(request()->segment(1)),
-            'menuData' => $request->get('menuData')
+            'menuData' => $request->get('menuData'),
         ];
         return view('auth.' . request()->segment(1) . '.pages.section', compact('data'));
     }
@@ -29,13 +29,17 @@ class BeasiswaController extends Controller
                     return $beasiswa->mahasiswa ? $beasiswa->mahasiswa->nama : '-';
                 })
                 ->addColumn('aksi', function ($beasiswa) {
-                    return '<a type="button" class="U_B_beasiswa text-info" data-id="#M_U_beasiswa-' . $beasiswa->id . '">
+                    return '<a type="button" class="U_B_beasiswa text-info" data-id="#M_U_beasiswa-' .
+                        $beasiswa->id .
+                        '">
                         <span class="tf-icons bx bx-show"></span> Lihat
                     </a>
 
                     <span class="mx-1">|</span>
 
-                    <a type="button" class="D_B_beasiswa text-danger" data-id="' . $beasiswa->id . '">
+                    <a type="button" class="D_B_beasiswa text-danger" data-id="' .
+                        $beasiswa->id .
+                        '">
                         <span class="tf-icons bx bxs-x-square"></span>
                     </a>';
                 })
@@ -60,14 +64,29 @@ class BeasiswaController extends Controller
             $beasiswa->save();
             return response()->json([
                 'status' => 'success',
-                'message' => "Status berhasil diperbarui!",
+                'message' => 'Status berhasil diperbarui!',
             ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return response()->json([
-                'status' => 'error',
-                'message' => "Status gagal diperbarui!"
-            ], 500);
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Status gagal diperbarui!',
+                ],
+                500,
+            );
+        }
+    }
+
+    public function destroy($id)
+    {
+        $beasiswa = Beasiswa::where('id', $id)->first();
+        try {
+            $beasiswa->delete();
+            return redirect()->back()->with('success', 'Data beasiswa berhasil dihapus!');
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->with('fail', 'Data beasiswa gagal dihapus!');
         }
     }
 }
